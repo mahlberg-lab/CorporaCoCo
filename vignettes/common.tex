@@ -1,0 +1,129 @@
+\documentclass[9pt, cmss, a4paper]{scrartcl}
+
+\usepackage[utf8]{inputenc}
+\setlength{\parindent}{0pt}
+%% say no to serif
+\renewcommand*\familydefault{\sfdefault}
+\usepackage{amsmath}
+\usepackage[inner=2.5cm,outer=2.5cm,bottom=2.5cm,top=2.5cm]{geometry}
+
+%% figures
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage[
+    width=0.8\textwidth,
+    font=footnotesize,
+    labelfont=bf
+]{caption}
+\usepackage{subcaption}
+\graphicspath{ {./figures/} }
+%% required for \begin{figure}[H] which should places the float at precisely the location of the command in the code.
+\usepackage{float}
+% make sure floats stay within their section
+\usepackage[section]{placeins}
+
+
+\usepackage[x11names]{xcolor}
+\definecolor{backgroundgray}{gray}{0.95}
+\usepackage[colorlinks=true, linkcolor=Blue4, urlcolor=Blue4, citecolor=Green4]{hyperref}
+
+%% bibliography
+\usepackage{nameref}
+\usepackage[british]{babel}
+\usepackage[
+    style=apa,
+    backend=biber,
+    url=false, 
+    doi=false,
+    eprint=false,
+    bibencoding=utf8
+]{biblatex}
+\DeclareLanguageMapping{british}{british-apa}
+\addbibresource{CorporaCoCo.bib}
+
+% ==
+% R
+% ==
+
+\usepackage{Sweave}
+\SweaveOpts{keep.source=TRUE, width=6, height=4}
+\DefineVerbatimEnvironment{Sinput}{Verbatim}{xleftmargin=1em, fontsize=\footnotesize}
+\DefineVerbatimEnvironment{Soutput}{Verbatim}{xleftmargin=1.4em, fontsize=\footnotesize}
+\DefineVerbatimEnvironment{Scode}{Verbatim}{xleftmargin=1.4em, fontsize=\footnotesize}
+\renewenvironment{Schunk}{\vspace{10pt}}{\vspace{10pt}}
+\setkeys{Gin}{width=0.6\textwidth}
+
+\DeclareTextFontCommand{\textCode}{\ttfamily\footnotesize}
+
+<<echo=false>>=
+    options(width = 100)
+    options(continue = ' ', prompt = ' ')
+@
+
+
+% ==========
+% non-R code
+% ==========
+
+\RequirePackage{listings}
+\lstset{
+    basicstyle=\footnotesize,
+    xleftmargin=1.4em,
+    framextopmargin=10pt,
+    framexbottommargin=10pt,
+    frame=tb, framerule=0pt,
+}
+
+
+\subtitle{
+    \small CorporaCoCo
+    v\Sexpr{read.dcf(system.file('DESCRIPTION', package = 'CorporaCoCo'), fields = 'Version')}
+    (\Sexpr{read.dcf(system.file('DESCRIPTION', package = 'CorporaCoCo'), fields = 'Date')})
+}
+
+\author{
+    \scriptsize
+    \parbox{0.36\textwidth}{
+        \centering
+        \small Anthony Hennessey \\
+        \scriptsize
+        Statistics and Probability, School of Mathematical Sciences\\ University of Nottingham \\
+        \texttt{ah@ravingmantis.com}
+    }
+    \parbox{0.36\textwidth}{
+       \centering
+       \small
+       Viola Wiegand \\
+       \scriptsize
+       Centre for Corpus Research, College of Arts and Law\\ University of Birmingham \\
+       \texttt{v.wiegand@bham.ac.uk}
+    }
+    \\ \\
+    \parbox{0.34\textwidth}{
+       \centering
+       \small
+       Michaela Mahlberg \\
+       \scriptsize
+       Centre for Corpus Research, College of Arts and Law\\ University of Birmingham \\
+       \texttt{m.a.mahlberg@bham.ac.uk}
+    }
+    \parbox{0.34\textwidth}{
+       \centering
+       \small
+       Christopher R. Tench \\
+       \scriptsize
+       Division of Clinical Neurosciences, School of Medicine\\ University of Nottingham \\
+       \texttt{christopher.tench@nottingham.ac.uk}
+    }
+    \parbox{0.15\textwidth}{
+       \centering
+       \small
+       Jamie Lentin \\
+       \scriptsize
+       Shuttle Thread\\ Manchester \\
+       \texttt{jm@ravingmantis.com}
+    }
+}
+
+\date{}
+

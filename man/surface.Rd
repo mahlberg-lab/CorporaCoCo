@@ -1,0 +1,134 @@
+\name{surface}
+\alias{surface}
+
+\title{Calculate Surface Co-occurrence Counts}
+\description{
+  Calculates all surface co-occurrence counts for the supplied vector.
+  For each co-occurrence the maximum possible number of co-occurrences
+  is also calculated.
+}
+
+\usage{
+  surface(x, span)
+}
+
+\arguments{
+  \item{x}{
+    A vector. This is the subject of the co-occurrence counting.
+  }
+  \item{span}{
+    A character string defining the co-occurrence span.
+    See details.
+  }
+}
+
+\value{
+  Returns a \code{\link[data.table]{data.table}} containing
+  counts for all co-occurrences in \var{x}.
+  Note that a \code{data.table} is also a \code{data.frame} so
+  if the \code{data.table} library is not loaded the returned
+  object will behave exactly as a \code{data.frame}; however,
+  for large data sets there will be significant performance
+  enhancement offered by exploiting \code{data.table} functionality.
+
+  The returned object is of the form:
+\preformatted{
+    Classes ‘data.table’ and 'data.frame': ...
+     $ x: chr
+     $ y: chr
+     $ H: int
+     $ M: int
+     - attr(*, "sorted")= chr  "x" "y"
+     - attr(*, ".internal.selfref")=<externalptr> 
+}
+  where \code{H} is the number of times \code{x} co-occurs with \code{y}
+  think \code{H}its), and \code{M} is the number of times \code{x}
+  fails to co-occurs with \code{y} when it could have (think
+  \code{M}isses); hence \code{N + M} is the maximum number of times
+  that \code{x} could have co-occured with \code{y}.
+}
+
+\details{
+  \var{x} is assumed to be a vector of tokenized text.
+  No processing will be applied to \code{x} prior to the co-occurrence
+  count calculations.
+
+  \sQuote{surface} co-occurrence is easiest to describe with an example.
+  The following is a \code{span} of \code{'2LR'}, that is 2 to the left and
+  2 to the right.
+\preformatted{
+    ("a", "man", "a", "plan", "a", "cat", "a", "canal", "panama")
+          |___________|____|___________|
+}
+
+  Other examples of \code{span}:
+
+  \code{span = '1L2R'}
+\preformatted{
+    ("a", "man", "a", "plan", "a", "cat", "a", "canal", "panama")
+                 |____|____|___________|
+}
+
+  \code{span = '2R'}
+\preformatted{
+    ("a", "man", "a", "plan", "a", "cat", "a", "canal", "panama")
+                      |____|___________|
+}
+
+  In this example the term \dQuote{plan} would co-occur once each with
+  the terms \dQuote{man} and \dQuote{cat}, and twice with the term
+  \dQuote{a}.
+  For a detailed description of \sQuote{surface} co-occurrence and the
+  other types of co-occurrence see Evert (2008).
+
+  \code{NA}s can be used to implement co-occurrence barriers
+  (see Evert (2008) for a description of co-occurrence barriers);
+  eg if two \code{NA} characters are inserted
+  into \var{x} at each sentence boundary then with \code{span = 2}
+  co-occurences will not happen accross sentences.
+
+  In the returned data structure the number of \code{M}isses is
+  exactly.
+}
+
+\examples{
+    # =====================
+    # surface co-occurrence
+    # =====================
+
+    x <- c("a", "man", "a", "plan", "a", "canal", "panama")
+    surface(x, span = '2R')
+
+    ##         x      y H M
+    ##  1:     a      a 2 4
+    ##  2:     a  canal 1 5
+    ##  3:     a    man 1 5
+    ##  4:     a panama 1 5
+    ##  5:     a   plan 1 5
+    ##  6: canal panama 1 0
+    ##  7:   man      a 1 1
+    ##  8:   man   plan 1 1
+    ##  9:  plan      a 1 1
+    ## 10:  plan  canal 1 1
+
+
+    # co-occurrence barrier
+    x <- c("a", "man", "a", "plan", NA, NA, "a", "canal", "panama")
+    surface(x, span = '2R')
+
+    #         x      y H M
+    #  1:     a      a 1 4
+    #  2:     a  canal 1 4
+    #  3:     a    man 1 4
+    #  4:     a panama 1 4
+    #  5:     a   plan 1 4
+    #  6: canal panama 1 0
+    #  7:   man      a 1 1
+    #  8:   man   plan 1 1
+}
+
+\references{
+  S. Evert (2008) \emph{Corpora and collocations.}
+  Corpus Linguistics: An International Handbook \bold{1212–1248}.
+}
+

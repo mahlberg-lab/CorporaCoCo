@@ -1,0 +1,179 @@
+# constructor
+coco_construct <- function(DT, nodes, fdr) {
+    class(DT) <- c('coco', class(DT))
+    attr(DT, 'coco_metadata') <- list(
+        'nodes' = nodes,
+        'fdr' = fdr,
+        'PACKAGE_VERSION' = packageVersion('CorporaCoCo'),
+        'date' = Sys.Date()
+    )
+    invisible(DT)
+}
+
+
+# s3 methods
+# ----------
+# ref: http://cran.r-project.org/doc/manuals/r-devel/R-exts.html#Generic-functions-and-methods
+# for explanation of argument names
+
+plot.coco <- function(x, as_matrix = FALSE, nodes = NULL, forest_plot_args = NULL, ...) {
+    # hack to stop R CMD check warnings
+    effect_size = V1 = y = CI_upper = CI_lower = NULL
+
+    # can't use metadata attr - data.table functions do not preserve non-data.table attributes - https://github.com/Rdatatable/data.table/issues/995
+    if(! is.null(nodes)) {
+        if(! all(nodes %in% unique(x[,x]))) {
+            warning('Some of the supplied plot nodes are not in the significant results and therefore will be absent from the plot')
+        }
+        x <- x[x %in% nodes]
+    }
+    if(nrow(x) == 0) {
+        warning("Nothing to plot: 'x' has zero rows.")
+    } else {
+        op <- par(no.readonly=TRUE)
+        setkey(x)
+
+        if(as_matrix) {
+            if(! is.null(nodes)) {
+                node_order <- nodes
+            } else {
+                node_order <- x[, sum(effect_size), by = list(x)][order(-V1)]$x
+            }
+            collocate_order <- x[, sum(effect_size), by = list(y)][order(V1)]$y
+            DT <- dcast(x, x ~ y, value.var = 'effect_size')
+            m <- as.matrix( DT[, -1, with = FALSE] )
+            dimnames(m) <- list(DT$x, dimnames(m)[[2]])
+            m <- m[node_order, collocate_order, drop = FALSE]
+            colors <- colorRampPalette(brewer.pal(11, 'PRGn'))(1024)
+            if(all(is.infinite(x$effect_size))) {
+                # must only have infinite effect_size scale limit is irrelevant
+                scale_limit <- 1
+            } else {
+                scale_limit <- ceiling(max(abs(range(x$effect_size, finite = TRUE))))
+            }
+            y_axis_labels_width <- max(strwidth(node_order, units = 'inches', cex = par('cex.lab')))
+            par(omi = c(0, y_axis_labels_width, 0, 0))
+            # Inf is considered missing value and plotted as transparent
+            image(
+                1:ncol(m), 1:nrow(m), t(m), zlim = c(-scale_limit, scale_limit),
+                xlab = 'Collocates',
+                ylab = 'Seed Terms',
+                xaxt = 'n',
+                yaxt = 'n',
+                bty = 'n',
+                col = colors
+            )
+            axis(1, at = 1:length(collocate_order), labels = collocate_order, tick = FALSE, las = 2)
+            axis(2, at = 1:length(node_order), labels = node_order, tick = FALSE, las = 2)
+            # plot infinites (incalculables) 
+            dimnames(m) <- NULL  # want dimnames as numbers to use as co-ordinated
+            m <- melt(m, variable.factor = FALSE)
+            m <- m[is.infinite(m$value), , drop = FALSE]
+            if(nrow(m) > 0) {
+                m_n <- m[m$value == -Inf, , drop = FALSE]
+                if(nrow(m_n) > 0) {
+                    rect(m_n[ , 2]-0.5, m_n[ , 1]-0.5, m_n[ , 2]+0.5, m_n[ , 1]+0.5, col = colors[1], border = NA)
+                }
+                m_p <- m[m$value == Inf, , drop = FALSE]
+                if(nrow(m_p) > 0) {
+                    rect(m_p[ , 2]-0.5, m_p[ , 1]-0.5, m_p[ , 2]+0.5, m_p[ , 1]+0.5, col = colors[length(colors)], border = NA)
+                }
+                rect(m[ , 2]-0.3, m[ , 1]-0.3, m[ , 2]+0.3, m[ , 1]+0.3, col = 'white', border = NA)  # white center
+            }
+        } else {
+            scale_limit = ceiling(max(abs(range(x$CI_lower, x$CI_upper, finite = TRUE))))
+            plot_args <- list(
+                xlim = c(-scale_limit, scale_limit),
+                xlab = 'Effect Size',
+                main = NULL,
+                sub = NULL,
+                asp = NA,
+                pch = 15,
+                cex.pch = 1,
+                lwd.xaxt = 1,
+                col.xaxt = 'black',
+                col.whisker = 'black',
+                col.zero = 'darkgray'
+            )
+            if(! is.null(forest_plot_args)){
+                if(! is.list(forest_plot_args)) stop("if 'forest_plot_args' is supplied then it must be a list")
+                plot_args <- list.merge(plot_args, forest_plot_args)
+            }
+            if(is.null(nodes)) {
+                nodes <- sort(unique(x$x))
+            } else {
+                nodes <- nodes[nodes %in% x$x]
+            }
+            x <- x[nodes]
+            gaps <- length(nodes) - 1
+            max_x_chars <- max(nchar(x$x))
+            max_y_chars <- max(nchar(x$y))
+            max_y_label_width <- strwidth(paste(rep('a', max_x_chars + max_y_chars + 1), collapse = ''), units = 'inches', cex = par('cex.lab'), family = "mono")
+            par(omi = c(0, max_y_label_width, 0, 0))
+            # empty plot
+            plot(
+                0, 0,
+                xlim = plot_args$xlim,
+                ylim = c(0, nrow(x) + gaps),
+                xlab = plot_args$xlab,
+                ylab = '',
+                yaxt = 'n',
+                xaxt = 'n',
+                bty = 'n',
+                type = 'n',
+                main = plot_args$main,
+                sub = plot_args$sub,
+                asp = plot_args$asp
+            )
+            axis(1, lwd = plot_args$lwd.xaxt, col = plot_args$col.xaxt)
+            # and fill it in
+            y_start = 0
+            y_labels <- c()
+            for(node in nodes) {
+                # -ve infinite
+                DT <- x[x == node & effect_size == -Inf][order(CI_upper)][ , rank := .I]
+                if(nrow(DT) > 0) {
+                    arrows(-scale_limit, DT$rank + y_start, DT$CI_upper, DT$rank + y_start, code = 2, length = 0.05, angle = 90, col = plot_args$col.whisker )
+                    y_labels <- c(y_labels, paste(format(DT$x, width = max_x_chars, justify = 'right'), format(DT$y, width = max_y_chars, justify = 'left'), sep = ' '))
+                    y_start <- y_start + nrow(DT)
+                }
+                # finite
+                DT <- x[x == node & is.finite(effect_size)][order(effect_size)][ , rank := .I]
+                if(nrow(DT) > 0) {
+                    points(
+                        DT$effect_size, 1:nrow(DT) + y_start,
+                        pch = plot_args$pch,
+                        cex = plot_args$cex.pch
+                    )
+                    arrows(DT$CI_lower, DT$rank + y_start, DT$CI_upper, DT$rank + y_start, code = 3, length = 0.05, angle = 90, col = plot_args$col.whisker )
+                    # need to overplot the arrows which may have a different color
+                    points(
+                        DT$effect_size, 1:nrow(DT) + y_start,
+                        pch = plot_args$pch,
+                        cex = plot_args$cex.pch
+                    )
+                    y_labels <- c(y_labels, paste(format(DT$x, width = max_x_chars, justify = 'right'), format(DT$y, width = max_y_chars, justify = 'left'), sep = ' '))
+                    y_start <- y_start + nrow(DT)
+                }
+                # +ve infinite
+                DT <- x[x == node & effect_size == Inf][order(CI_lower)][ , rank := .I]
+                if(nrow(DT) > 0) {
+                    arrows(DT$CI_lower, DT$rank + y_start, scale_limit, DT$rank + y_start, code = 1, length = 0.05, angle = 90, col = plot_args$col.whisker )
+                    y_labels <- c(y_labels, paste(format(DT$x, width = max_x_chars, justify = 'right'), format(DT$y, width = max_y_chars, justify = 'left'), sep = ' '))
+                    y_start <- y_start + nrow(DT)
+                }
+                # add gap
+                y_start <- y_start + 1
+                y_labels <- c(y_labels, '')
+            }
+            par(family = "mono")
+            axis(2, at = 1:length(y_labels), labels = y_labels, tick = FALSE, las = 2)
+            # zero effect reference
+            abline(v = 0, lty = 5, col = plot_args$col.zero)
+        }
+
+        par(op)
+    }
+    invisible(NULL)
+}
+
