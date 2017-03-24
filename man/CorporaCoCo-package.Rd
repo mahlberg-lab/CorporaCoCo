@@ -16,7 +16,7 @@
 }
 
 \author{
-  Maintainer: Anthony Hennessey <ah@ravingmantis.com>.
+  Maintainer: Anthony Hennessey <anthony.hennessey@nottingham.ac.uk>.
 }
 
 \references{

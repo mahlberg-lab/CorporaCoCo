@@ -5,7 +5,7 @@ Title: Corpora Co-Occurrence Comparison
 Version: 1.0-0
 Date: 2017-03-23
 Authors@R:
-    c(person('Anthony','Hennessey',email='ah@ravingmantis.com',role=c('aut','cre')),
+    c(person('Anthony','Hennessey',email='anthony.hennessey@nottingham.ac.uk',role=c('aut','cre')),
     person('Viola','Wiegand',email='v.wiegand@bham.ac.uk',role='aut'),
     person('Michaela','Malberg',email='m.a.mahlberg@bham.ac.uk',role='aut'),
     person('Christopher R.','Tench',email='christopher.tench@nottingham.ac.uk',role='aut'),
