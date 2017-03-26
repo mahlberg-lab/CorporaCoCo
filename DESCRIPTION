@@ -2,8 +2,8 @@ Encoding: UTF-8
 Package: CorporaCoCo
 Type: Package
 Title: Corpora Co-Occurrence Comparison
-Version: 1.0-0
-Date: 2017-03-23
+Version: 1.0-1
+Date: 2017-03-26
 Authors@R:
     c(person('Anthony','Hennessey',email='anthony.hennessey@nottingham.ac.uk',role=c('aut','cre')),
     person('Viola','Wiegand',email='v.wiegand@bham.ac.uk',role='aut'),
@@ -23,7 +23,6 @@ Imports:
     rlist
 Suggests: 
     unittest,
-    CorporaCorpus (>= 0.4.0),
     stringi
 BugReports: https://github.com/ravingmantis/CorporaCoCo/issues
 LazyData: yes

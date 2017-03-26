@@ -58,7 +58,7 @@ Mac OSX / Windows
 -----------------
 
 ``download.file`` may not support fetching ``https`` URLs. Alternatively, you
-can use the the CRAN package [downloader](http://CRAN.R-project.org/package=downloader)
+can use the the CRAN package [downloader](https://CRAN.R-project.org/package=downloader)
 to fetch the archive instead:
 
     # install.packages("downloader")
@@ -69,7 +69,7 @@ to fetch the archive instead:
 Alternatively use the `devtools` CRAN package
 ---------------------------------------------
 
-If you have the CRAN package [devtools](http://CRAN.R-project.org/package=devtools)
+If you have the CRAN package [devtools](https://CRAN.R-project.org/package=devtools)
 you can use this to install directly from github:
 
     # install.packages("devtools")

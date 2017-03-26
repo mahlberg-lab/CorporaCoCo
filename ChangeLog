@@ -1,3 +1,11 @@
+2017-03-26  Anthony Hennessey  <anthony.hennessey@nottingham.ac.uk>
+
+    Version 1.0-1
+
+    * vignettes/faq.Rnw: Removed dependency on the CorporaCorpus data package as CRAN rejected it for being over 5MB, hence we have to fake our `literate programming' -- good grief!
+    * vignettes/proof_of_concept.Rnw: Ditto.
+
+
 2017-03-22  Anthony Hennessey  <anthony.hennessey@nottingham.ac.uk>
 
     Version 1.0-0

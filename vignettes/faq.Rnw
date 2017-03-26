@@ -10,14 +10,21 @@
 \maketitle
 
 \tableofcontents
-<<label='generate the results set', echo=FALSE>>=
+<<label='load libraries', echo=FALSE>>=
 library(CorporaCoCo)
-library(CorporaCorpus)
 library(stringi)
-GE  <- unlist( stri_extract_all_words( stri_trans_tolower( readLines(corpus_filepaths('DNov', 'GE')) ) ))
-TTC  <- unlist( stri_extract_all_words( stri_trans_tolower( readLines(corpus_filepaths('DNov', 'TTC')) ) ))
-nodes <- c('back', 'eye', 'eyes', 'forehead', 'hand', 'hands', 'head', 'shoulder')
-results <- surface_coco(TTC, GE, span = '5LR', nodes = nodes)
+@
+
+%% not allowed to have CorporaCorpus on CRAN until the world stops using dial up.
+% <<>>=
+% library(CorporaCorpus)
+% GE  <- unlist( stri_extract_all_words( stri_trans_tolower( readLines(corpus_filepaths('DNov', 'GE')) ) ))
+% TTC  <- unlist( stri_extract_all_words( stri_trans_tolower( readLines(corpus_filepaths('DNov', 'TTC')) ) ))
+% nodes <- c('back', 'eye', 'eyes', 'forehead', 'hand', 'hands', 'head', 'shoulder')
+% results <- surface_coco(TTC, GE, span = '5LR', nodes = nodes)
+% @
+<<label='load results set', echo=FALSE>>=
+results <- readRDS('results_TTC_vs_GE.rds')
 @
 
 \tableofcontents
@@ -45,7 +52,7 @@ If you are not sure about or need a reminder of the different types, and interpr
 \subsection{Does the package understand co-occurrence barriers?}
 Yes, but if you are interested in co-occurrence barriers you should probably be using a more sophisticated tool for your co-occurrence counting than our \textCode{surface()} function.
 That being said the \textCode{surface()} function does implement a basic idea of co-occurrence boundaries.
-Any \textCode{NA} in the vector of tokens passed to the \textCode{surface()} function will be counted as a token when considering token seperation, but counts of co-occurrence with \textCode{NA} are ignored; the implication of this is that with a \textCode{span = n} any set of \textCode{n} consecutive \textCode{NA} elements will act as a co-occurrence boundary. For example using the \textCode{stringi} package to seperate sentences we can stop co-occurrence accross sentence boundaries.
+Any \textCode{NA} in the vector of tokens passed to the \textCode{surface()} function will be counted as a token when considering token seperation, but counts of co-occurrence with \textCode{NA} are ignored; the implication of this is that with a \textCode{span = n} any set of \textCode{n} consecutive \textCode{NA} elements will act as a co-occurrence boundary. For example using the \textCode{stringi} package to seperate sentences we can stop co-occurrence across sentence boundaries.
 <<label='sentences co-occurrence boundaries'>>=
 sentences  <- unlist(stri_extract_all_boundaries(text, type = 'sentence'))
 sentences
