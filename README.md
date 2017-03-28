@@ -40,7 +40,9 @@ The results are easier to see if you plot them.
 Installing from CRAN
 ====================
 
-This package should be on CRAN very soon.
+In an R session type
+
+    install.packages('CorporaCoCo')
 
 Installing the latest development version directly from GitHub
 ==============================================================
