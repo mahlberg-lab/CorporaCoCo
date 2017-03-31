@@ -3,7 +3,7 @@ pkg_vars$unittest_surface_include_na = FALSE
 
 parse_span <- function(x) {
     if(! is.character(x) || length(x) > 1) stop("span must be a character string")
-    m <- regexec(text = x, pattern = '^((\\d+)([LR]))((\\d*)([LR]))?$', perl = TRUE)
+    m <- regexec(text = x, pattern = '^((\\d+)([LR]))((\\d*)([LR]))?$')
     s <- regmatches(x, m)[[1]]
     if(length(s) != 7) stop('span looks wrong')
     if(s[4] == s[7]) stop(paste0(s[4], ' given twice in span'))
