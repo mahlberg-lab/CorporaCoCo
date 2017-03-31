@@ -2,12 +2,12 @@ Encoding: UTF-8
 Package: CorporaCoCo
 Type: Package
 Title: Corpora Co-Occurrence Comparison
-Version: 1.0-1
-Date: 2017-03-26
+Version: 1.0-2
+Date: 2017-03-31
 Authors@R:
     c(person('Anthony','Hennessey',email='anthony.hennessey@nottingham.ac.uk',role=c('aut','cre')),
     person('Viola','Wiegand',email='v.wiegand@bham.ac.uk',role='aut'),
-    person('Michaela','Malberg',email='m.a.mahlberg@bham.ac.uk',role='aut'),
+    person('Michaela','Mahlberg',email='m.a.mahlberg@bham.ac.uk',role='aut'),
     person('Christopher R.','Tench',email='christopher.tench@nottingham.ac.uk',role='aut'),
     person('Jamie','Lentin',email='jm@ravingmantis.com',role='aut'))
 Description: A set of functions used to compare co-occurrence between two corpora.
