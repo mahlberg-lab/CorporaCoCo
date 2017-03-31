@@ -3,7 +3,7 @@ CorporaCoCo
 
 A set of functions used to compare co-occurrence between two corpora.
 
-The package is the result of work by the [Centre for Corpus Research](http://www.birmingham.ac.uk/research/activity/corpus/) at the University of Birmingham.  There is a paper in preparation but for now a good place to get an idea of what is going on is the 'Proof of Concept' vignette.
+The package is the result of work by the [Centre for Corpus Research](http://www.birmingham.ac.uk/research/activity/corpus/) at the University of Birmingham.  There is a paper in preparation but for now a good place to get an idea of what is going on is the 'Proof of Concept' document.
 
 A very simple example of usage
 ------------------------------

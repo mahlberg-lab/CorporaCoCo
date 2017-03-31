@@ -46,7 +46,7 @@
          \item \code{col.zero} Default: 'darkgray'
       }
       For example usage see the \sQuote{plot} section in the \sQuote{\href{../doc/faq.pdf}{FAQ}}
-      vignette.
+      document.
   }
   \item{...}{
      Other arguments will be ignored.
@@ -61,6 +61,6 @@
 
 \note{
   For example usage see the
-  \sQuote{\href{../doc/faq.pdf}{FAQ}} vignette.
+  \sQuote{\href{../doc/faq.pdf}{FAQ}} document.
 }
 

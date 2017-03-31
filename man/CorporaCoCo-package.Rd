@@ -9,8 +9,8 @@
 }
 \details{
   A good place to start is the
-  \sQuote{\href{../doc/proof_of_concept.pdf}{Proof of Concept}} vignette.
-  There is also a \sQuote{\href{../doc/faq.pdf}{FAQ}} vignette.
+  \sQuote{\href{../doc/proof_of_concept.pdf}{Proof of Concept}} document.
+  There is also a \sQuote{\href{../doc/faq.pdf}{FAQ}} document.
 
   For a list of all documentation use \code{library(help="CorporaCoCo")}.
 }
