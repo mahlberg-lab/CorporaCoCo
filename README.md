@@ -53,7 +53,7 @@ Linux
 In an R session type:
 
     pkg_file <- tempfile()
-    download.file(url = 'https://github.com/ravingmantis/CorporaCoCo/archive/master.tar.gz', mode = 'wb', method = 'wget', destfile = pkg_file)
+    download.file(url = 'https://github.com/birmingham-ccr/CorporaCoCo/archive/master.tar.gz', mode = 'wb', method = 'wget', destfile = pkg_file)
     install.packages(pkg_file, repos = NULL, type = 'source')
 
 Mac OSX / Windows
@@ -65,7 +65,7 @@ to fetch the archive instead:
 
     # install.packages("downloader")
     pkg_file <- tempfile()
-    downloader::download(url = 'https://github.com/ravingmantis/CorporaCoCo/archive/master.tar.gz', mode = 'wb', destfile = pkg_file)
+    downloader::download(url = 'https://github.com/birmingham-ccr/CorporaCoCo/archive/master.tar.gz', mode = 'wb', destfile = pkg_file)
     install.packages(pkg_file, repos = NULL, type = 'source')
 
 Alternatively use the `devtools` CRAN package
@@ -75,5 +75,5 @@ If you have the CRAN package [devtools](https://CRAN.R-project.org/package=devto
 you can use this to install directly from github:
 
     # install.packages("devtools")
-    devtools::install_github("ravingmantis/CorporaCoCo")
+    devtools::install_github("birmingham-ccr/CorporaCoCo")
 
