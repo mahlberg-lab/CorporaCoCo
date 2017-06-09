@@ -44,6 +44,7 @@
          \item \code{col.xaxt} Default: 'black'
          \item \code{col.whisker} Default: 'black'
          \item \code{col.zero} Default: 'darkgray'
+         \item \code{length.wisker_end} Default: 0.05
       }
       For example usage see the \sQuote{plot} section in the \sQuote{\href{../doc/faq.pdf}{FAQ}}
       document.

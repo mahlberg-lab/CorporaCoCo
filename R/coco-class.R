@@ -86,7 +86,8 @@ plot.coco <- function(x, as_matrix = FALSE, nodes = NULL, forest_plot_args = NUL
                 lwd.xaxt = 1,
                 col.xaxt = 'black',
                 col.whisker = 'black',
-                col.zero = 'darkgray'
+                col.zero = 'darkgray',
+                length.wisker_end = 0.05
             )
             if(! is.null(forest_plot_args)){
                 if(! is.list(forest_plot_args)) stop("if 'forest_plot_args' is supplied then it must be a list")
@@ -126,7 +127,7 @@ plot.coco <- function(x, as_matrix = FALSE, nodes = NULL, forest_plot_args = NUL
                 # -ve infinite
                 DT <- x[x == node & effect_size == -Inf][order(CI_upper)][ , rank := .I]
                 if(nrow(DT) > 0) {
-                    arrows(-scale_limit, DT$rank + y_start, DT$CI_upper, DT$rank + y_start, code = 2, length = 0.05, angle = 90, col = plot_args$col.whisker )
+                    arrows(-scale_limit, DT$rank + y_start, DT$CI_upper, DT$rank + y_start, code = 2, length = plot_args$length.wisker_end, angle = 90, col = plot_args$col.whisker )
                     y_labels <- c(y_labels, paste(format(DT$x, width = max_x_chars, justify = 'right'), format(DT$y, width = max_y_chars, justify = 'left'), sep = ' '))
                     y_start <- y_start + nrow(DT)
                 }
@@ -138,7 +139,7 @@ plot.coco <- function(x, as_matrix = FALSE, nodes = NULL, forest_plot_args = NUL
                         pch = plot_args$pch,
                         cex = plot_args$cex.pch
                     )
-                    arrows(DT$CI_lower, DT$rank + y_start, DT$CI_upper, DT$rank + y_start, code = 3, length = 0.05, angle = 90, col = plot_args$col.whisker )
+                    arrows(DT$CI_lower, DT$rank + y_start, DT$CI_upper, DT$rank + y_start, code = 3, length = plot_args$length.wisker_end, angle = 90, col = plot_args$col.whisker )
                     # need to overplot the arrows which may have a different color
                     points(
                         DT$effect_size, 1:nrow(DT) + y_start,
@@ -151,7 +152,7 @@ plot.coco <- function(x, as_matrix = FALSE, nodes = NULL, forest_plot_args = NUL
                 # +ve infinite
                 DT <- x[x == node & effect_size == Inf][order(CI_lower)][ , rank := .I]
                 if(nrow(DT) > 0) {
-                    arrows(DT$CI_lower, DT$rank + y_start, scale_limit, DT$rank + y_start, code = 1, length = 0.05, angle = 90, col = plot_args$col.whisker )
+                    arrows(DT$CI_lower, DT$rank + y_start, scale_limit, DT$rank + y_start, code = 1, length = plot_args$length.wisker_end, angle = 90, col = plot_args$col.whisker )
                     y_labels <- c(y_labels, paste(format(DT$x, width = max_x_chars, justify = 'right'), format(DT$y, width = max_y_chars, justify = 'left'), sep = ' '))
                     y_start <- y_start + nrow(DT)
                 }
