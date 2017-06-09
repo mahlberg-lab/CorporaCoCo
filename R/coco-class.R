@@ -39,7 +39,7 @@ plot.coco <- function(x, as_matrix = FALSE, nodes = NULL, forest_plot_args = NUL
             } else {
                 node_order <- x[, sum(effect_size), by = list(x)][order(-V1)]$x
             }
-            collocate_order <- x[, sum(effect_size), by = list(y)][order(V1)]$y
+            collocate_order <- x[, sum(sign(effect_size)), by = list(y)][order(V1)]$y
             DT <- dcast(x, x ~ y, value.var = 'effect_size')
             m <- as.matrix( DT[, -1, with = FALSE] )
             dimnames(m) <- list(DT$x, dimnames(m)[[2]])
@@ -51,13 +51,14 @@ plot.coco <- function(x, as_matrix = FALSE, nodes = NULL, forest_plot_args = NUL
             } else {
                 scale_limit <- ceiling(max(abs(range(x$effect_size, finite = TRUE))))
             }
+            x_axis_labels_width <- max(strwidth(collocate_order, units = 'inches', cex = par('cex.lab')))
             y_axis_labels_width <- max(strwidth(node_order, units = 'inches', cex = par('cex.lab')))
-            par(omi = c(0, y_axis_labels_width, 0, 0))
+            par(omi = c(x_axis_labels_width, y_axis_labels_width, 0, 0))
             # Inf is considered missing value and plotted as transparent
             image(
                 1:ncol(m), 1:nrow(m), t(m), zlim = c(-scale_limit, scale_limit),
                 xlab = 'Collocates',
-                ylab = 'Seed Terms',
+                ylab = 'Nodes',
                 xaxt = 'n',
                 yaxt = 'n',
                 bty = 'n',
@@ -70,15 +71,7 @@ plot.coco <- function(x, as_matrix = FALSE, nodes = NULL, forest_plot_args = NUL
             m <- melt(m, variable.factor = FALSE)
             m <- m[is.infinite(m$value), , drop = FALSE]
             if(nrow(m) > 0) {
-                m_n <- m[m$value == -Inf, , drop = FALSE]
-                if(nrow(m_n) > 0) {
-                    rect(m_n[ , 2]-0.5, m_n[ , 1]-0.5, m_n[ , 2]+0.5, m_n[ , 1]+0.5, col = colors[1], border = NA)
-                }
-                m_p <- m[m$value == Inf, , drop = FALSE]
-                if(nrow(m_p) > 0) {
-                    rect(m_p[ , 2]-0.5, m_p[ , 1]-0.5, m_p[ , 2]+0.5, m_p[ , 1]+0.5, col = colors[length(colors)], border = NA)
-                }
-                rect(m[ , 2]-0.3, m[ , 1]-0.3, m[ , 2]+0.3, m[ , 1]+0.3, col = 'white', border = NA)  # white center
+                rect(m[ , 2]-0.5, m[ , 1]-0.5, m[ , 2]+0.5, m[ , 1]+0.5, col = 'lightgrey', border = NA)
             }
         } else {
             scale_limit = ceiling(max(abs(range(x$CI_lower, x$CI_upper, finite = TRUE))))
