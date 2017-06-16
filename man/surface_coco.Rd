@@ -40,6 +40,6 @@
 
   For an example of usage see the
   \sQuote{\href{../doc/proof_of_concept.pdf}{Proof of Concept}}
-  document.
+  vignette.
 }
 

@@ -47,7 +47,7 @@
          \item \code{length.wisker_end} Default: 0.05
       }
       For example usage see the \sQuote{plot} section in the \sQuote{\href{../doc/faq.pdf}{FAQ}}
-      document.
+      vignette.
   }
   \item{...}{
      Other arguments will be ignored.
@@ -62,6 +62,6 @@
 
 \note{
   For example usage see the
-  \sQuote{\href{../doc/faq.pdf}{FAQ}} document.
+  \sQuote{\href{../doc/faq.pdf}{FAQ}} vignette.
 }
 

@@ -23,6 +23,9 @@ Imports:
     rlist
 Suggests: 
     unittest,
-    stringi
+    stringi,
+    R.rsp
+VignetteBuilder:
+    R.rsp
 BugReports: https://github.com/birmingham-ccr/CorporaCoCo/issues
 LazyData: yes
