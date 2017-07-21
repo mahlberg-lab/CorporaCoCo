@@ -31,6 +31,7 @@ plot.coco <- function(x, as_matrix = FALSE, nodes = NULL, forest_plot_args = NUL
         warning("Nothing to plot: 'x' has zero rows.")
     } else {
         op <- par(no.readonly=TRUE)
+        on.exit(par(op))
         setkey(x)
 
         if(as_matrix) {
@@ -165,8 +166,6 @@ plot.coco <- function(x, as_matrix = FALSE, nodes = NULL, forest_plot_args = NUL
             # zero effect reference
             abline(v = 0, lty = 5, col = plot_args$col.zero)
         }
-
-        par(op)
     }
     invisible(NULL)
 }
