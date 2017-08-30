@@ -169,6 +169,18 @@ ok_group("main", {
     assign('unittest_surface_include_na', FALSE, pos = CorporaCoCo:::pkg_vars)
 })
 
+ok_group("filters", {
+    x <- c("a", "man", "a", "plan", "a", "canal", "panama")
+    expected <- data.table(
+        x =            c("canal",  "man", "man",  "plan", "plan"),
+        y =            c("panama", "a",   "plan", "a",    "canal"),
+        H = as.integer(c( 1,        1,     1,      1,      1)),
+        M = as.integer(c( 0,        1,     1,      1,      1))
+    )
+    setkey(expected, x, y)
+    rv <- surface(x, span = '2R', nodes = c("canal", "man", "plan"))
+    ok( identical(rv, expected), "filter on nodes")
+})
 
 ok_group("bad arguments", {
 

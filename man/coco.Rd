@@ -7,7 +7,7 @@
 }
 
 \usage{
-  coco(A, B, nodes, fdr = 0.01)
+  coco(A, B, nodes, fdr = 0.01, collocates = NULL)
 }
 
 \arguments{
@@ -26,6 +26,14 @@
   \item{fdr}{
     The desired level at which to control the False Discovery Rate.
     Default value is \code{0.01}.
+  }
+  \item{collocates}{
+    A \code{charactor vector} of collocates or \code{charactor string}
+    representing a single collocate.
+    The \var{collocates} essentially act as a filter on the \var{y} column
+    of the returned data structure. \code{collocates} should be used to
+    target the testing; reducing the number of tests will reduce the loss
+    of power from the multiple test correction. 
   }
 }
 

@@ -1,4 +1,4 @@
-coco <- function(A, B, nodes, fdr = 0.01) {
+coco <- function(A, B, nodes, fdr = 0.01, collocates = NULL) {
     if(! 'data.frame' %in% class(A)) stop("'A' must be a data.frame.")
     if(! 'data.frame' %in% class(B)) stop("'B' must be a data.frame.")
     if(! identical(c(x = 'character', y = 'character', H = 'integer', M = 'integer'), sapply(A, class))) stop("'A' looks wrong. Please check the required form of A.")
@@ -6,6 +6,7 @@ coco <- function(A, B, nodes, fdr = 0.01) {
     if(! is.character(nodes) | length(nodes) < 1) stop("'nodes' must be a character vector of at least length one.")
     if(! is.numeric(fdr) || length(fdr) > 1) stop("'fdr' must be a single number.")
     if(fdr <= 0.0 || fdr > 1.0) stop("'fdr' must be greater than zero and less than or equal to zero.")
+    if(length(collocates) != 0 && (! is.character(collocates) | length(collocates) < 1)) stop("'collocates' must be a character vector of at least length one.")
      
     # hack to stop R CMD check warnings
     x = y = H = M = H_A = H_B = M_A = M_B = p_adjusted = p_value = i.T = NULL
@@ -15,6 +16,12 @@ coco <- function(A, B, nodes, fdr = 0.01) {
     setkey(A, x, y)
     B <- as.data.table(B)
     setkey(B, x, y)
+
+    # filter by collocates
+    if(length(collocates) != 0) {
+        A <- A[y %in% collocates] 
+        B <- B[y %in% collocates] 
+    }
 
     # filter by nodes and combine
     DT <- merge(A[list(nodes)], B[list(nodes)], by= c('x', 'y'), suffixes = c("_A", "_B"), all = TRUE)
