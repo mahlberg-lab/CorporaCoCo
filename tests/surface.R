@@ -172,14 +172,97 @@ ok_group("main", {
 ok_group("filters", {
     x <- c("a", "man", "a", "plan", "a", "canal", "panama")
     expected <- data.table(
+        x =            c("a", "a",     "a",   "a",      "a"),
+        y =            c("a", "canal", "man", "panama", "plan"),
+        H = as.integer(c( 2,   1,       1,     1,        1)),
+        M = as.integer(c( 4,   5,       5,     5,        5))
+    )
+    setkey(expected, x, y)
+    rv <- surface(x, span = '2R', nodes = "a")
+    ok( identical(rv, expected), "filter on a single node")
+
+    x <- c("a", "man", "a", "plan", "a", "canal", "panama")
+    expected <- data.table(
         x =            c("canal",  "man", "man",  "plan", "plan"),
         y =            c("panama", "a",   "plan", "a",    "canal"),
         H = as.integer(c( 1,        1,     1,      1,      1)),
         M = as.integer(c( 0,        1,     1,      1,      1))
     )
     setkey(expected, x, y)
-    rv <- surface(x, span = '2R', nodes = c("canal", "man", "plan"))
-    ok( identical(rv, expected), "filter on nodes")
+    nodes_filter <- c("canal", "man", "plan")
+    rv <- surface(x, span = '2R', nodes = nodes_filter)
+    ok( identical(rv, expected), "filter on nodes with vector")
+
+    x <- c("a", "man", "a", "plan", "a", "canal", "panama")
+    expected <- data.table(
+        x =            c("a",      "a",    "canal",  "man"),
+        y =            c("panama", "plan", "panama", "plan"),
+        H = as.integer(c(1,        1,      1,         1)),
+        M = as.integer(c(5,        5,      0,         1))
+    )
+    setkey(expected, x, y)
+    rv <- surface(x, span = '2R', collocates = c("plan", "panama"))
+    ok( identical(rv, expected), "filter on collocates")
+
+    x <- c("a", "man", "a", "plan", "a", "canal", "panama")
+    expected <- data.table(
+        x =            c("canal",  "man",  "plan"),
+        y =            c("panama", "a", "a"),
+        H = as.integer(c( 1,        1,      1)),
+        M = as.integer(c( 0,        1,      1))
+    )
+    setkey(expected, x, y)
+    rv <- surface(x, span = '2R', nodes = c("canal", "man", "plan"), collocates = c("panama", "a"))
+    ok( identical(rv, expected), "filter on nodes and collocates")
+
+    # span both
+    x <- c("a", "man", "a", "plan", "a", "canal", "panama")
+    expected <- data.table(
+        x =            c("a", "a",      "man", "plan"),
+        y =            c("a", "panama", "a",   "a"),
+        H = as.integer(c( 4,   1,        2,     2)),
+        M = as.integer(c( 6,   9,        1,     2))
+    )
+    setkey(expected, x, y)
+    rv <- surface(x, span = '2LR', nodes = c("a", "man", "plan"), collocates = c("panama", "a"))
+    ok( identical(rv, expected), "span both")
+
+    x <- c("a", "man", "a", "plan", "a", "canal", "panama")
+    expected <- data.table(
+        x =            c("a", "a",   "a",    "man"),
+        y =            c("a", "man", "plan", "a"),
+        H = as.integer(c( 2,   2,     1,      1)),
+        M = as.integer(c( 3,   3,     4,      0))
+    )
+    setkey(expected, x, y)
+    rv <- surface(x, span = '3L', nodes = c("a", "man"))
+    ok( identical(rv, expected), "span left, overlapping left edge")
+
+    x <- c("a", "man", "a", "plan", "a", "canal", "panama")
+    expected <- data.table(
+        x =            c("a", "a",     "a",   "a",      "a",    "canal"),
+        y =            c("a", "canal", "man", "panama", "plan", "panama"),
+        H = as.integer(c( 2,   2,       1,     1,        2,      1)),
+        M = as.integer(c( 6,   6,       7,     7,        6,      0))
+    )
+    setkey(expected, x, y)
+    rv <- surface(x, span = '3R', nodes = c("a", "canal"))
+    ok( identical(rv, expected), "span right, overlapping right edge")
+
+    # some NAs in x
+    x <- c("a", "man", "a", "plan", NA, NA, "a", "canal", "panama")
+    expected <- data.table(
+        x =            c("canal",  "man"),
+        y =            c("panama", "a"),
+        H = as.integer(c( 1,        1)),
+        M = as.integer(c( 0,        1))
+    )
+    setkey(expected, x, y)
+    rv <- surface(x, span = '2R', nodes = c("canal", "man", "plan"), collocates = c("panama", "a"))
+    ok( identical(rv, expected), "filter nodes and collocates with NAs in x")
+
+    # include NA not tested. Edge effects make determining a sensible behaviour tricky
+    # and this functionality is not exposed.
 })
 
 ok_group("bad arguments", {

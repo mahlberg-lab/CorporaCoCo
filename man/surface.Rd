@@ -63,7 +63,7 @@
 }
 
 \details{
-  \var{x} is assumed to be a vector of tokenized text.
+  \var{x} is assumed to be an ordered vector of tokenized text.
   No processing will be applied to \code{x} prior to the co-occurrence
   count calculations.
 
@@ -124,7 +124,17 @@
     ## 10:  plan  canal 1 1
 
 
-    # filter
+    # filter on nodes
+    surface(x, span = '2R', nodes = c("canal", "man", "plan"))
+
+    ##         x      y H M
+    ##  1: canal panama 1 0
+    ##  2:   man      a 1 1
+    ##  3:   man   plan 1 1
+    ##  4:  plan      a 1 1
+    ##  5:  plan  canal 1 1
+
+    # filter on nodes and collocates
     surface(x, span = '2R', nodes = c("canal", "man", "plan"), collocates = c("panama", "a"))
 
     ##         x      y H M

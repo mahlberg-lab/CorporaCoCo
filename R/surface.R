@@ -36,7 +36,10 @@ surface <- function(x, span, nodes = NULL, collocates = NULL) {
     # filter x (doing this early reduces memory footprint
     if(length(nodes) != 0) {
         i <- which(x %in% nodes)
-        x <- x[unique(as.vector(vapply(i, function(x) (x-s$left):(x+s$right), integer(s$left + s$right + 1))))]
+        x <- x[intersect(
+            1:length(x),
+            as.vector(vapply(i, function(ii) {(ii-s$left):(ii+s$right)}, FUN.VALUE = integer(s$left + s$right + 1)))
+        )]
     }
 
     DT <- data.table(x = x)
