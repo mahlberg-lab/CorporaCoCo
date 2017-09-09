@@ -89,6 +89,15 @@ ok_group("main", {
     ok( all(identical(c("a", "a", "a", "a", "a", "a", "the", "the"), sort(rv$x)), identical(c("badger", "canal", "canal", "cat", "man", "man", "mushroom", "snake"), sort(rv$y))), "correct set of significant results")
 
     ok( identical(attr(rv, 'coco_metadata')$nodes, nodes), "object metadata nodes look good")
+
+    # collocates filter
+    rv_f <- coco(A, B, nodes = nodes, collocates = c("badger", "man"))
+    ok( identical(rv_f[, -"p_adjusted"], rv[y %in% c("badger", "man"), -"p_adjusted"]), "collocates filter - vector - rows")
+    ok( ! isTRUE(all.equal(rv_f$p_adjusted, rv[y %in% c("badger", "man")]$p_adjusted)), "collocates filter - vector - p_adjusted values")
+
+    rv_f <- coco(A, B, nodes = nodes, collocates = "cat")
+    ok( identical(rv_f[, -"p_adjusted"], rv[y == "cat", -"p_adjusted"]), "collocates filter - string - rows")
+    ok( isTRUE(all.equal(rv_f$p_value, rv_f$p_adjusted)), "collocates filter - string - p_adjusted values")
 })
 
 

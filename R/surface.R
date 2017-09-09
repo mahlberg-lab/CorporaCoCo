@@ -27,8 +27,8 @@ surface <- function(x, span, nodes = NULL, collocates = NULL) {
     if(! is.character(x)) stop("'x' must be a character vector")
     if(length(x) < 2) stop("'x' must be a vector of at least length two")
     s <- parse_span(span)    
-    if(length(nodes) != 0 && (! is.character(nodes) | length(nodes) < 1)) stop("'nodes' must be a character vector of at least length one.")
-    if(length(collocates) != 0 && (! is.character(collocates) | length(collocates) < 1)) stop("'collocates' must be a character vector of at least length one.")
+    if(length(nodes) != 0 && ! is.character(nodes)) stop("'nodes' must be a character vector.")
+    if(length(collocates) != 0 && ! is.character(collocates)) stop("'collocates' must be a character vector.")
 
     # hack to stop R CMD check warnings
     y = M = H = NULL

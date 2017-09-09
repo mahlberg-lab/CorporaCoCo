@@ -6,7 +6,7 @@ coco <- function(A, B, nodes, fdr = 0.01, collocates = NULL) {
     if(! is.character(nodes) | length(nodes) < 1) stop("'nodes' must be a character vector of at least length one.")
     if(! is.numeric(fdr) || length(fdr) > 1) stop("'fdr' must be a single number.")
     if(fdr <= 0.0 || fdr > 1.0) stop("'fdr' must be greater than zero and less than or equal to zero.")
-    if(length(collocates) != 0 && (! is.character(collocates) | length(collocates) < 1)) stop("'collocates' must be a character vector of at least length one.")
+    if(length(collocates) != 0 && ! is.character(collocates)) stop("'collocates' must be a character vector.")
      
     # hack to stop R CMD check warnings
     x = y = H = M = H_A = H_B = M_A = M_B = p_adjusted = p_value = i.T = NULL

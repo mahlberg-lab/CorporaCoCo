@@ -107,9 +107,7 @@
   For an example of usage see the
   \sQuote{\href{../doc/proof_of_concept.pdf}{Proof of Concept}}
   vignette.
-
 }
-
 
 \references{
   Y. Benjamini and Y. Hochberg (1995) \emph{Controlling the False Discovery

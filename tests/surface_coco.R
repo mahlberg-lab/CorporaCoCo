@@ -29,10 +29,16 @@ ok_group("main", {
         surface(b, span = '1R'),
         nodes = nodes, fdr = 0.01
     )
-
     rv_2 <- surface_coco(a, b, span = '1R', nodes = nodes, fdr = 0.01)
-
     ok( identical(rv_1, rv_2), "surface_coco")
+
+    rv_3 <- coco(
+        surface(a, span = '1R', collocates = "man"),
+        surface(b, span = '1R', collocates = "man"),
+        nodes = nodes, fdr = 0.01, collocates = "man"
+    )
+    rv_4 <- surface_coco(a, b, span = '1R', nodes = nodes, fdr = 0.01, collocates = "man")
+    ok( identical(rv_3, rv_4), "surface_coco with collocates filter")
 })
 
 
