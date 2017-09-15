@@ -56,9 +56,9 @@
      - attr(*, ".internal.selfref")=<externalptr> 
 }
   where \code{H} is the number of times \code{x} co-occurs with \code{y}
-  think \code{H}its), and \code{M} is the number of times \code{x}
-  fails to co-occurs with \code{y} when it could have (think
-  \code{M}isses); hence \code{N + M} is the maximum number of times
+  (think \emph{H}its), and \code{M} is the number of times \code{x}
+  fails to co-occur with \code{y} when it could have (think
+  \emph{M}isses); hence \code{H + M} is the maximum number of times
   that \code{x} could have co-occurred with \code{y}.
 }
 
