@@ -22,14 +22,14 @@
     See details.
   }
   \item{nodes}{
-    A \code{charactor vector} of nodes or \code{charactor string}
+    A \code{character vector} of nodes or \code{character string}
     representing a single \code{node}.
     The \var{nodes} essentially act as a filter on the \var{x} column
     of the returned data structure. Use of \code{nodes} will
     significantly reduce memory usage.
   }
   \item{collocates}{
-    A \code{charactor vector} of collocates or \code{charactor string}
+    A \code{character vector} of collocates or \code{character string}
     representing a single collocate.
     The \var{collocates} essentially act as a filter on the \var{y} column
     of the returned data structure.
@@ -59,7 +59,7 @@
   think \code{H}its), and \code{M} is the number of times \code{x}
   fails to co-occurs with \code{y} when it could have (think
   \code{M}isses); hence \code{N + M} is the maximum number of times
-  that \code{x} could have co-occured with \code{y}.
+  that \code{x} could have co-occurred with \code{y}.
 }
 
 \details{
@@ -95,7 +95,7 @@
   \code{NA}s can be used to implement co-occurrence barriers
   eg if two \code{NA} characters are inserted
   into \var{x} at each sentence boundary then with \code{span = 2}
-  co-occurences will not happen accross sentences.
+  co-occurrences will not happen across sentences.
   See Evert (2008) for detailed description of co-occurrence barriers.
 
   For a detailed description of \sQuote{surface} co-occurrence and the

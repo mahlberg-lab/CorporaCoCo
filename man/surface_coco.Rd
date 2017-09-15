@@ -23,14 +23,14 @@
     See \code{\link{surface}} function for details.
   }
   \item{nodes}{
-    A \code{charactor vector} of nodes or \code{charactor string}
+    A \code{character vector} of nodes or \code{character string}
     representing a single node.
   }
   \item{fdr}{
     The desired level at which to control the False Discovery Rate.
   }
   \item{collocates}{
-    A \code{charactor vector} of collocates or \code{charactor string}
+    A \code{character vector} of collocates or \code{character string}
     representing a single collocate.
   }
 }

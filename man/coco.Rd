@@ -20,7 +20,7 @@
     See details.
   }
   \item{nodes}{
-    A \code{charactor vector} of nodes or \code{charactor string}
+    A \code{character vector} of nodes or \code{character string}
     representing a single \code{node}.
   }
   \item{fdr}{
@@ -28,7 +28,7 @@
     Default value is \code{0.01}.
   }
   \item{collocates}{
-    A \code{charactor vector} of collocates or \code{charactor string}
+    A \code{character vector} of collocates or \code{character string}
     representing a single collocate.
     The \var{collocates} essentially act as a filter on the \var{y} column
     of the returned data structure. \code{collocates} should be used to

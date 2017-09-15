@@ -18,7 +18,7 @@
      rather than a forest plot is produced.
   }
   \item{nodes}{
-     If a vector of \code{nodes} is suplied this will
+     If a vector of \code{nodes} is supplied this will
      be used to filter the set of results that are plotted.
      If \code{nodes} are supplied the plot will use the
      \code{nodes} order.
