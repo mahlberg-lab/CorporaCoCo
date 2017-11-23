@@ -1,9 +1,22 @@
+2017-11-22  Anthony Hennessey  <anthony.hennessey@nottingham.ac.uk>
+
+    Version 1.1-0
+
+    * R/surface.R: Added optional 'nodes' and 'collocates' filters. Use of the 'nodes' filter improves performance and reduces memory footprint.
+    * R/coco.R: Added optional 'collocates' filter. The 'collocates' filter is used to target the testing and hence reduce the number of tests; reducing the number of tests reduces the loss of power from the multiple test correction.
+    * R/surface_coco.R: Applies the new filters for the 'surface' and 'coco' functions.
+    * R/coco-class.R (plot.coco): Allow configuration of whiskers in plots. Use on.exit to restore graphics parameters.
+    * inst/doc/*.pdf: Documentation moved to vignettes directory with help from R.rsp package.
+    * vignettes/*.pdf: Example get data from the CLiC API rather than the now deprecated CorporaCorpus package.
+    * man/*.Rd: Minor corrections and improvements.
+
+
 2017-03-31  Anthony Hennessey  <anthony.hennessey@nottingham.ac.uk>
 
     Version 1.0-2
 
-    * R/surface.R (parse_span): No longer uses Perl regex; this allows compatability with older Windows R releases.
-    * inst/doc/faq.pdf: vignette/faq.Rnw vignette converted to PDF as without CorporaCorpus on CRAN the source in the vignette is confusing, and the --as-cran check is not happy with the vignette code in inst/doc. The .Rnw code will be available in a parallel github repository. Also some text tweeks.
+    * R/surface.R (parse_span): No longer uses Perl regex; this allows compatibility with older Windows R releases.
+    * inst/doc/faq.pdf: vignette/faq.Rnw vignette converted to PDF as without CorporaCorpus on CRAN the source in the vignette is confusing, and the --as-cran check is not happy with the vignette code in inst/doc. The .Rnw code will be available in a parallel github repository. Also some text tweaks.
     * inst/doc/proof_of_concept.pdf: vignette/proof_of_concept.Rnw ditto.
 
 
