@@ -11,31 +11,40 @@ A very simple example of usage
 This example takes the two Dickens novels 'Great Expectations' and 'A Tale of Two Cities' and compares the co-occurrences of a set of body part nouns. The idea is that since body part nouns are common in speech suspensions the statistically significant co-occurrence differences should include personal pronouns reflecting the differing narrative voices of the texts.
 
     library(CorporaCoCo)
-    library(CorporaCorpus)
-    library(stringi)
+    library(jsonlite)
 
-    GE  <- unlist( stri_extract_all_words( stri_trans_tolower( readLines(corpus_filepaths('DNov', 'GE')) ) ))
-    TTC  <- unlist( stri_extract_all_words( stri_trans_tolower( readLines(corpus_filepaths('DNov', 'TTC')) ) ))
+    get_book_tokens <- function(shortname) {
+        base_uri <- 'http://clic.bham.ac.uk/api'
+        json <- fromJSON(paste0(base_uri, "/subset?corpora=", shortname))
+        tokens <- tolower( unlist( sapply(json$data, function(x) {
+            head(x[[1]], -1)[as.integer(tail(x[[1]], 1)[[1]])+1]
+        }) ) )
+    }
+
+    GE <- get_book_tokens('GE')
+    TTC <- get_book_tokens('TTC')
 
     nodes <- c('back', 'eye', 'eyes', 'forehead', 'hand', 'hands', 'head', 'shoulder')
 
     results <- surface_coco(TTC, GE, span = '5LR', nodes = nodes, fdr = 0.01)
     results
 
-    ##        x   y H_A  M_A H_B  M_B effect_size  CI_lower   CI_upper      p_value   p_adjusted
-    ##  1: back  me   3 1316  48 2355    3.159998  1.521928  5.4917238 9.754793e-07 9.423130e-04
-    ##  2: back  my   1 1318  31 2372    4.105901  1.517363  9.4521419 1.987134e-05 9.597855e-03
-    ##  3: eyes   i  10 1611  52 1724    2.280107  1.281850  3.4267531 2.247538e-07 6.869976e-05
-    ##  4: eyes  my   5 1616  58 1718    3.446625  2.137003  5.1270592 1.061195e-11 9.731159e-09
-    ##  5: eyes the 120 1501  57 1719   -1.269288 -1.761782 -0.7909003 4.323172e-08 1.982175e-05
-    ##  6: hand his 175 2267 114 2543   -0.783898 -1.147324 -0.4250235 1.158348e-05 4.413307e-03
-    ##  7: hand   i  17 2425  74 2583    2.030509  1.250655  2.8889719 7.519299e-09 4.297280e-06
-    ##  8: hand  my  12 2430  85 2572    2.742060  1.858321  3.7535208 1.043073e-13 1.192232e-10
-    ##  9: head  my   9 1732  62 2219    2.426331  1.404175  3.6251454 3.575486e-08 3.822194e-05
+    ##          x   y H_A  M_A H_B  M_B effect_size  CI_lower   CI_upper      p_value   p_adjusted
+    ##   1:  back  me   3 1337  49 2341    3.221181  1.584866  5.5489805 5.440975e-07 5.283187e-04
+    ##   2:  eyes   i  10 1640  53 1737    2.322489  1.326370  3.4680980 1.290817e-07 5.963576e-05
+    ##   3:  eyes joe   0 1650  16 1774         Inf  1.839353        Inf 3.552572e-05 6.691836e-03
+    ##   4:  eyes  me   3 1647  25 1765    2.958423  1.241832  5.3326117 3.621123e-05 6.691836e-03
+    ##   5:  eyes  my   5 1645  57 1733    3.434699  2.123620  5.1159658 9.752564e-12 9.011369e-09
+    ##   6:  eyes the 123 1527  62 1728   -1.166398 -1.642460 -0.7024399 2.098712e-07 6.464034e-05
+    ##   7:  hand his 176 2294 114 2536   -0.771065 -1.133959 -0.4126876 1.250677e-05 4.744234e-03
+    ##   8:  hand   i  19 2451  75 2575    1.909259  1.162857  2.7232409 1.629910e-08 9.274188e-06
+    ##   9:  hand  my  13 2457  85 2565    2.646457  1.791317  3.6168202 1.860637e-13 2.117405e-10
+    ##  10: hands  my   5 1125  45 1775    2.511311  1.177037  4.2063750 1.127123e-05 9.321308e-03
+    ##  11:  head  my  10 1710  61 2169    2.265311  1.284027  3.3998354 1.607393e-07 1.689370e-04
 
     plot(results)
 
-The results are easier to see if you plot them.
+![Plot of example results.](tools/readme_image_01.png)
 
 Installing from CRAN
 ====================
