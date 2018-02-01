@@ -5,3 +5,7 @@ r:
 cache: packages
 sudo: false
 warnings_are_errors: true
+addons:
+    apt:
+        packages:
+        - ghostscript
