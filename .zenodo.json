@@ -1,0 +1,41 @@
+{
+    "title": "CorporaCoCo - R package", 
+    "description": "<p>Functions&nbsp;to compare co-occurrence between&nbsp;corpora.</p>", 
+    "access_right": "open",
+    "license": "GPL-3.0",
+    "related_identifiers": [
+        {
+            "scheme": "url",
+            "identifier": "https://cran.r-project.org/package=CorporaCoCo", 
+            "relation": "isAlternateIdentifier"
+        }
+    ], 
+    "creators": [
+        {
+            "affiliation": "School of Mathematical Sciences, University of Nottingham", 
+            "name": "Hennessey, Anthony", 
+            "orcid": "0000-0002-5091-368X"
+        }, 
+        {
+            "affiliation": "Centre for Corpus Research, College of Arts and Law, University of Birmingham", 
+            "name": "Wiegand, Viola"
+        }
+    ], 
+    "contributors": [
+        {
+            "affiliation": "Centre for Corpus Research, College of Arts and Law, University of Birmingham", 
+            "name": "Mahlberg, Michaela", 
+            "type": "Researcher"
+        }, 
+        {
+            "affiliation": "Division of Clinical Neurosciences, School of Medicine, University of Nottingham", 
+            "name": "Tench, Christopher R.", 
+            "type": "Researcher"
+        }, 
+        {
+            "affiliation": "Shuttle Thread", 
+            "name": "Lentin, Jamie", 
+            "type": "Editor"
+        }
+    ] 
+}

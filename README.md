@@ -2,6 +2,7 @@
 [![CRAN RStudio mirror total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/CorporaCoCo?color=001577)](https://cran.r-project.org/package=CorporaCoCo)
 [![CRAN RStudio mirror monthly downloads badge](https://cranlogs.r-pkg.org/badges/CorporaCoCo?color=001577)](https://cran.r-project.org/package=CorporaCoCo)
 [![Build Status](https://travis-ci.org/birmingham-ccr/CorporaCoCo.svg?branch=master)](https://travis-ci.org/birmingham-ccr/CorporaCoCo)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1174881.svg)](https://doi.org/10.5281/zenodo.1174881)
 
 CorporaCoCo
 ===========
