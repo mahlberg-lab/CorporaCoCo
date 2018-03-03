@@ -49,7 +49,7 @@ coco <- function(A, B, nodes, fdr = 0.01, collocates = NULL) {
         DT <- DT[p_adjusted <= fdr]
     } else {
         # still need the columns for consistent output
-        DT[, c('p_value', 'effect_size', 'CI_lower', 'CI_upper', 'p_adjusted') := list(numeric(), numeric())]
+        DT[, c('p_value', 'effect_size', 'CI_lower', 'CI_upper', 'p_adjusted') := list(numeric(), numeric(), numeric(), numeric(), numeric())]
     }
 
     setcolorder(DT, c('x', 'y', 'H_A', 'M_A', 'H_B', 'M_B', 'effect_size', 'CI_lower', 'CI_upper', 'p_value', 'p_adjusted'))

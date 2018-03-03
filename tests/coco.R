@@ -98,6 +98,10 @@ ok_group("main", {
     rv_f <- coco(A, B, nodes = nodes, collocates = "cat")
     ok( identical(rv_f[, -"p_adjusted"], rv[y == "cat", -"p_adjusted"]), "collocates filter - string - rows")
     ok( isTRUE(all.equal(rv_f$p_value, rv_f$p_adjusted)), "collocates filter - string - p_adjusted values")
+
+    # no rows returned
+    rv <- coco(A, B, nodes = "chimerical", fdr = 1.0)
+    ok( nrow(rv) == 0, "no rows returned")
 })
 
 
