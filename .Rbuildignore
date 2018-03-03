@@ -1,3 +1,4 @@
 ^\.git
 ^\.travis.yml
 ^\.zenodo.json
+^\codecov.yml
