@@ -2,6 +2,7 @@ library(CorporaCoCo)
 library(data.table)
 library(unittest, quietly=TRUE)
 
+
 test_for_error <- function(code, expected_regexp = '.+') {
     tryCatch({
             code
@@ -69,7 +70,7 @@ ok_group("main", {
         M = as.integer(c( 4,   5,       5,     5,        5,      0,        1,     1,      1,      1))
     )
     setkey(expected, x, y)
-    rv <- surface(x, span = '2R')
+    rv <- CorporaCoCo:::.surface(x, span = '2R', nodes = NULL, collocates = NULL)
     ok( identical(rv, expected), "defaults")
 
     # include NA
@@ -82,7 +83,7 @@ ok_group("main", {
     expected <- rbindlist(list(expected, new_rows), use.names = TRUE)
     setkey(expected, x, y)
     assign('unittest_surface_include_na', TRUE, pos = CorporaCoCo:::pkg_vars)
-    rv <- surface(x, span = '2R')
+    rv <- CorporaCoCo:::.surface(x, span = '2R', nodes = NULL, collocates = NULL)
     ok( identical(rv, expected), "include NA")
     ok( sum(rv$H) == 2 * length(x), "include NA - sum of counts is span times length(x)")
     assign('unittest_surface_include_na', FALSE, pos = CorporaCoCo:::pkg_vars)
@@ -96,7 +97,7 @@ ok_group("main", {
         M = as.integer(c( 4,   4,       4,     4,        4,      0,        1,     1))
     )
     setkey(expected, x, y)
-    rv <- surface(x, span = '2R')
+    rv <- CorporaCoCo:::.surface(x, span = '2R', nodes = NULL, collocates = NULL)
     ok( identical(rv, expected), "NAs in x")
 
     # some NAs in x and include NA
@@ -109,7 +110,7 @@ ok_group("main", {
     expected <- rbindlist(list(expected, new_rows), use.names = TRUE)
     setkey(expected, x, y)
     assign('unittest_surface_include_na', TRUE, pos = CorporaCoCo:::pkg_vars)
-    rv <- surface(x, span = '2R')
+    rv <- CorporaCoCo:::.surface(x, span = '2R', nodes = NULL, collocates = NULL)
     ok( identical(rv, expected), "NAs in x and include NA")
     ok( sum(rv$H) == 2 * length(x), "NAs in x and include NA - sum of counts is span times length(x)")
     assign('unittest_surface_include_na', FALSE, pos = CorporaCoCo:::pkg_vars)
@@ -123,7 +124,7 @@ ok_group("main", {
         M = as.integer(c( 2,   1,       0,     1,        1,      1,        3,     1,      3,      1))
     )
     setkey(expected, x, y)
-    rv <- surface(x, span = '2L')
+    rv <- CorporaCoCo:::.surface(x, span = '2L', nodes = NULL, collocates = NULL)
     ok( identical(rv, expected), "span left")
 
     # span left, include NA
@@ -136,7 +137,7 @@ ok_group("main", {
     expected <- rbindlist(list(expected, new_rows), use.names = TRUE)
     setkey(expected, x, y)
     assign('unittest_surface_include_na', TRUE, pos = CorporaCoCo:::pkg_vars)
-    rv <- surface(x, span = '2L')
+    rv <- CorporaCoCo:::.surface(x, span = '2L', nodes = NULL, collocates = NULL)
     ok( identical(rv, expected), "span left, include NA")
     ok( sum(rv$H) == 2 * length(x), "span left, include NA - sum of counts is span times length(x)")
     assign('unittest_surface_include_na', FALSE, pos = CorporaCoCo:::pkg_vars)
@@ -150,7 +151,7 @@ ok_group("main", {
         M = as.integer(c( 6,   9,       8,     9,        8,      2,        1,     2,      2,      3,       2,       1,        1,        3,      2))
     )
     setkey(expected, x, y)
-    rv <- surface(x, span = '2LR')
+    rv <- CorporaCoCo:::.surface(x, span = '2LR', nodes = NULL, collocates = NULL)
     ok( identical(rv, expected), "span both")
 
     # span both, some NAs, include NA
@@ -163,7 +164,7 @@ ok_group("main", {
     )
     setkey(expected, x, y)
     assign('unittest_surface_include_na', TRUE, pos = CorporaCoCo:::pkg_vars)
-    rv <- surface(x, span = '2LR')
+    rv <- CorporaCoCo:::.surface(x, span = '2LR', nodes = NULL, collocates = NULL)
     ok( identical(rv, expected), "span both, NAs in x and include NA" )
     ok( sum(rv$H) == 2 * 2 * length(x), "span both, include NA - sum of counts is 2 * span times length(x)")
     assign('unittest_surface_include_na', FALSE, pos = CorporaCoCo:::pkg_vars)
@@ -178,7 +179,7 @@ ok_group("filters", {
         M = as.integer(c( 4,   5,       5,     5,        5))
     )
     setkey(expected, x, y)
-    rv <- surface(x, span = '2R', nodes = "a")
+    rv <- CorporaCoCo:::.surface(x, span = '2R', nodes = "a", collocates = NULL)
     ok( identical(rv, expected), "filter on a single node")
 
     x <- c("a", "man", "a", "plan", "a", "canal", "panama")
@@ -190,7 +191,7 @@ ok_group("filters", {
     )
     setkey(expected, x, y)
     nodes_filter <- c("canal", "man", "plan")
-    rv <- surface(x, span = '2R', nodes = nodes_filter)
+    rv <- CorporaCoCo:::.surface(x, span = '2R', nodes = nodes_filter, collocates = NULL)
     ok( identical(rv, expected), "filter on nodes with vector")
 
     x <- c("a", "man", "a", "plan", "a", "canal", "panama")
@@ -201,7 +202,7 @@ ok_group("filters", {
         M = as.integer(c(5,        5,      0,         1))
     )
     setkey(expected, x, y)
-    rv <- surface(x, span = '2R', collocates = c("plan", "panama"))
+    rv <- CorporaCoCo:::.surface(x, span = '2R', nodes = NULL, collocates = c("plan", "panama"))
     ok( identical(rv, expected), "filter on collocates")
 
     x <- c("a", "man", "a", "plan", "a", "canal", "panama")
@@ -212,7 +213,7 @@ ok_group("filters", {
         M = as.integer(c( 0,        1,      1))
     )
     setkey(expected, x, y)
-    rv <- surface(x, span = '2R', nodes = c("canal", "man", "plan"), collocates = c("panama", "a"))
+    rv <- CorporaCoCo:::.surface(x, span = '2R', nodes = c("canal", "man", "plan"), collocates = c("panama", "a"))
     ok( identical(rv, expected), "filter on nodes and collocates")
 
     # span both
@@ -224,7 +225,7 @@ ok_group("filters", {
         M = as.integer(c( 6,   9,        1,     2))
     )
     setkey(expected, x, y)
-    rv <- surface(x, span = '2LR', nodes = c("a", "man", "plan"), collocates = c("panama", "a"))
+    rv <- CorporaCoCo:::.surface(x, span = '2LR', nodes = c("a", "man", "plan"), collocates = c("panama", "a"))
     ok( identical(rv, expected), "span both")
 
     x <- c("a", "man", "a", "plan", "a", "canal", "panama")
@@ -235,7 +236,7 @@ ok_group("filters", {
         M = as.integer(c( 3,   3,     4,      0))
     )
     setkey(expected, x, y)
-    rv <- surface(x, span = '3L', nodes = c("a", "man"))
+    rv <- CorporaCoCo:::.surface(x, span = '3L', nodes = c("a", "man"), collocates = NULL)
     ok( identical(rv, expected), "span left, overlapping left edge")
 
     x <- c("a", "man", "a", "plan", "a", "canal", "panama")
@@ -246,7 +247,7 @@ ok_group("filters", {
         M = as.integer(c( 6,   6,       7,     7,        6,      0))
     )
     setkey(expected, x, y)
-    rv <- surface(x, span = '3R', nodes = c("a", "canal"))
+    rv <- CorporaCoCo:::.surface(x, span = '3R', nodes = c("a", "canal"), collocates = NULL)
     ok( identical(rv, expected), "span right, overlapping right edge")
 
     # some NAs in x
@@ -258,7 +259,7 @@ ok_group("filters", {
         M = as.integer(c( 0,        1))
     )
     setkey(expected, x, y)
-    rv <- surface(x, span = '2R', nodes = c("canal", "man", "plan"), collocates = c("panama", "a"))
+    rv <- CorporaCoCo:::.surface(x, span = '2R', nodes = c("canal", "man", "plan"), collocates = c("panama", "a"))
     ok( identical(rv, expected), "filter nodes and collocates with NAs in x")
 
     # include NA not tested. Edge effects make determining a sensible behaviour tricky
@@ -267,12 +268,12 @@ ok_group("filters", {
 
 ok_group("bad arguments", {
 
-    ok(test_for_error(surface(span = '2L')), "x not given")
-    ok(test_for_error(surface(x = "hello", span = '2R'), "'x'"), "x not a vector")
-    ok(test_for_error(surface(x = 1:5, span = '2R'), "'x'"), "x not a character vector")
-    ok(test_for_error(surface(x = as.factor(c('hello', 'big', 'world')), span = '2R'), "'x'"), "x is a vector of factors")
+    ok(test_for_error(CorporaCoCo:::.surface(span = '2L', nodes = NULL, collocates = NULL)), "x not given")
+    ok(test_for_error(CorporaCoCo:::.surface(x = "hello", span = '2R', nodes = NULL, collocates = NULL), "'x'"), "x not a vector")
+    ok(test_for_error(CorporaCoCo:::.surface(x = 1:5, span = '2R', nodes = NULL, collocates = NULL), "'x'"), "x not a character vector")
+    ok(test_for_error(CorporaCoCo:::.surface(x = as.factor(c('hello', 'big', 'world')), span = '2R', nodes = NULL, collocates = NULL), "'x'"), "x is a vector of factors")
 
-    ok(test_for_error(surface(x = c('hello', 'world'))), "span not given")
-    ok(test_for_error(surface(x = c('hello', 'world'), span = '0R'), 'span'), "span is zero")
-    ok(test_for_error(surface(x = c('hello', 'world'), span = c('1R', '2R')), 'span'), "bad span; vector of values")
+    ok(test_for_error(CorporaCoCo:::.surface(x = c('hello', 'world'), nodes = NULL, collocates = NULL)), "span not given")
+    ok(test_for_error(CorporaCoCo:::.surface(x = c('hello', 'world'), span = '0R', nodes = NULL, collocates = NULL), 'span'), "span is zero")
+    ok(test_for_error(CorporaCoCo:::.surface(x = c('hello', 'world'), span = c('1R', '2R'), nodes = NULL, collocates = NULL), 'span'), "bad span; vector of values")
 })

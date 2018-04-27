@@ -1,17 +1,51 @@
 export('surface')
 
 export('coco')
-S3method('plot', 'coco')
+export('corp_coco')
+S3method('plot', 'corp_coco')
 
 export('surface_coco')
 
+export('corp_surface')
+export("is.corp_cooccurrence")
+export("is.corp_surface")
+
+S3method("print", "corp_cooccurrence")
+S3method("summary", "corp_surface")
+
+export("corp_concordance")
+S3method("corp_concordance", "corp_surface")
+S3method("print", "corp_concordance")
+
+
+export("corp_get_text")
+export("corp_get_tokens")
+export("corp_get_counts")
+export("corp_get_metadata")
+export("corp_type_lookup")
+
+S3method("corp_get_text", "corp_cooccurrence")
+S3method("corp_get_tokens", "corp_cooccurrence")
+S3method("corp_get_counts", "corp_cooccurrence")
+S3method("corp_get_metadata", "corp_cooccurrence")
+
+S3method("corp_type_lookup", "corp_surface")
+
 # general
 importFrom('methods', 'as')
+importFrom('methods', 'is')
 importFrom('stats', 'fisher.test', 'p.adjust', 'na.omit')  ## we use na.omit from data.table but this stops check complaining
 importFrom('utils', 'packageName',  'packageVersion')
 importFrom('graphics', 'par', 'rect', 'strwidth', 'axis', 'image', 'abline', 'arrows', 'plot', 'points')
 importFrom('grDevices', 'colorRampPalette')
 
 import('data.table')
+import('stringi')
 importFrom('RColorBrewer', 'brewer.pal')
 importFrom('rlist', 'list.merge')
+
+
+
+
+
+

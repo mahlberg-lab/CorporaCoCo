@@ -1,4 +1,5 @@
-\name{coco}
+\name{corp_coco}
+\alias{corp_coco}
 \alias{coco}
 
 \title{Co-occurrence comparison}
@@ -7,33 +8,40 @@
 }
 
 \usage{
+  corp_coco(A, B, nodes, collocates = NULL, fdr = 0.1)
+
+  # Deprecated
   coco(A, B, nodes, fdr = 0.01, collocates = NULL)
 }
 
 \arguments{
   \item{A}{
-    A \code{data.frame} of co-occurrence counts.
-    See details.
+    A \code{\link{corp_cooccurrence}} object.
+    For the deprecated \code{coco} function this is a
+    \code{data.frame} of co-occurrence counts as returned by
+    \code{\link{corp_get_counts}}.
   }
   \item{B}{
-    A \code{data.frame} of co-occurrence counts.
-    See details.
+    A \code{\link{corp_cooccurrence}} object.
+    For the deprecated \code{coco} function this is a
+    \code{data.frame} of co-occurrence counts as returned by
+    \code{\link{corp_get_counts}}.
   }
   \item{nodes}{
-    A \code{character vector} of nodes or \code{character string}
-    representing a single \code{node}.
+    A \code{character vector} of node types or \code{character string}
+    representing a single node type.
+  }
+  \item{collocates}{
+    A \code{character vector} of collocates types or \code{character string}
+    representing a single collocate type.
+    The \var{collocates} essentially act as a filter on the \var{y} column
+    of the returned data structure. \var{collocates} should be used to
+    target the testing; reducing the number of tests will reduce the loss
+    of power from the multiple test correction. 
   }
   \item{fdr}{
     The desired level at which to control the False Discovery Rate.
     Default value is \code{0.01}.
-  }
-  \item{collocates}{
-    A \code{character vector} of collocates or \code{character string}
-    representing a single collocate.
-    The \var{collocates} essentially act as a filter on the \var{y} column
-    of the returned data structure. \code{collocates} should be used to
-    target the testing; reducing the number of tests will reduce the loss
-    of power from the multiple test correction. 
   }
 }
 
@@ -54,39 +62,24 @@
      $ p_adjusted  : num
      - attr(*, "sorted")= chr  "x" "y"
      - attr(*, ".internal.selfref")=<externalptr> 
-     - attr(*, "coco_metadata")=List of 4
-      ..$ nodes : chr
-      ..$ fdr       : num
+     - attr(*, "coco_metadata")=List of 5
+      ..$ nodes      : chr
+      ..$ collocates : chr
+      ..$ fdr        : num
       ..$ PACKAGE_VERSION:Classes 'package_version', 'numeric_version'
       .. ..$ : int
-      ..$ date      : Date, format: "2016-11-01"
+      ..$ date  : Date, format: "2016-11-01"
 }
 }
 
 \details{
   This function implements the method described in
-  Hennessey and Wiegand (2017).
-
-  \var{A} and \var{B} are \code{data.frame}s of the form
-\preformatted{
-    Classes 'data.frame': ...
-     $ x: chr  
-     $ y: chr  
-     $ H: int  
-     $ M: int  
-}
-  The \code{data.frame}s encapsulate the co-occurrence counts for the
-  \code{(x, y)} term pairs within a corpus. For a description of the
-  columns see the details section of the \code{\link{surface}} function.
-
-  The \var{nodes} essentially act as a filter on the \var{A$x} and 
-  \var{B$x} columns. For a description of the use of nodes see
-  Hennessey and Wiegand (2017).
+  Hennessey and Wiegand (2018).
 
   \var{fdr} indicates the level at which the False Discovery Rate will be
   controlled. For a description of the form of FDR used see
   Benjamini and Hochberg (1995). For a description of the use of FDR in
-  this context see Hennessey and Wiegand (2017). For description of the
+  this context see Hennessey and Wiegand (2018). For description of the
   \var{p_adjusted} column in the returned structure see
   \code{\link{p.adjust}}.
 
@@ -102,11 +95,7 @@
   \var{effect_size}, \var{CI_lower} and \var{CI_upper} columns.
   The \var{p_value} column contains the non-adjusted p-value from the
   Fisher's Exact Test.
-  For more details see Hennessey and Wiegand (2017).
-
-  For an example of usage see the
-  \sQuote{\href{../doc/proof_of_concept.pdf}{Proof of Concept}}
-  vignette.
+  For more details see Hennessey and Wiegand (2018).
 }
 
 \references{
@@ -115,7 +104,7 @@
   Journal of the Royal Statistical Society. Series B (Methodological)
   \bold{57 (1)289–300}.
 
-  A. Hennessey and V. Wiegand and C. R. Tench and M. Mahlberg (2017)
+  A. Hennessey and V. Wiegand and C. R. Tench and M. Mahlberg (2018)
   \emph{Comparing co-occurrences between corpora.} In preparation.
 }
 

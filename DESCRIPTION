@@ -19,13 +19,16 @@ Imports:
     methods,
     stats,
     data.table (>= 1.9.6),
+    stringi,
     RColorBrewer,
     rlist
 Suggests: 
     unittest,
-    stringi,
-    R.rsp
+    R.rsp,
+    knitr,
+    rmarkdown
 VignetteBuilder:
-    R.rsp
+    R.rsp,
+    knitr
 BugReports: https://github.com/birmingham-ccr/CorporaCoCo/issues
 LazyData: yes

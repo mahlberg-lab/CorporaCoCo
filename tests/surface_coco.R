@@ -24,20 +24,20 @@ ok_group("main", {
     )
     nodes <- c("a", "the")
 
-    rv_1 <- coco(
-        surface(a, span = '1R'),
-        surface(b, span = '1R'),
-        nodes = nodes, fdr = 0.01
+    rv_1 <- CorporaCoCo:::.coco(
+        CorporaCoCo:::.surface(a, span = '1R', nodes = NULL, collocates = NULL),
+        CorporaCoCo:::.surface(b, span = '1R', nodes = NULL, collocates = NULL),
+        nodes = nodes, collocates = NULL, fdr = 0.01
     )
-    rv_2 <- surface_coco(a, b, span = '1R', nodes = nodes, fdr = 0.01)
+    rv_2 <- CorporaCoCo:::.surface_coco(a, b, span = '1R', nodes = nodes, collocates = NULL, fdr = 0.01)
     ok( identical(rv_1, rv_2), "surface_coco")
 
-    rv_3 <- coco(
-        surface(a, span = '1R', collocates = "man"),
-        surface(b, span = '1R', collocates = "man"),
+    rv_3 <- CorporaCoCo:::.coco(
+        CorporaCoCo:::.surface(a, span = '1R', nodes = NULL, collocates = "man"),
+        CorporaCoCo:::.surface(b, span = '1R', nodes = NULL, collocates = "man"),
         nodes = nodes, fdr = 0.01, collocates = "man"
     )
-    rv_4 <- surface_coco(a, b, span = '1R', nodes = nodes, fdr = 0.01, collocates = "man")
+    rv_4 <- CorporaCoCo:::.surface_coco(a, b, span = '1R', nodes = nodes, fdr = 0.01, collocates = "man")
     ok( identical(rv_3, rv_4), "surface_coco with collocates filter")
 })
 

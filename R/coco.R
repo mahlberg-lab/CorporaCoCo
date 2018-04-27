@@ -1,4 +1,4 @@
-coco <- function(A, B, nodes, fdr = 0.01, collocates = NULL) {
+.coco <- function(A, B, nodes, fdr = 0.01, collocates = NULL) {
     if(! 'data.frame' %in% class(A)) stop("'A' must be a data.frame.")
     if(! 'data.frame' %in% class(B)) stop("'B' must be a data.frame.")
     if(! identical(c(x = 'character', y = 'character', H = 'integer', M = 'integer'), sapply(A, class))) stop("'A' looks wrong. Please check the required form of A.")
@@ -54,6 +54,19 @@ coco <- function(A, B, nodes, fdr = 0.01, collocates = NULL) {
 
     setcolorder(DT, c('x', 'y', 'H_A', 'M_A', 'H_B', 'M_B', 'effect_size', 'CI_lower', 'CI_upper', 'p_value', 'p_adjusted'))
 
-    return( coco_construct(DT, nodes = nodes, fdr = fdr) )
+    return(DT)
+}
+
+coco <- function(A, B, nodes, fdr = 0.01, collocates = NULL) {
+    warning("The 'coco' function is deprecated. Please consider using 'corp_coco'.", call. = FALSE, immediate. = TRUE)
+    DT <- .coco(A, B, nodes, fdr = fdr, collocates = collocates)
+    class(DT) <- c('coco', class(DT))
+    attr(DT, 'coco_metadata') <- list(
+        'nodes' = nodes,
+        'fdr' = fdr,
+        'PACKAGE_VERSION' = packageVersion('CorporaCoCo'),
+        'date' = Sys.Date()
+    )
+    invisible(DT)
 }
 

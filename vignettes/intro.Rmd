@@ -1,0 +1,117 @@
+---
+title: "Introduction to CorporaCoCo"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    css: styles.css
+vignette: >
+  %\VignetteIndexEntry{Introduction to CorporaCoCo}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+
+```{r, echo = FALSE, message = FALSE}
+knitr::opts_chunk$set(
+  comment = "#",
+    error = FALSE,
+     tidy = FALSE,
+    cache = FALSE,
+ collapse = TRUE)
+options(width = 100)
+```
+# Getting started
+
+Load the library.
+This is available from [CRAN](https://cran.r-project.org/package=CorporaCoCo) and the latest development versions can be found on [GitHub](https://github.com/birmingham-ccr/CorporaCoCo).
+```{r}
+library(CorporaCoCo)
+```
+
+## Concordance
+
+A passage from *Alice's Adventures in Wonderland*.
+```{r}
+a <- "`But do cats eat bats, I wonder?' And here Alice began to get rather sleepy, and went on saying to herself, in a dreamy sort of way, `Do cats eat bats? Do cats eat bats?' and sometimes, `Do bats eat cats?' for, you see, as she couldn't answer either question, it didn't much matter which way she put it."
+```
+Create a co-occurrence object
+```{r}
+x <- corp_surface(a, span = "4LR", nodes = "eat", collocates = c("bats", "cats"))
+```
+You can then use this object to examine the concordance for a set of node types
+```{r}
+corp_concordance(x)
+```
+Note that it has used the `span`, `nodes` and `collocates` that you supplied to `corp_surface()`.
+
+Actually you can supply these directly to `corp_concordance()`
+```{r}
+y <- corp_concordance(x, span = "2L4R", nodes = c("cats", "bats"), collocates = "eat") 
+y
+```
+Because a `corp_concordance` object is just a `data.table` you can sort it, filter it, save it to a CSV file just like a `data.table`
+```{r}
+y[order(N, R1)]
+```
+and you can do this using the *types* or the *tokens*
+```{r}
+names(y)
+```
+
+## Complex types
+
+A passage from *Alice's Adventures in Wonderland*.
+```{r}
+a <- "`But do cats eat bats, I wonder?' And here Alice began to get rather sleepy, and went on saying to herself, in a dreamy sort of way, `Do cats eat bats? Do cats eat bats?' and sometimes, `Do bats eat cats?' for, you see, as she couldn't answer either question, it didn't much matter which way she put it."
+
+a_cooccurs <- corp_surface(a, span = '1L1R', nodes = c("alice", "bats", "cats"))
+a_cooccurs
+```
+
+The same passage after it has been translated into Finnish and back to english using Google translate.
+```{r}
+b <- "`But cats eat bats, I wonder?' And here, Alice began to get pretty sleepy and went on to say to herself, in a dreamlike way: `Are cats eating bats? Are cats eating bats?' And sometimes, `Do cats have to eat cats?' since you see because he could not answer the questions, he did not really matter how he put it."
+
+b_cooccurs <- corp_surface(b, span = '1L1R', nodes = c("alice", "bats", "cats"))
+b_cooccurs
+```
+
+```{r}
+cats_and_bats <- corp_coco(a_cooccurs, b_cooccurs, nodes = c("alice", "bats", "cats"), fdr = 1.0)
+plot(cats_and_bats)
+```
+
+Looks like their is a difference for *cats* and *bats* but the text is small so we have no power.
+Lets have a look at the tokenization.
+
+```{r}
+corp_type_lookup(a_cooccurs)
+```
+
+Since *cats* and *bats* are both types of mammals maybe we can look at the co-occurences with *mammals*.
+```{r}
+a_tokens <- corp_get_tokens(a_cooccurs)
+b_tokens <- corp_get_tokens(b_cooccurs)
+
+a_tokens$type <- sub("^(cats|bats)$", "MAMMALS", a_tokens$type)
+b_tokens$type <- sub("^(cats|bats)$", "MAMMALS", b_tokens$type)
+
+a_cooccurs_mammals <- corp_surface(a, tokens = a_tokens, span = '1L1R', nodes = c("alice", "MAMMALS"))
+b_cooccurs_mammals <- corp_surface(b, tokens = b_tokens, span = '1L1R', nodes = c("alice", "MAMMALS"))
+```
+
+So now we have a new type to token mapping
+```{r}
+corp_type_lookup(a_cooccurs_mammals)
+
+```
+and so
+```{r}
+mammals <- corp_coco(a_cooccurs_mammals, b_cooccurs_mammals, nodes = c("alice", "MAMMALS"), fdr = 1.0)
+plot(mammals)
+
+```
+
+
+

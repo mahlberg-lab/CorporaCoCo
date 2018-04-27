@@ -1,17 +1,17 @@
-\name{coco-class}
-\alias{plot.coco}
+\name{plot.corp_coco}
+\alias{plot.corp_coco}
 
-\title{coco class}
+\title{plot.corp_coco}
 \description{
-  Object of class \code{coco}.
+  Plotting \code{corp_coco} objects.
 }
 
 \usage{
-  \method{plot}{coco}(x, as_matrix = FALSE, nodes = NULL, forest_plot_args = NULL, \dots)
+  \method{plot}{corp_coco}(x, as_matrix = FALSE, nodes = NULL, forest_plot_args = NULL, \dots)
 }
 \arguments{
   \item{x}{
-     An \code{coco} object.
+     An \code{corp_coco} object.
   }
   \item{as_matrix}{
      If \code{as_matrix} is set to \code{TRUE} a matrix plot
@@ -55,13 +55,8 @@
 }
 
 \details{
-  An object of class \code{coco} is returned by
-  \code{\link{coco}()} and \code{\link{surface_coco}()}.
-  No constructor is exported.
+  An object of class \code{corp_coco} is returned by
+  \code{\link{corp_coco}()}.
 }
 
-\note{
-  For example usage see the
-  \sQuote{\href{../doc/faq.pdf}{FAQ}} vignette.
-}
 

@@ -1,13 +1,19 @@
-# constructor
-coco_construct <- function(DT, nodes, fdr) {
-    class(DT) <- c('coco', class(DT))
-    attr(DT, 'coco_metadata') <- list(
-        'nodes' = nodes,
-        'fdr' = fdr,
-        'PACKAGE_VERSION' = packageVersion('CorporaCoCo'),
-        'date' = Sys.Date()
+corp_coco <- function(A, B, nodes, collocates = NULL, fdr = 0.10) {
+    obj <- .coco(
+        A = corp_get_counts(A),
+        B = corp_get_counts(B),
+        nodes = nodes,
+        collocates = collocates,
+        fdr = fdr
     )
-    invisible(DT)
+    class(obj) <- append("corp_coco", class(obj))
+    attr(obj, "PACKAGE_VERSION") <- packageVersion('CorporaCoCo')
+    attr(obj, "DATE") <- Sys.Date()
+    attr(obj, "nodes") <- nodes
+    attr(obj, "collocates") <- collocates
+    attr(obj, "fdr") <- fdr
+    #obj <- sticky(obj)
+    invisible(obj)
 }
 
 
@@ -16,7 +22,8 @@ coco_construct <- function(DT, nodes, fdr) {
 # ref: http://cran.r-project.org/doc/manuals/r-devel/R-exts.html#Generic-functions-and-methods
 # for explanation of argument names
 
-plot.coco <- function(x, as_matrix = FALSE, nodes = NULL, forest_plot_args = NULL, ...) {
+# TODO: old coco objects need to plot too
+plot.corp_coco <- function(x, as_matrix = FALSE, nodes = NULL, forest_plot_args = NULL, ...) {
     # hack to stop R CMD check warnings
     effect_size = V1 = y = CI_upper = CI_lower = NULL
 
@@ -126,14 +133,16 @@ plot.coco <- function(x, as_matrix = FALSE, nodes = NULL, forest_plot_args = NUL
             y_labels <- c()
             for(node in nodes) {
                 # -ve infinite
-                DT <- x[x == node & effect_size == -Inf][order(CI_upper)][ , rank := .I]
+                DT <- subset(x, x == node & effect_size == -Inf)[order(CI_upper)]
+                DT[, "rank" := .I]
                 if(nrow(DT) > 0) {
                     arrows(-scale_limit, DT$rank + y_start, DT$CI_upper, DT$rank + y_start, code = 2, length = plot_args$length.wisker_end, angle = 90, col = plot_args$col.whisker )
                     y_labels <- c(y_labels, paste(format(DT$x, width = max_x_chars, justify = 'right'), format(DT$y, width = max_y_chars, justify = 'left'), sep = ' '))
                     y_start <- y_start + nrow(DT)
                 }
                 # finite
-                DT <- x[x == node & is.finite(effect_size)][order(effect_size)][ , rank := .I]
+                DT <- subset(x, x == node & is.finite(effect_size))[order(effect_size)]
+                DT[ , rank := .I]
                 if(nrow(DT) > 0) {
                     points(
                         DT$effect_size, 1:nrow(DT) + y_start,
@@ -151,7 +160,8 @@ plot.coco <- function(x, as_matrix = FALSE, nodes = NULL, forest_plot_args = NUL
                     y_start <- y_start + nrow(DT)
                 }
                 # +ve infinite
-                DT <- x[x == node & effect_size == Inf][order(CI_lower)][ , rank := .I]
+                DT <- subset(x, x == node & effect_size == Inf)[order(CI_lower)]
+                DT[ , rank := .I]
                 if(nrow(DT) > 0) {
                     arrows(DT$CI_lower, DT$rank + y_start, scale_limit, DT$rank + y_start, code = 1, length = plot_args$length.wisker_end, angle = 90, col = plot_args$col.whisker )
                     y_labels <- c(y_labels, paste(format(DT$x, width = max_x_chars, justify = 'right'), format(DT$y, width = max_y_chars, justify = 'left'), sep = ' '))

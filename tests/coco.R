@@ -19,7 +19,7 @@ test_for_error <- function(code, expected_regexp = '.+') {
 # -----
 
 ok_group("main", {
-    A <- surface(
+    A <- CorporaCoCo:::.surface(
         x = c(
             rep(c("a", "man", NA), 100),
             rep(c("a", "plan", NA), 100),
@@ -31,9 +31,9 @@ ok_group("main", {
             rep(c("another", "man", NA), 100),
             rep(c("another", "plan", NA), 100)
         ),
-        span = '1R'
+        span = '1R', nodes = NULL, collocates = NULL
     )
-    B <- surface(
+    B <- CorporaCoCo:::.surface(
         x = c(
             rep(c("a", "man", NA), 60),
             rep(c("a", "plan", NA), 100),
@@ -48,13 +48,13 @@ ok_group("main", {
             rep(c("another", "plan", NA), 100),
             rep(c("another", "canal", NA), 40)
         ),
-        span = '1R'
+        span = '1R', nodes = NULL, collocates = NULL
     )
     nodes <- c("a", "the")
 
-    rv <- coco(A, B, nodes = nodes, fdr = 1.0)
+    rv <- CorporaCoCo:::.coco(A, B, nodes = nodes, collocates = NULL, fdr = 1.0)
 
-    ok( is(rv, 'coco'), "is class 'coco'")
+    # ok( is(rv, 'coco'), "is class 'coco'")
     ok( is(rv, 'data.table'), "is class 'data.table'")
     ok( is(rv, 'data.frame'), "is class 'data.frame'")
 
@@ -80,33 +80,33 @@ ok_group("main", {
     , "effect_size, CI_upper, CI_lower if collocate is only in corpus B")
 
     rv_2 <- rv[x == "a"]
-    rv_3 <- coco(A, B, nodes = "a", fdr = 1.0)
+    rv_3 <- CorporaCoCo:::.coco(A, B, nodes = "a", fdr = 1.0)
     attr(rv_2, 'coco_metadata') <- NULL
     attr(rv_3, 'coco_metadata') <- NULL
     ok(identical(rv_2, rv_3), "single node (as a string)")
 
-    rv <- coco(A, B, nodes = nodes)
+    rv <- CorporaCoCo:::.coco(A, B, nodes = nodes, collocates = NULL, fdr = 0.01)
     ok( all(identical(c("a", "a", "a", "a", "a", "a", "the", "the"), sort(rv$x)), identical(c("badger", "canal", "canal", "cat", "man", "man", "mushroom", "snake"), sort(rv$y))), "correct set of significant results")
 
-    ok( identical(attr(rv, 'coco_metadata')$nodes, nodes), "object metadata nodes look good")
+    # ok( identical(attr(rv, 'coco_metadata')$nodes, nodes), "object metadata nodes look good")
 
     # collocates filter
-    rv_f <- coco(A, B, nodes = nodes, collocates = c("badger", "man"))
+    rv_f <- CorporaCoCo:::.coco(A, B, nodes = nodes, collocates = c("badger", "man"), fdr = 0.01)
     ok( identical(rv_f[, -"p_adjusted"], rv[y %in% c("badger", "man"), -"p_adjusted"]), "collocates filter - vector - rows")
     ok( ! isTRUE(all.equal(rv_f$p_adjusted, rv[y %in% c("badger", "man")]$p_adjusted)), "collocates filter - vector - p_adjusted values")
 
-    rv_f <- coco(A, B, nodes = nodes, collocates = "cat")
+    rv_f <- CorporaCoCo:::.coco(A, B, nodes = nodes, collocates = "cat", fdr = 0.01)
     ok( identical(rv_f[, -"p_adjusted"], rv[y == "cat", -"p_adjusted"]), "collocates filter - string - rows")
     ok( isTRUE(all.equal(rv_f$p_value, rv_f$p_adjusted)), "collocates filter - string - p_adjusted values")
 
     # no rows returned
-    rv <- coco(A, B, nodes = "chimerical", fdr = 1.0)
+    rv <- CorporaCoCo:::.coco(A, B, nodes = "chimerical", collocate = NULL, fdr = 1.0)
     ok( nrow(rv) == 0, "no rows returned")
 })
 
 
 ok_group("bad arguments", {
-    A <- surface(
+    A <- CorporaCoCo:::.surface(
         x = c(
             rep(c("a", "man", NA), 100),
             rep(c("a", "plan", NA), 100),
@@ -115,9 +115,9 @@ ok_group("bad arguments", {
             rep(c("another", "man", NA), 100),
             rep(c("another", "plan", NA), 100)
         ),
-        span = '1R'
+        span = '1R', nodes = NULL, collocates = NULL
     )
-    B <- surface(
+    B <- CorporaCoCo:::.surface(
         x = c(
             rep(c("a", "man", NA), 60),
             rep(c("a", "plan", NA), 100),
@@ -129,33 +129,25 @@ ok_group("bad arguments", {
             rep(c("another", "plan", NA), 100),
             rep(c("another", "canal", NA), 40)
         ),
-        span = '1R'
+        span = '1R', nodes = NULL, collocates = NULL
     )
     nodes <- c("a", "the")
-
-
-    ok(test_for_error(coco(, B, nodes)), "A not given")
-    ok(test_for_error(coco(B = B, nodes = nodes)), "A not given (named)")
-    ok(test_for_error(coco(A, ,nodes)), "B not given")
-    ok(test_for_error(coco(A = A, nodes = nodes)), "B not given (named)")
-    ok(test_for_error(coco(A, B)), "nodes not given")
-    ok(test_for_error(coco(A = A, B = B)), "nodes not given (named)")
 
     A_bad <- A
     A_bad$x <- as.factor(A_bad$x)
     B_bad <- B
     B_bad$H <- as.factor(B_bad$H)
 
-    ok(test_for_error(coco(A = "foo", B = B, nodes = nodes), "'A'"), "bad A - not a data.frame")
-    ok(test_for_error(coco(A = A_bad, B = B, nodes = nodes), "'A'"), "bad A - bad column")
-    ok(test_for_error(coco(A = A, B = as.matrix(B), nodes = nodes), "'B'"), "bad B - not a data.frame")
-    ok(test_for_error(coco(A = A, B = B_bad, nodes = nodes), "'B'"), "bad B - bad column")
-    ok(test_for_error(coco(A = A, B = B, nodes = 1:3), "'nodes'"), "bad nodes - not char")
-    ok(test_for_error(coco(A = A, B = B, nodes = nodes, fdr = 0.0), "'fdr'"), "bad fdr - zero")
-    ok(test_for_error(coco(A = A, B = B, nodes = nodes, fdr = -0.4), "'fdr'"), "bad fdr - negative")
-    ok(test_for_error(coco(A = A, B = B, nodes = nodes, fdr = 100), "'fdr'"), "bad fdr - greater than one")
-    ok(test_for_error(coco(A = A, B = B, nodes = nodes, fdr = "100"), "'fdr'"), "bad fdr - char")
-    ok(test_for_error(coco(A = A, B = B, nodes = nodes, fdr = c(0.05, 0.10)), "'fdr'"), "bad fdr - length 2 numeric vector")
+    ok(test_for_error(CorporaCoCo:::.coco(A = "foo", B = B, nodes = nodes, collocates = NULL, fdr = 0.01), "'A'"), "bad A - not a data.frame")
+    ok(test_for_error(CorporaCoCo:::.coco(A = A_bad, B = B, nodes = nodes, collocates = NULL, fdr = 0.01), "'A'"), "bad A - bad column")
+    ok(test_for_error(CorporaCoCo:::.coco(A = A, B = as.matrix(B), nodes = nodes, collocates = NULL, fdr = 0.01), "'B'"), "bad B - not a data.frame")
+    ok(test_for_error(CorporaCoCo:::.coco(A = A, B = B_bad, nodes = nodes, collocates = NULL, fdr = 0.01), "'B'"), "bad B - bad column")
+    ok(test_for_error(CorporaCoCo:::.coco(A = A, B = B, nodes = 1:3, collocates = NULL, fdr = 0.01), "'nodes'"), "bad nodes - not char")
+    ok(test_for_error(CorporaCoCo:::.coco(A = A, B = B, nodes = nodes, collocates = NULL, fdr = 0.0), "'fdr'"), "bad fdr - zero")
+    ok(test_for_error(CorporaCoCo:::.coco(A = A, B = B, nodes = nodes, collocates = NULL, fdr = -0.4), "'fdr'"), "bad fdr - negative")
+    ok(test_for_error(CorporaCoCo:::.coco(A = A, B = B, nodes = nodes, collocates = NULL, fdr = 100), "'fdr'"), "bad fdr - greater than one")
+    ok(test_for_error(CorporaCoCo:::.coco(A = A, B = B, nodes = nodes, collocates = NULL, fdr = "100"), "'fdr'"), "bad fdr - char")
+    ok(test_for_error(CorporaCoCo:::.coco(A = A, B = B, nodes = nodes, collocates = NULL, fdr = c(0.05, 0.10)), "'fdr'"), "bad fdr - length 2 numeric vector")
 })
 
 
