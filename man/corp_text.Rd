@@ -1,6 +1,7 @@
 \name{corp_text}
 \alias{corp_text}
 \alias{is.corp_text}
+\alias{corp_text_rbindlist}
 \alias{corp_type_lookup}
 \alias{corp_type_lookup.corp_text}
 
@@ -13,6 +14,8 @@
   corp_text(text, tokens = NULL)
 
   is.corp_text(obj)
+
+  corp_text_rbindlist(x)
 
   \method{corp_type_lookup}{corp_text}(obj)
 }
@@ -59,6 +62,9 @@
     A \code{corp_text} object as is returned by the
     \code{corp_text} function. 
   }    
+  \item{x}{
+    A \code{list} of \code{corp_text} objects.
+  }    
 }
 
 \value{
@@ -77,6 +83,12 @@
   \subsection{corp_type_lookup}{
     Returns a \pkg{data.table} that can be used to lookup the tokens
     associated with each type. See example.
+  }
+  \subsection{corp_text_rbindlist}{
+    Returns a \code{corp_text} object which is an ordered combination
+    of the given list of \code{corp_text} objects.
+
+    TODO: Currently the text is concatenated with a single space.
   }
   \subsection{summary}{
     Prints a summary of the token and type counts for the \var{text}.

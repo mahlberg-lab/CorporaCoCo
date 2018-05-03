@@ -27,6 +27,7 @@ S3method("corp_get_metadata", "corp_cooccurrence")
 
 export('corp_text')
 export("is.corp_text")
+export("corp_text_rbindlist")
 S3method("corp_get_text", "corp_text")
 S3method("corp_get_tokens", "corp_text")
 S3method("corp_get_metadata", "corp_text")

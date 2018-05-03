@@ -14,8 +14,8 @@ corp_text <- function(
         if(! is.data.frame(tokens) || ! all(c("type", "start", "end") %in% names(tokens))) {
             stop("'tokens' must be a data.frame containing 'type', 'start' and 'end' columns")
         }
-        if(! is.character(tokens$type) || ! is.integer(tokens$start) || ! is.integer(tokens$end)) {
-            stop("tokens columns: 'type' must be 'character', and 'start' and 'end' must be 'integer'")
+        if(! is.character(tokens$type) || ! is.numeric(tokens$start) || ! is.numeric(tokens$end)) {
+            stop("tokens columns: 'type' must be 'character', and 'start' and 'end' must be 'numeric'")
         }
         if(! is.data.table(tokens)) {
             tokens <- as.data.table(tokens)
@@ -47,6 +47,21 @@ corp_text <- function(
 }
 
 is.corp_text <- function(obj) inherits(obj, "corp_text")
+
+corp_text_rbindlist <- function(x) {
+    # hack to stop R CMD check warnings - ref: data.table
+    start = end = NULL
+
+    Ns <- sapply(x, function(xx) nchar(xx$text, type = "chars"))
+    offsets <- shift(Ns, 1, fill = 0)
+    corp_text(
+        text = paste(sapply(x, corp_get_text), collapse = " "),
+        tokens <- rbindlist(lapply(1:length(x), function(i) {
+            x[[i]]$tokens[, c("start", "end") := list(start + offsets[i] + i - 1, end + offsets[i] + i - 1)]
+            return(x[[i]]$tokens[, c("type", "start", "end")])
+        }))
+    )
+}
 
 # s3 methods
 # ==========

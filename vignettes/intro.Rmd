@@ -43,6 +43,16 @@ We used the default tokenization, so lets look at the type mappings:
 ```{r}
 corp_type_lookup(a_text)
 ```
+You can combine `corp_text` objects
+```{r}
+aa <- "The cat sat on the mat."
+bb <- "This dog ate this cat."
+aaa <- corp_text(aa)
+bbb <- corp_text(bb)
+ccc <- list(aaa, bbb)
+corp_text_rbindlist(ccc)
+
+```
 
 ## corp\_concordance
 You can look at concordance lines using `corp_text` objects.
