@@ -1,6 +1,10 @@
 corp_concordance = function(obj, span, nodes, collocates, context) UseMethod("corp_concordance")
 
 corp_concordance.corp_surface <- function(obj, span = attr(obj, "span"), nodes = attr(obj, "nodes"), collocates = attr(obj, "collocates"), context = 3) {
+    corp_concordance(corp_get_text_obj(obj), span = span, nodes = nodes, collocates = collocates, context = context)
+}
+
+corp_concordance.corp_text <- function(obj, span, nodes = NULL, collocates = NULL, context = 3) {
     # hack to stop R CMD check warnings - ref: data.table
     idx = type = NULL
 
@@ -38,11 +42,20 @@ corp_concordance.corp_surface <- function(obj, span = attr(obj, "span"), nodes =
     class(rv) <- append("corp_concordance", class(rv))
     attr(rv, "PACKAGE_VERSION") <- packageVersion('CorporaCoCo')
     attr(rv, "DATE") <- Sys.Date()
+    attr(rv, "span") <- span
     attr(rv, "nodes") <- nodes
     attr(rv, "collocates") <- collocates
 
     return(rv)
 }
+
+corp_get_metadata.corp_concordance <- function(obj) {list(
+        "PACKAGE_VERSION" = attr(obj, "PACKAGE_VERSION"),
+        "DATE" = attr(obj, "DATE"),
+        "span" = attr(obj, "span"),
+        "nodes" = attr(obj, "nodes"),
+        "collocates" = attr(obj, "collocates")
+)}
 
 
 print.corp_concordance <- function(x, collocates = attr(x, "collocates"), collocate_marker = "*", as_data_table = FALSE, ...) {

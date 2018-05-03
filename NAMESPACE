@@ -3,6 +3,7 @@ export('surface')
 export('coco')
 export('corp_coco')
 S3method('plot', 'corp_coco')
+S3method("corp_get_metadata", "corp_coco")
 
 export('surface_coco')
 
@@ -11,25 +12,34 @@ export("is.corp_cooccurrence")
 export("is.corp_surface")
 
 S3method("print", "corp_cooccurrence")
-S3method("summary", "corp_surface")
-
-export("corp_concordance")
-S3method("corp_concordance", "corp_surface")
-S3method("print", "corp_concordance")
-
 
 export("corp_get_text")
+export("corp_get_text_obj")
 export("corp_get_tokens")
 export("corp_get_counts")
 export("corp_get_metadata")
-export("corp_type_lookup")
 
 S3method("corp_get_text", "corp_cooccurrence")
+S3method("corp_get_text_obj", "corp_cooccurrence")
 S3method("corp_get_tokens", "corp_cooccurrence")
 S3method("corp_get_counts", "corp_cooccurrence")
 S3method("corp_get_metadata", "corp_cooccurrence")
 
-S3method("corp_type_lookup", "corp_surface")
+export('corp_text')
+export("is.corp_text")
+S3method("corp_get_text", "corp_text")
+S3method("corp_get_tokens", "corp_text")
+S3method("corp_get_metadata", "corp_text")
+S3method("summary", "corp_text")
+export("corp_type_lookup")
+S3method("corp_type_lookup", "corp_text")
+
+export("corp_concordance")
+S3method("corp_concordance", "corp_text")
+S3method("corp_concordance", "corp_surface")
+S3method("corp_get_metadata", "corp_concordance")
+S3method("print", "corp_concordance")
+
 
 # general
 importFrom('methods', 'as')

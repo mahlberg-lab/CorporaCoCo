@@ -1,3 +1,8 @@
 pre {
   line-height: 1.3em;
 }
+
+code.r {
+  font-style: normal;
+}
+

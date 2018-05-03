@@ -22,6 +22,14 @@ corp_coco <- function(A, B, nodes, collocates = NULL, fdr = 0.10) {
 # ref: http://cran.r-project.org/doc/manuals/r-devel/R-exts.html#Generic-functions-and-methods
 # for explanation of argument names
 
+corp_get_metadata.corp_coco <- function(obj) {list(
+        "PACKAGE_VERSION" = attr(obj, "PACKAGE_VERSION"),
+        "DATE" = attr(obj, "DATE"),
+        "nodes" = attr(obj, "nodes"),
+        "collocates" = attr(obj, "collocates"),
+        "fdr" = attr(obj, "fdr")
+)}
+
 # TODO: old coco objects need to plot too
 plot.corp_coco <- function(x, as_matrix = FALSE, nodes = NULL, forest_plot_args = NULL, ...) {
     # hack to stop R CMD check warnings
