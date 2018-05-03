@@ -53,13 +53,13 @@ corp_text_rbindlist <- function(x) {
     start = end = NULL
 
     Ns <- sapply(x, function(xx) nchar(xx$text, type = "chars"))
-    offsets <- shift(Ns, 1, fill = 0)
+    offsets <- cumsum(shift(Ns, 1, fill = 0))
     corp_text(
         text = paste(sapply(x, corp_get_text), collapse = " "),
         tokens <- rbindlist(lapply(1:length(x), function(i) {
             x[[i]]$tokens[, c("start", "end") := list(start + offsets[i] + i - 1, end + offsets[i] + i - 1)]
             return(x[[i]]$tokens[, c("type", "start", "end")])
-        }))
+        }), use.names = TRUE)
     )
 }
 

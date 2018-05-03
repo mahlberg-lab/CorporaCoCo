@@ -39,14 +39,16 @@ ok_group("main", {
 })
 
 ok_group("corp_text_rbindlist", {
-    a <- "The cat sat on the mat."
-    b <- "This dog ate this cat."
-    aa <- corp_text(a)
-    bb <- corp_text(b)
-    c <- list(aa, bb)
-    got <- corp_text_rbindlist(c)
-    ok(corp_get_text(got) == "The cat sat on the mat. This dog ate this cat.", "text")
+    aa <- "The cat sat on the mat."
+    bb <- "This dog ate this cat."
+    cc <- "That badger has a funny face."
+    aaa <- corp_text(aa)
+    bbb <- corp_text(bb)
+    ccc <- corp_text(cc)
+    ddd <- list(aaa, bbb, ccc)
+    got <- corp_text_rbindlist(ddd)
+    ok(corp_get_text(got) == "The cat sat on the mat. This dog ate this cat. That badger has a funny face.", "text")
     tokens <- corp_get_tokens(got)
-    ok(tokens[type == "dog", "start"] == 30 && tokens[type == "dog", "end"] == 32, "tokens")
+    ok(tokens[type == "badger", "start"] == 53 && tokens[type == "badger", "end"] == 58, "tokens")
 })
 
