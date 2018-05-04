@@ -8,7 +8,7 @@
 }
 
 \usage{
-  corp_coco(A, B, nodes, collocates = NULL, fdr = 0.1)
+  corp_coco(A, B, nodes, collocates = NULL, fdr = 0.01)
 
   # Deprecated
   coco(A, B, nodes, fdr = 0.01, collocates = NULL)

@@ -1,4 +1,4 @@
-corp_coco <- function(A, B, nodes, collocates = NULL, fdr = 0.10) {
+corp_coco <- function(A, B, nodes, collocates = NULL, fdr = 0.01) {
     obj <- .coco(
         A = corp_get_counts(A),
         B = corp_get_counts(B),
