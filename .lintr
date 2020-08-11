@@ -1,0 +1,7 @@
+linters: with_defaults( line_length_linter(180),
+                        object_name_linter(styles = c("camelCase", "CamelCase", "snake_case")),
+                        cyclocomp_linter(complexity_limit = 50)
+                      )
+exclude: "# Exclude Linting"
+exclude_start: "# Begin Exclude Linting"
+exclude_end: "# End Exclude Linting"
