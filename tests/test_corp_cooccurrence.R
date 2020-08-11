@@ -1,9 +1,9 @@
 library(CorporaCoCo)
 library(data.table)
-library(unittest, quietly=TRUE)
+library(unittest, quietly = TRUE)
 
 # Retrieve functions that are shared across multiple test files
-source('tests/test_shared_functions.R')
+source("tests/test_shared_functions.R")
 
 # -----
 # tests
@@ -12,7 +12,7 @@ source('tests/test_shared_functions.R')
 ok_group("corp_surface", {
     x <- "A man, a plan, a canal -- Panama!"
     y <- corp_text(x)
-    got <- corp_surface(y, span = '2R')
+    got <- corp_surface(y, span = "2R")
     ok(is.corp_cooccurrence(got), "is.corp_cooccurrence")
     ok(is.corp_surface(got), "is.corp_surface")
 
@@ -23,6 +23,6 @@ ok_group("corp_surface", {
     ok(is.data.table(counts), "corp_get_counts returned a data.table")
 
     metadata <- corp_get_metadata(got)
-    ok(all(c("PACKAGE_VERSION", "DATE", "span", "nodes", "collocates") %in% names(metadata)) && length(names(metadata)) == 5, "corp_get_metadata - correct vars") 
+    ok(all(c("PACKAGE_VERSION", "DATE", "span", "nodes", "collocates") %in% names(metadata)) && length(names(metadata)) == 5, "corp_get_metadata - correct vars")
     ok(metadata$span == "2R" && is.null(metadata$nodes) && is.null(metadata$collocates), "corp_get_metadata - corect values")
 })
