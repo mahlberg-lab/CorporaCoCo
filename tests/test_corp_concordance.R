@@ -10,9 +10,10 @@ source("tests/test_shared_functions.R")
 # -----
 
 ok_group("corp_concordance", {
-    x <- paste("`But do cats eat bats, I wonder?' And here Alice began to get rather sleepy, and went on saying to herself, in a dreamy sort of way, ",
-               "`Do cats eat bats? Do cats eat bats?' and sometimes, `Do bats eat cats?' ",
-               "for, you see, as she couldn't answer either question, it didn't much matter which way she put it.")
+    x <- paste("`But do cats eat bats, I wonder?' And here Alice began to get rather sleepy, and went on saying to herself, in a dreamy sort of way,",
+               "`Do cats eat bats? Do cats eat bats?' and sometimes, `Do bats eat cats?'",
+               "for, you see, as she couldn't answer either question, it didn't much matter which way she put it.",
+               sep = " ")
 
     # this is silly but it tests if we can concordance every instance of every type
     text <- corp_text(x)
