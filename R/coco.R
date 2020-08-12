@@ -7,9 +7,9 @@
     if (! is.numeric(fdr) || length(fdr) > 1) stop("'fdr' must be a single number.")
     if (fdr <= 0.0 || fdr > 1.0) stop("'fdr' must be greater than zero and less than or equal to zero.")
     if (length(collocates) != 0 && ! is.character(collocates)) stop("'collocates' must be a character vector.")
-     
+
     # hack to stop R CMD check warnings
-    x = y = H = M = H_A = H_B = M_A = M_B = p_adjusted = p_value = i.T = NULL
+    x <- y <- H <- M <- H_A <- H_B <- M_A <- M_B <- p_adjusted <- p_value <- i.T <- NULL
 
     # always use data.frames internally
     A <- as.data.table(A)
@@ -19,18 +19,18 @@
 
     # filter by collocates
     if (length(collocates) != 0) {
-        A <- A[y %in% collocates] 
-        B <- B[y %in% collocates] 
+        A <- A[y %in% collocates]
+        B <- B[y %in% collocates]
     }
 
     # filter by nodes and combine
-    DT <- merge(A[list(nodes)], B[list(nodes)], by= c('x', 'y'), suffixes = c("_A", "_B"), all = TRUE)
+    DT <- merge(A[list(nodes)], B[list(nodes)], by = c('x', 'y'), suffixes = c("_A", "_B"), all = TRUE)
     # if pair missing in one corpus must be replaced by no hits and all misses
     # total possible hits for each node
-    A_max <- A[list(nodes)][! duplicated(x), list(x, T = H+M)]
+    A_max <- A[list(nodes)][! duplicated(x), list(x, T = H + M)]
     A_max[is.na(T), T := 0]
     setkey(A_max, x)
-    B_max <- B[list(nodes)][! duplicated(x), list(x, T = H+M)]
+    B_max <- B[list(nodes)][! duplicated(x), list(x, T = H + M)]
     B_max[is.na(T), T := 0]
     setkey(B_max, x)
     DT[A_max, M_A := ifelse(is.na(M_A), i.T, M_A), on = 'x']
@@ -69,4 +69,3 @@ coco <- function(A, B, nodes, fdr = 0.01, collocates = NULL) {
     )
     invisible(DT)
 }
-
