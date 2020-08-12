@@ -9,6 +9,8 @@ r_github_packages:
 cache: packages
 sudo: false
 warnings_are_errors: true
+env:
+  - LINTR_COMMENT_BOT=false
 addons:
     apt:
         packages:
