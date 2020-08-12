@@ -1,5 +1,6 @@
-linters: with_defaults( line_length_linter(200),
+linters: with_defaults( line_length_linter = NULL,
                         object_name_linter = NULL,
+                        object_length_linter = NULL,
                         cyclocomp_linter(complexity_limit = 50),
                         open_curly_linter(allow_single_line = TRUE),
                         closed_curly_linter(allow_single_line = TRUE)
