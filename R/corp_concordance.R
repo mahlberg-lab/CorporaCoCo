@@ -1,4 +1,4 @@
-corp_concordance = function(obj, span, nodes, collocates, context) UseMethod("corp_concordance")
+corp_concordance <- function(obj, span, nodes, collocates, context) UseMethod("corp_concordance")
 
 corp_concordance.corp_surface <- function(obj, span = attr(obj, "span"), nodes = attr(obj, "nodes"), collocates = attr(obj, "collocates"), context = 3) {
     corp_concordance(corp_get_text_obj(obj), span = span, nodes = nodes, collocates = collocates, context = context)
@@ -6,7 +6,7 @@ corp_concordance.corp_surface <- function(obj, span = attr(obj, "span"), nodes =
 
 corp_concordance.corp_text <- function(obj, span, nodes = NULL, collocates = NULL, context = 3) {
     # hack to stop R CMD check warnings - ref: data.table
-    idx = type = NULL
+    idx <- type <- NULL
 
     s <- parse_span(span)
     n_tokens <- nrow(obj$tokens)
