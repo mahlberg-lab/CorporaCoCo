@@ -23,6 +23,7 @@
         * vignettes/intro.Rmd
         * vignettes/styles.css
     * Modified files:
+        * .Rbuildignore
         * .travis.yml
         * DESCRIPTION
         * man/surface_coco.Rd
