@@ -3,7 +3,7 @@ library(data.table)
 library(unittest, quietly = TRUE)
 
 # Retrieve functions that are shared across multiple test files
-source(file = "test_shared_functions.R", local = TRUE)
+source(file = "shared_functions.R", local = TRUE)
 
 # -----
 # tests
