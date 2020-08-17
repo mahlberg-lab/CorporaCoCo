@@ -94,9 +94,9 @@ you can use this to install directly from github:
     devtools::install_github("birmingham-ccr/CorporaCoCo")
 
 Testing
-==============================================================
+=======
 
-Unit tests are located in the /tests/ directory. There's a shared_functions.R file for common functions, and a set of test files prefixed with 'test_' for each of the relevant files in the R directory.
+Unit tests are located in the /tests/ directory. There's a [shared functions](shared_functions.R) file for common functions used across multiple test files, and a set of test files prefixed with 'test_' for each of the relevant files in the [R](/R) directory.
 
 Continuous integration testing is set up using Travis CI. See [the Travis CI congiruation file](/.travis.yml).
 
