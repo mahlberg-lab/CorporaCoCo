@@ -30,6 +30,7 @@
         * R/coco.R
         * R/surface.R
         * R/surface_coco.R
+        * README.md
         * tests/test_coco.R
         * tests/test_surface.R
         * tests/test_surface_coco.R
