@@ -22,7 +22,7 @@ corp_concordance.corp_text <- function(obj, span, nodes = NULL, collocates = NUL
     set(wanted, j = c("CL_L", "CL_R", L_cols, "N", R_cols, "CR_L", "CR_R"), value = lapply(c(-s$left-context, -s$left-1, -(s$left):(s$right), s$right+1, s$right+context), function(x) wanted$idx + x))
     wanted[wanted < 1 | wanted > n_tokens] <- NA
 
-    # TODO: edge whitespace/punctuation and context is broken 
+    # TODO: edge whitespace/punctuation and context is broken
     rv <- wanted[, list(idx)]
     cols <- c(L_cols, "N", R_cols)
     set(rv, j = "CL", value = stri_sub(obj$text, from = obj$tokens[wanted$CL_L]$start, to = obj$tokens[wanted$CL_R + 1]$start - 1)) # TODO
@@ -63,7 +63,7 @@ print.corp_concordance <- function(x, collocates = attr(x, "collocates"), colloc
         rv <- NextMethod()
     } else {
         # using something like %12s in sprintf seemed very broken with UTF-8 text so padding manualy with ncahr which seems to work
-
+        x <- copy(x)
         # TODO: slow?
         if(! is.null(collocates)) {
             token_cols <- grep('^[LR]\\d+$', names(x), value = TRUE)
