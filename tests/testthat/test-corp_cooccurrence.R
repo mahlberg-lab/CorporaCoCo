@@ -15,7 +15,7 @@ test_that("corp_surface", {
     # corp_get_metadata - correct vars
     metadata <- corp_get_metadata(got)
     expect_true(all(c("PACKAGE_VERSION", "DATE", "span", "nodes", "collocates") %in% names(metadata)))
-    expect_equal(length(names(metadata)), 5)
+    expect_equal(length(names(metadata)), 6)
 
     # corp_get_metadata - corect values
     expect_equal(metadata$span, "2R")
