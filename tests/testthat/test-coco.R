@@ -1,4 +1,4 @@
-ok_group("main", {
+test_that("main", {
     A <- CorporaCoCo:::.surface(
         x = c(
             rep(c("a", "man", NA), 100),
@@ -35,8 +35,8 @@ ok_group("main", {
     rv <- CorporaCoCo:::.coco(A, B, nodes = nodes, collocates = NULL, fdr = 1.0)
 
     # expect_equal( is(rv, "coco"), "is class "coco"")
-    expect_is(rv, "data.table")
-    expect_is(rv, "data.frame")
+    expect_type(rv, "data.table")
+    expect_type(rv, "data.frame")
 
     expect_equal(sort(nodes), sort(unique(rv$x)))
 
@@ -99,7 +99,7 @@ ok_group("main", {
 })
 
 
-ok_group("bad arguments", {
+test_that("bad arguments", {
     A <- CorporaCoCo:::.surface(
         x = c(
             rep(c("a", "man", NA), 100),
