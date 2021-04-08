@@ -30,6 +30,8 @@ test_that("corp_text_rbindlist", {
     got <- corp_text_rbindlist(ddd)
     expect_equal(corp_get_text(got), "The cat sat on the mat. This dog ate this cat. That badger has a funny face.")
     tokens <- corp_get_tokens(got)
-    expect_equal(tokens[type == "badger", "start"], 53)
-    expect_equal(tokens[type == "badger", "end"], 58)
+    # expect_equal doesn't work here, since tokens[...] is a list
+    # but == coerces it to the number.
+    expect_true(tokens[type == "badger", "start"] == 53)
+    expect_true(tokens[type == "badger", "end"] == 58)
 })

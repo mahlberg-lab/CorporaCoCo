@@ -35,8 +35,8 @@ test_that("main", {
     rv <- CorporaCoCo:::.coco(A, B, nodes = nodes, collocates = NULL, fdr = 1.0)
 
     # expect_equal( is(rv, "coco"), "is class "coco"")
-    expect_type(rv, "data.table")
-    expect_type(rv, "data.frame")
+    expect_true(is(rv, "data.table"))
+    expect_true(is(rv, "data.frame"))
 
     expect_equal(sort(nodes), sort(unique(rv$x)))
 
@@ -85,7 +85,7 @@ test_that("main", {
     # Test collocates filter - vector - rows
     expect_identical(rv_f[, -"p_adjusted"], rv[y %in% c("badger", "man"), -"p_adjusted"])
     # Test collocates filter - vector - p_adjusted values
-    expect_false(all.equal(rv_f$p_adjusted, rv[y %in% c("badger", "man")]$p_adjusted))
+    expect_match(all.equal(rv_f$p_adjusted, rv[y %in% c("badger", "man")]$p_adjusted), "Mean relative difference: [0-9.]+")
 
     rv_f <- CorporaCoCo:::.coco(A, B, nodes = nodes, collocates = "cat", fdr = 0.01)
     # Test collocates filter - string - rows
