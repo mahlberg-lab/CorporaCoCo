@@ -101,3 +101,8 @@ Unit tests are located in the /tests/ directory. There's a [shared functions](te
 Continuous integration testing is set up using Travis CI. See [the Travis CI congiruation file](/.travis.yml).
 
 Linting is performed using lintr. See [the lintr configuration file](/.lintr).
+
+  <!-- badges: start -->
+  [![R-CMD-check](https://github.com/edmondac/CorporaCoCo/workflows/R-CMD-check/badge.svg)](https://github.com/edmondac/CorporaCoCo/actions)
+  <!-- badges: end -->
+
