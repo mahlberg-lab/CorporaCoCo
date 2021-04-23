@@ -3,3 +3,4 @@
 ^\.lintr
 ^\.zenodo.json
 ^\codecov.yml
+^\.github$

@@ -1,8 +1,4 @@
-library(CorporaCoCo)
-library(data.table)
-library(unittest, quietly = TRUE)
-
-ok_group("main", {
+test_that("main", {
     a <- c(
         rep(c("a", "man", NA), 100),
         rep(c("a", "plan", NA), 100),
@@ -30,7 +26,7 @@ ok_group("main", {
         nodes = nodes, collocates = NULL, fdr = 0.01
     )
     rv_2 <- CorporaCoCo:::.surface_coco(a, b, span = "1R", nodes = nodes, collocates = NULL, fdr = 0.01)
-    ok(identical(rv_1, rv_2), "surface_coco")
+    expect_identical(rv_1, rv_2)
 
     rv_3 <- CorporaCoCo:::.coco(
         CorporaCoCo:::.surface(a, span = "1R", nodes = NULL, collocates = "man"),
@@ -38,5 +34,5 @@ ok_group("main", {
         nodes = nodes, fdr = 0.01, collocates = "man"
     )
     rv_4 <- CorporaCoCo:::.surface_coco(a, b, span = "1R", nodes = nodes, fdr = 0.01, collocates = "man")
-    ok(identical(rv_3, rv_4), "surface_coco with collocates filter")
+    expect_identical(rv_3, rv_4)
 })

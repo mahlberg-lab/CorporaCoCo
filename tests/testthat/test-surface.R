@@ -1,56 +1,45 @@
-library(CorporaCoCo)
-library(data.table)
-library(unittest, quietly = TRUE)
-
-# Retrieve functions that are shared across multiple test files
-source(file = "shared_functions.R", local = TRUE)
-
-# -----
-# tests
-# -----
-
-ok_group("parse_span", {
+test_that("parse_span", {
     expected <- list(left = 5, right = 0)
     got <- local({parse_span("5L")}, asNamespace("CorporaCoCo"))
-    ok(identical(got, expected), "5L")
+    expect_identical(got, expected)
     expected <- list(left = 0, right = 5)
     got <- local({parse_span("5R")}, asNamespace("CorporaCoCo"))
-    ok(identical(got, expected), "5R")
+    expect_identical(got, expected)
     expected <- list(left = 5, right = 5)
     got <- local({parse_span("5LR")}, asNamespace("CorporaCoCo"))
-    ok(identical(got, expected), "5LR")
+    expect_identical(got, expected)
     expected <- list(left = 5, right = 5)
     got <- local({parse_span("5RL")}, asNamespace("CorporaCoCo"))
-    ok(identical(got, expected), "5RL")
+    expect_identical(got, expected)
     expected <- list(left = 5, right = 5)
     got <- local({parse_span("5R5L")}, asNamespace("CorporaCoCo"))
-    ok(identical(got, expected), "5R5L")
+    expect_identical(got, expected)
     expected <- list(left = 1, right = 5)
     got <- local({parse_span("1L5R")}, asNamespace("CorporaCoCo"))
-    ok(identical(got, expected), "1L5R")
+    expect_identical(got, expected)
     expected <- list(left = 2, right = 3)
     got <- local({parse_span("3R2L")}, asNamespace("CorporaCoCo"))
-    ok(identical(got, expected), "3R2L")
+    expect_identical(got, expected)
     expected <- list(left = 2, right = 0)
     got <- local({parse_span("2L0R")}, asNamespace("CorporaCoCo"))
-    ok(identical(got, expected), "2L0R")
+    expect_identical(got, expected)
     expected <- list(left = 0, right = 2)
     got <- local({parse_span("0L2R")}, asNamespace("CorporaCoCo"))
-    ok(identical(got, expected), "0L2R")
+    expect_identical(got, expected)
 
     # errors
-    ok(test_for_error(local({parse_span("cat")}, asNamespace("CorporaCoCo")), "span"),  "cat  (error)")
-    ok(test_for_error(local({parse_span("5B")}, asNamespace("CorporaCoCo")), "span"),   "5B   (error)")
-    ok(test_for_error(local({parse_span("5RR")}, asNamespace("CorporaCoCo")), "span"),  "5RR  (error)")
-    ok(test_for_error(local({parse_span("5LL")}, asNamespace("CorporaCoCo")), "span"),  "5LL  (error)")
-    ok(test_for_error(local({parse_span("5L2L")}, asNamespace("CorporaCoCo")), "span"), "5L2L (error)")
-    ok(test_for_error(local({parse_span("LR")}, asNamespace("CorporaCoCo")), "span"),   "LR   (error)")
-    ok(test_for_error(local({parse_span("0LR")}, asNamespace("CorporaCoCo")), "span"),  "0LR  (error)")
-    ok(test_for_error(local({parse_span("0L0R")}, asNamespace("CorporaCoCo")), "span"), "0L0R (error)")
+    expect_error(local({parse_span("cat")}, asNamespace("CorporaCoCo")), "span")
+    expect_error(local({parse_span("5B")}, asNamespace("CorporaCoCo")), "span")
+    expect_error(local({parse_span("5RR")}, asNamespace("CorporaCoCo")), "span")
+    expect_error(local({parse_span("5LL")}, asNamespace("CorporaCoCo")), "span")
+    expect_error(local({parse_span("5L2L")}, asNamespace("CorporaCoCo")), "span")
+    expect_error(local({parse_span("LR")}, asNamespace("CorporaCoCo")), "span")
+    expect_error(local({parse_span("0LR")}, asNamespace("CorporaCoCo")), "span")
+    expect_error(local({parse_span("0L0R")}, asNamespace("CorporaCoCo")), "span")
 })
 
 
-ok_group("main", {
+test_that("main", {
 
     x <- c("a", "man", "a", "plan", "a", "canal", "panama")
     expected <- data.table(
@@ -61,7 +50,7 @@ ok_group("main", {
     )
     setkey(expected, x, y)
     rv <- CorporaCoCo:::.surface(x, span = "2R", nodes = NULL, collocates = NULL)
-    ok(identical(rv, expected), "defaults")
+    expect_identical(rv, expected)
 
     # include NA
     new_rows <- data.table(
@@ -74,8 +63,9 @@ ok_group("main", {
     setkey(expected, x, y)
     assign("unittest_surface_include_na", TRUE, pos = CorporaCoCo:::pkg_vars)
     rv <- CorporaCoCo:::.surface(x, span = "2R", nodes = NULL, collocates = NULL)
-    ok(identical(rv, expected), "include NA")
-    ok(sum(rv$H) == 2 * length(x), "include NA - sum of counts is span times length(x)")
+    expect_identical(rv, expected)
+    # include NA - sum of counts is span times length(x)
+    expect_equal(sum(rv$H), 2 * length(x))
     assign("unittest_surface_include_na", FALSE, pos = CorporaCoCo:::pkg_vars)
 
     # some NAs in x
@@ -88,7 +78,7 @@ ok_group("main", {
     )
     setkey(expected, x, y)
     rv <- CorporaCoCo:::.surface(x, span = "2R", nodes = NULL, collocates = NULL)
-    ok(identical(rv, expected), "NAs in x")
+    expect_identical(rv, expected)
 
     # some NAs in x and include NA
     new_rows <- data.table(
@@ -101,8 +91,9 @@ ok_group("main", {
     setkey(expected, x, y)
     assign("unittest_surface_include_na", TRUE, pos = CorporaCoCo:::pkg_vars)
     rv <- CorporaCoCo:::.surface(x, span = "2R", nodes = NULL, collocates = NULL)
-    ok(identical(rv, expected), "NAs in x and include NA")
-    ok(sum(rv$H) == 2 * length(x), "NAs in x and include NA - sum of counts is span times length(x)")
+    expect_identical(rv, expected)
+    # NAs in x and include NA - sum of counts is span times length(x)
+    expect_equal(sum(rv$H), 2 * length(x))
     assign("unittest_surface_include_na", FALSE, pos = CorporaCoCo:::pkg_vars)
 
     # span left
@@ -115,7 +106,7 @@ ok_group("main", {
     )
     setkey(expected, x, y)
     rv <- CorporaCoCo:::.surface(x, span = "2L", nodes = NULL, collocates = NULL)
-    ok(identical(rv, expected), "span left")
+    expect_identical(rv, expected)
 
     # span left, include NA
     new_rows <- data.table(
@@ -128,8 +119,9 @@ ok_group("main", {
     setkey(expected, x, y)
     assign("unittest_surface_include_na", TRUE, pos = CorporaCoCo:::pkg_vars)
     rv <- CorporaCoCo:::.surface(x, span = "2L", nodes = NULL, collocates = NULL)
-    ok(identical(rv, expected), "span left, include NA")
-    ok(sum(rv$H) == 2 * length(x), "span left, include NA - sum of counts is span times length(x)")
+    expect_identical(rv, expected)
+    # span left, include NA - sum of counts is span times length(x)
+    expect_equal(sum(rv$H), 2 * length(x))
     assign("unittest_surface_include_na", FALSE, pos = CorporaCoCo:::pkg_vars)
 
     # span both
@@ -142,7 +134,7 @@ ok_group("main", {
     )
     setkey(expected, x, y)
     rv <- CorporaCoCo:::.surface(x, span = "2LR", nodes = NULL, collocates = NULL)
-    ok(identical(rv, expected), "span both")
+    expect_identical(rv, expected)
 
     # span both, some NAs, include NA
     x <- c("a", "man", NA, NA, "a", "plan", NA, NA, "a", "canal", "panama")
@@ -155,12 +147,13 @@ ok_group("main", {
     setkey(expected, x, y)
     assign("unittest_surface_include_na", TRUE, pos = CorporaCoCo:::pkg_vars)
     rv <- CorporaCoCo:::.surface(x, span = "2LR", nodes = NULL, collocates = NULL)
-    ok(identical(rv, expected), "span both, NAs in x and include NA")
-    ok(sum(rv$H) == 2 * 2 * length(x), "span both, include NA - sum of counts is 2 * span times length(x)")
+    expect_identical(rv, expected)
+    # span both, include NA - sum of counts is 2 * span times length(x)
+    expect_equal(sum(rv$H), 2 * 2 * length(x))
     assign("unittest_surface_include_na", FALSE, pos = CorporaCoCo:::pkg_vars)
 })
 
-ok_group("filters", {
+test_that("filters", {
     x <- c("a", "man", "a", "plan", "a", "canal", "panama")
     expected <- data.table(
         x =            c("a", "a",     "a",   "a",      "a"),
@@ -170,7 +163,7 @@ ok_group("filters", {
     )
     setkey(expected, x, y)
     rv <- CorporaCoCo:::.surface(x, span = "2R", nodes = "a", collocates = NULL)
-    ok(identical(rv, expected), "filter on a single node")
+    expect_identical(rv, expected)
 
     x <- c("a", "man", "a", "plan", "a", "canal", "panama")
     expected <- data.table(
@@ -182,7 +175,7 @@ ok_group("filters", {
     setkey(expected, x, y)
     nodes_filter <- c("canal", "man", "plan")
     rv <- CorporaCoCo:::.surface(x, span = "2R", nodes = nodes_filter, collocates = NULL)
-    ok(identical(rv, expected), "filter on nodes with vector")
+    expect_identical(rv, expected)
 
     x <- c("a", "man", "a", "plan", "a", "canal", "panama")
     expected <- data.table(
@@ -193,7 +186,7 @@ ok_group("filters", {
     )
     setkey(expected, x, y)
     rv <- CorporaCoCo:::.surface(x, span = "2R", nodes = NULL, collocates = c("plan", "panama"))
-    ok(identical(rv, expected), "filter on collocates")
+    expect_identical(rv, expected)
 
     x <- c("a", "man", "a", "plan", "a", "canal", "panama")
     expected <- data.table(
@@ -204,7 +197,7 @@ ok_group("filters", {
     )
     setkey(expected, x, y)
     rv <- CorporaCoCo:::.surface(x, span = "2R", nodes = c("canal", "man", "plan"), collocates = c("panama", "a"))
-    ok(identical(rv, expected), "filter on nodes and collocates")
+    expect_identical(rv, expected)
 
     # span both
     x <- c("a", "man", "a", "plan", "a", "canal", "panama")
@@ -216,7 +209,7 @@ ok_group("filters", {
     )
     setkey(expected, x, y)
     rv <- CorporaCoCo:::.surface(x, span = "2LR", nodes = c("a", "man", "plan"), collocates = c("panama", "a"))
-    ok(identical(rv, expected), "span both")
+    expect_identical(rv, expected)
 
     x <- c("a", "man", "a", "plan", "a", "canal", "panama")
     expected <- data.table(
@@ -227,7 +220,7 @@ ok_group("filters", {
     )
     setkey(expected, x, y)
     rv <- CorporaCoCo:::.surface(x, span = "3L", nodes = c("a", "man"), collocates = NULL)
-    ok(identical(rv, expected), "span left, overlapping left edge")
+    expect_identical(rv, expected)
 
     x <- c("a", "man", "a", "plan", "a", "canal", "panama")
     expected <- data.table(
@@ -238,7 +231,7 @@ ok_group("filters", {
     )
     setkey(expected, x, y)
     rv <- CorporaCoCo:::.surface(x, span = "3R", nodes = c("a", "canal"), collocates = NULL)
-    ok(identical(rv, expected), "span right, overlapping right edge")
+    expect_identical(rv, expected)
 
     # some NAs in x
     x <- c("a", "man", "a", "plan", NA, NA, "a", "canal", "panama")
@@ -250,20 +243,19 @@ ok_group("filters", {
     )
     setkey(expected, x, y)
     rv <- CorporaCoCo:::.surface(x, span = "2R", nodes = c("canal", "man", "plan"), collocates = c("panama", "a"))
-    ok(identical(rv, expected), "filter nodes and collocates with NAs in x")
+    expect_identical(rv, expected)
 
     # include NA not tested. Edge effects make determining a sensible behaviour tricky
     # and this functionality is not exposed.
 })
 
-ok_group("bad arguments", {
+test_that("bad arguments", {
+    expect_error(CorporaCoCo:::.surface(span = "2L", nodes = NULL, collocates = NULL))
+    expect_error(CorporaCoCo:::.surface(x = "hello", span = "2R", nodes = NULL, collocates = NULL), "'x'")
+    expect_error(CorporaCoCo:::.surface(x = 1:5, span = "2R", nodes = NULL, collocates = NULL), "'x'")
+    expect_error(CorporaCoCo:::.surface(x = as.factor(c("hello", "big", "world")), span = "2R", nodes = NULL, collocates = NULL), "'x'")
 
-    ok(test_for_error(CorporaCoCo:::.surface(span = "2L", nodes = NULL, collocates = NULL)), "x not given")
-    ok(test_for_error(CorporaCoCo:::.surface(x = "hello", span = "2R", nodes = NULL, collocates = NULL), "'x'"), "x not a vector")
-    ok(test_for_error(CorporaCoCo:::.surface(x = 1:5, span = "2R", nodes = NULL, collocates = NULL), "'x'"), "x not a character vector")
-    ok(test_for_error(CorporaCoCo:::.surface(x = as.factor(c("hello", "big", "world")), span = "2R", nodes = NULL, collocates = NULL), "'x'"), "x is a vector of factors")
-
-    ok(test_for_error(CorporaCoCo:::.surface(x = c("hello", "world"), nodes = NULL, collocates = NULL)), "span not given")
-    ok(test_for_error(CorporaCoCo:::.surface(x = c("hello", "world"), span = "0R", nodes = NULL, collocates = NULL), "span"), "span is zero")
-    ok(test_for_error(CorporaCoCo:::.surface(x = c("hello", "world"), span = c("1R", "2R"), nodes = NULL, collocates = NULL), "span"), "bad span; vector of values")
+    expect_error(CorporaCoCo:::.surface(x = c("hello", "world"), nodes = NULL, collocates = NULL))
+    expect_error(CorporaCoCo:::.surface(x = c("hello", "world"), span = "0R", nodes = NULL, collocates = NULL), "span")
+    expect_error(CorporaCoCo:::.surface(x = c("hello", "world"), span = c("1R", "2R"), nodes = NULL, collocates = NULL), "span")
 })
