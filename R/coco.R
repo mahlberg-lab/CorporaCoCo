@@ -17,9 +17,6 @@
     B <- as.data.table(B)
     setkey(B, x, y)
 
-    a = x'bananas'thisisn't validR
-    #lint me fail
-
     # filter by collocates
     if (length(collocates) != 0) {
         A <- A[y %in% collocates]
