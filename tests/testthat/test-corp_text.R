@@ -33,6 +33,5 @@ test_that("corp_text_rbindlist", {
     # expect_equal doesn't work here, since tokens[...] is a list
     # but == coerces it to the number.
     expect_true(tokens[type == "badger", "start"] == 53)
-    #expect_true(tokens[type == "badger", "end"] == 58)
-    expect_true(tokens[type == "badger", "end"] == 59)
+    expect_true(tokens[type == "badger", "end"] == 58)
 })
