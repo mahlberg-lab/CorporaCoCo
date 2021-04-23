@@ -17,10 +17,12 @@
     B <- as.data.table(B)
     setkey(B, x, y)
 
+    a = 'bananas'
+    #lint me fail
+
     # filter by collocates
     if (length(collocates) != 0) {
-        #A <- A[y %in% collocates]
-        A = A[y %in% collocates]
+        A <- A[y %in% collocates]
         B <- B[y %in% collocates]
     }
 
