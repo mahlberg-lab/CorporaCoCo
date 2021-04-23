@@ -1,10 +1,10 @@
+[![R-CMD-check](https://github.com/birmingham-ccr/CorporaCoCo/workflows/R-CMD-check/badge.svg)](https://github.com/birmingham-ccr/CorporaCoCo/actions)
 [![CRAN version badge](https://img.shields.io/cran/v/CorporaCoCo.svg)](https://cran.r-project.org/package=CorporaCoCo)
-[![Build Status](https://travis-ci.org/birmingham-ccr/CorporaCoCo.svg?branch=master)](https://travis-ci.org/birmingham-ccr/CorporaCoCo)
 [![codecov](https://codecov.io/gh/birmingham-ccr/CorporaCoCo/branch/master/graph/badge.svg)](https://codecov.io/gh/birmingham-ccr/CorporaCoCo)
 [![CRAN RStudio mirror total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/CorporaCoCo?color=001577)](https://cran.r-project.org/package=CorporaCoCo)
 [![CRAN RStudio mirror monthly downloads badge](https://cranlogs.r-pkg.org/badges/CorporaCoCo?color=001577)](https://cran.r-project.org/package=CorporaCoCo)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1174881.svg)](https://doi.org/10.5281/zenodo.1174881)
-
+  
 CorporaCoCo
 ===========
 
@@ -101,8 +101,4 @@ Unit tests are located in the /tests/ directory. There's a [shared functions](te
 Continuous integration testing is set up using Travis CI. See [the Travis CI congiruation file](/.travis.yml).
 
 Linting is performed using lintr. See [the lintr configuration file](/.lintr).
-
-  <!-- badges: start -->
-  [![R-CMD-check](https://github.com/edmondac/CorporaCoCo/workflows/R-CMD-check/badge.svg)](https://github.com/edmondac/CorporaCoCo/actions)
-  <!-- badges: end -->
 
