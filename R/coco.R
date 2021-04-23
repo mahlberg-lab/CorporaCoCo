@@ -17,7 +17,7 @@
     B <- as.data.table(B)
     setkey(B, x, y)
 
-    a = 'bananas'
+    a = x'bananas'thisisn't validR
     #lint me fail
 
     # filter by collocates
