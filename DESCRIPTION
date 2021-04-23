@@ -28,7 +28,8 @@ Suggests:
     knitr,
     rmarkdown,
     lintr,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    markdown
 VignetteBuilder:
     R.rsp,
     knitr
