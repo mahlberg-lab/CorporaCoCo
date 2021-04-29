@@ -2,14 +2,16 @@ Encoding: UTF-8
 Package: CorporaCoCo
 Type: Package
 Title: Corpora Co-Occurrence Comparison
-Version: 1.1-0
-Date: 2017-11-22
+Version: 1.2-0
+Date: 2021-04-29
 Authors@R:
     c(person('Anthony','Hennessey',email='anthony.hennessey@nottingham.ac.uk',role=c('aut','cre')),
     person('Viola','Wiegand',email='v.wiegand@bham.ac.uk',role='aut'),
     person('Michaela','Mahlberg',email='m.a.mahlberg@bham.ac.uk',role='aut'),
     person('Christopher R.','Tench',email='christopher.tench@nottingham.ac.uk',role='aut'),
     person('Jamie','Lentin',email='jamie.lentin@shuttlethread.com',role='aut'))
+    person('Mike','Allaway',email='m.j.allaway@bham.ac.uk',role='aut'))
+    person('Andrew','Edmondson',email='a.c.edmondson@bham.ac.uk',role='aut'))
 Description: A set of functions used to compare co-occurrence between two corpora.
 URL: https://github.com/birmingham-ccr/CorporaCoCo/
 License: GPL (>= 3)
@@ -22,7 +24,7 @@ Imports:
     stringi,
     RColorBrewer,
     rlist
-Suggests: 
+Suggests:
     unittest,
     R.rsp,
     knitr,
