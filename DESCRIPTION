@@ -9,8 +9,8 @@ Authors@R:
     person('Viola','Wiegand',email='v.wiegand@bham.ac.uk',role='aut'),
     person('Michaela','Mahlberg',email='m.a.mahlberg@bham.ac.uk',role='aut'),
     person('Christopher R.','Tench',email='christopher.tench@nottingham.ac.uk',role='aut'),
-    person('Jamie','Lentin',email='jamie.lentin@shuttlethread.com',role='aut'))
-    person('Mike','Allaway',email='m.j.allaway@bham.ac.uk',role='aut'))
+    person('Jamie','Lentin',email='jamie.lentin@shuttlethread.com',role='aut'),
+    person('Mike','Allaway',email='m.j.allaway@bham.ac.uk',role='aut'),
     person('Andrew','Edmondson',email='a.c.edmondson@bham.ac.uk',role='aut'))
 Description: A set of functions used to compare co-occurrence between two corpora.
 URL: https://github.com/birmingham-ccr/CorporaCoCo/
