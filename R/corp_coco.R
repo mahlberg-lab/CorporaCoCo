@@ -35,7 +35,7 @@ plot.corp_coco <- function(x, as_matrix = FALSE, nodes = NULL, forest_plot_args 
     # hack to stop R CMD check warnings
     effect_size <- V1 <- y <- CI_upper <- CI_lower <- NULL
 
-    # can"t use metadata attr - data.table functions do not preserve non-data.table attributes - https://github.com/Rdatatable/data.table/issues/995
+    # can't use metadata attr - data.table functions do not preserve non-data.table attributes - https://github.com/Rdatatable/data.table/issues/995
     if (! is.null(nodes)) {
         if (! all(nodes %in% unique(x[, x]))) {
             warning("Some of the supplied plot nodes are not in the significant results and therefore will be absent from the plot")
