@@ -96,9 +96,26 @@ you can use this to install directly from github:
 Testing
 =======
 
-Unit tests are located in the /tests/ directory. There's a [shared functions](tests/shared_functions.R) file for common functions used across multiple test files, and a set of test files prefixed with 'test_' for each of the relevant files in the [R](/R) directory.
+Unit tests are located in the /tests/testthat directory. We use the 'testthat' package to generate tests.
 
-Continuous integration testing is set up using Travis CI. See [the Travis CI congiruation file](/.travis.yml).
+To run the tests yourself, just do:
 
-Linting is performed using lintr. See [the lintr configuration file](/.lintr).
+> devtools::test()
+ℹ Loading CorporaCoCo
+ℹ Testing CorporaCoCo
+✔ |  OK F W S | Context
+✔ |  39       | coco [0.5 s]
+✔ |   4       | corp_concordance [0.1 s]
+✔ |  10       | corp_cooccurrence
+✔ |  12       | corp_text
+✔ |   2       | surface_coco [0.1 s]
+✔ |  44       | surface [0.3 s]
+
+══ Results ═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+Duration: 1.2 s
+
+[ FAIL 0 | WARN 0 | SKIP 0 | PASS 111 ]
+
+
+Continuous integration testing is set up using GitHub Actions - see [the workflows](/.github/workflows).
 
