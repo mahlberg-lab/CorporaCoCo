@@ -1,10 +1,10 @@
+[![R-CMD-check](https://github.com/birmingham-ccr/CorporaCoCo/workflows/R-CMD-check/badge.svg)](https://github.com/birmingham-ccr/CorporaCoCo/actions)
 [![CRAN version badge](https://img.shields.io/cran/v/CorporaCoCo.svg)](https://cran.r-project.org/package=CorporaCoCo)
-[![Build Status](https://travis-ci.org/birmingham-ccr/CorporaCoCo.svg?branch=master)](https://travis-ci.org/birmingham-ccr/CorporaCoCo)
 [![codecov](https://codecov.io/gh/birmingham-ccr/CorporaCoCo/branch/master/graph/badge.svg)](https://codecov.io/gh/birmingham-ccr/CorporaCoCo)
 [![CRAN RStudio mirror total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/CorporaCoCo?color=001577)](https://cran.r-project.org/package=CorporaCoCo)
 [![CRAN RStudio mirror monthly downloads badge](https://cranlogs.r-pkg.org/badges/CorporaCoCo?color=001577)](https://cran.r-project.org/package=CorporaCoCo)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1174881.svg)](https://doi.org/10.5281/zenodo.1174881)
-
+  
 CorporaCoCo
 ===========
 
@@ -92,4 +92,30 @@ you can use this to install directly from github:
 
     # install.packages("devtools")
     devtools::install_github("birmingham-ccr/CorporaCoCo")
+
+Testing
+=======
+
+Unit tests are located in the /tests/testthat directory. We use the 'testthat' package to generate tests.
+
+To run the tests yourself, just do:
+
+> devtools::test()
+ℹ Loading CorporaCoCo
+ℹ Testing CorporaCoCo
+✔ |  OK F W S | Context
+✔ |  39       | coco [0.5 s]
+✔ |   4       | corp_concordance [0.1 s]
+✔ |  10       | corp_cooccurrence
+✔ |  12       | corp_text
+✔ |   2       | surface_coco [0.1 s]
+✔ |  44       | surface [0.3 s]
+
+══ Results ═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+Duration: 1.2 s
+
+[ FAIL 0 | WARN 0 | SKIP 0 | PASS 111 ]
+
+
+Continuous integration testing is set up using GitHub Actions - see [the workflows](/.github/workflows).
 

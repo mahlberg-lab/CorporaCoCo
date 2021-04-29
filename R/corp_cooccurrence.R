@@ -4,11 +4,11 @@ corp_surface <- function(
         nodes = NULL,
         collocates = NULL
     ) {
-    if(! is.corp_text(text)) {
+    if (! is.corp_text(text)) {
         stop("'text' must be a 'corp_text' object")
     }
 
-    counts = .surface(
+    counts <- .surface(
         x = text$tokens$type,
         span = span,
         nodes = nodes,
@@ -22,7 +22,7 @@ corp_surface <- function(
         ),
         class = c("corp_surface", "corp_cooccurrence")
     )
-    attr(obj, "PACKAGE_VERSION") <- packageVersion('CorporaCoCo')
+    attr(obj, "PACKAGE_VERSION") <- packageVersion("CorporaCoCo")
     attr(obj, "DATE") <- Sys.Date()
     attr(obj, "span") <- span
     attr(obj, "nodes") <- nodes
@@ -48,12 +48,11 @@ corp_get_text.corp_cooccurrence <- function(obj) corp_get_text(obj$text)
 corp_get_text_obj.corp_cooccurrence <- function(obj) obj$text
 corp_get_tokens.corp_cooccurrence <- function(obj) corp_get_tokens(obj$text)
 corp_get_counts.corp_cooccurrence <- function(obj) obj$counts
-corp_get_metadata.corp_cooccurrence <- function(obj) {list(
+corp_get_metadata.corp_cooccurrence <- function(obj) {
+    list(
         "PACKAGE_VERSION" = attr(obj, "PACKAGE_VERSION"),
         "DATE" = attr(obj, "DATE"),
         "span" = attr(obj, "span"),
         "nodes" = attr(obj, "nodes"),
         "collocates" = attr(obj, "collocates")
 )}
-
-

@@ -1,7 +1,6 @@
-CHANGES IN VERSION 1.1-0:
+CHANGES IN VERSION 1.2-0:
 
   NEW FEATURES:
 
-    * Optional 'nodes' and 'collocates' filters added to the 'surface' function. Use of the 'nodes' filter improves performance and reduces memory footprint.
-    * Optional 'collocates' filter added to the 'coco' function. The 'collocates' filter is used to target the testing and so reduce the number of tests; reducing the number of tests reduces the loss of power from the multiple test correction.
-
+    * Updated test method to "testthat" with CI from GitHub Actions
+    * Applied linting and modified code accordingly
