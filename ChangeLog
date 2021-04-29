@@ -1,46 +1,7 @@
-2020-08-17  Mike Allaway  <m.j.allaway@bham.ac.uk>
+2021-04-29  Mike Allaway  <m.j.allaway@bham.ac.uk>
 
     Version 1.2-0
 
-    * New files:
-        * .lintr
-        * man/corp_coco.Rd
-        * man/corp_concordance.Rd
-        * man/corp_cooccurrence.Rd
-        * man/corp_get.Rd
-        * man/corp_text.Rd
-        * man/plot.corp_coco.Rd
-        * R/01_generics.R
-        * R/02_shared_functions.R
-        * R/corp_coco.R
-        * R/corp_concordance.R
-        * R/corp_cooccurrence.R
-        * R/corp_text.R
-        * tests/shared_functions.R
-        * tests/test_corp_text.R
-        * tests/test_corp_cooccurrence.R
-        * tests/test_corp_concordance.R
-        * vignettes/intro.Rmd
-        * vignettes/styles.css
-    * Modified files:
-        * .Rbuildignore
-        * .travis.yml
-        * DESCRIPTION
-        * man/surface_coco.Rd
-        * R/coco.R
-        * R/surface.R
-        * R/surface_coco.R
-        * README.md
-        * tests/test_coco.R
-        * tests/test_surface.R
-        * tests/test_surface_coco.R
-    * Deleted files:
-        * man/surface.Rd
-        * NEWS
-        * coco.Rd
-        * coco-class.Rd
-        * R/coco-class.R
-        * R/shared_functions.R
 
 
 2017-11-22  Anthony Hennessey  <anthony.hennessey@nottingham.ac.uk>
