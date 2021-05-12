@@ -93,8 +93,8 @@ Holmes was sitting with his back to me, and I had given him no sign of my occupa
     expect_equal(tokens[token == "and", "start"]$start, c(195, 649, 789, 1166))
 
     # Now check the boundary markers
-    expect_equal(tokens[token == "occupation", "end"]$end, 832)  #  immediately before a boundary
-    expect_equal(tokens[token == "Well", "start"]$start, 688)  #  immediately after a boundary
+    expect_equal(tokens[token == "occupation", "end"]$end, 832)  # immediately before a boundary
+    expect_equal(tokens[token == "Well", "start"]$start, 688)  # immediately after a boundary
     expect_equal(tokens[token == "_b_", "start"]$start, c(666, 670, 674, 678, 682, 728, 732, 736, 740, 744, 836, 840, 844, 848, 852, 945, 949, 953, 957, 961, 1311, 1315, 1319, 1323, 1327))
     expect_equal(tokens[token == "_b_", "end"]$end, c(668, 672, 676, 680, 684, 730, 734, 738, 742, 746, 838, 842, 846, 850, 854, 947, 951, 955, 959, 963, 1313, 1317, 1321, 1325, 1329))
     expect_equal(corp_list[[1]]$tokens[2]$token, "Sherlock")
