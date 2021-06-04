@@ -1,6 +1,6 @@
 2021-04-29  Mike Allaway <m.j.allaway@bham.ac.uk> and Andrew Edmondson <a.c.edmondson@bham.ac.uk>
 
-    Version 1.2-0
+    Version 2.0
 
     * Updated test method to "testthat" with CI from GitHub Actions
     * Applied linting and modified code accordingly

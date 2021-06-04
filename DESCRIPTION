@@ -2,7 +2,7 @@ Encoding: UTF-8
 Package: CorporaCoCo
 Type: Package
 Title: Corpora Co-Occurrence Comparison
-Version: 1.2-0
+Version: 2.0
 Date: 2021-04-29
 Authors@R:
     c(person('Anthony','Hennessey',email='anthony.hennessey@nottingham.ac.uk',role=c('aut','cre')),
