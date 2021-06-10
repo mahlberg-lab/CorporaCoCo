@@ -1,0 +1,10 @@
+linters: with_defaults( line_length_linter = NULL,
+                        object_name_linter = NULL,
+                        object_length_linter = NULL,
+                        cyclocomp_linter(complexity_limit = 50),
+                        open_curly_linter(allow_single_line = TRUE),
+                        closed_curly_linter(allow_single_line = TRUE)
+                      )
+exclude: "# Exclude Linting"
+exclude_start: "# Begin Exclude Linting"
+exclude_end: "# End Exclude Linting"

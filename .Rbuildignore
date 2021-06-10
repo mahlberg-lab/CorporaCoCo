@@ -1,4 +1,6 @@
 ^\.git
 ^\.travis.yml
+^\.lintr
 ^\.zenodo.json
 ^\codecov.yml
+^\.github$

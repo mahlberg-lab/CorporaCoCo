@@ -1,3 +1,13 @@
+2021-04-29  Mike Allaway <m.j.allaway@bham.ac.uk> and Andrew Edmondson <a.c.edmondson@bham.ac.uk>
+
+    Version 2.0
+
+    * Updated test method to "testthat" with CI from GitHub Actions
+    * Applied linting and modified code accordingly
+    * Introduced "corp_coco", and deprecated "coco"
+    * Introduced "corp_surface", and deprecated "surface"
+    * Introduced "corp_text", "corp_concordance" and "corp_cooccurrence"
+
 2017-11-22  Anthony Hennessey  <anthony.hennessey@nottingham.ac.uk>
 
     Version 1.1-0
@@ -32,4 +42,3 @@
 
     Version 1.0-0
     Initial release.
-
