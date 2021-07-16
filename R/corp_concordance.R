@@ -63,8 +63,9 @@ print.corp_concordance <- function(x, collocates = attr(x, "collocates"), colloc
     if (as_data_table) {
         rv <- NextMethod()
     } else {
-        # using something like %12s in sprintf seemed very broken with UTF-8 text so padding manualy with ncahr which seems to work
-
+        # using something like %12s in sprintf seemed very broken with UTF-8 text so padding manually with nchar which seems to work
+        # x is a list of strings
+        x <- copy(x)
         # TODO: slow?
         if (! is.null(collocates)) {
             token_cols <- grep("^[LR]\\d+$", names(x), value = TRUE)
