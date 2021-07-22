@@ -12,13 +12,22 @@ corp_concordance.corp_text <- function(obj, span, nodes = NULL, collocates = NUL
     n_tokens <- nrow(obj$tokens)
     n_chars <- nchar(obj$text, type = "chars")
 
-    L_cols <- paste0("L", s$left:1)
-    R_cols <- paste0("R", 1:s$right)
+    L_cols <- NULL
+    R_cols <- NULL
+    
+    if (s$left > 0) {
+        L_cols <- paste0("L", s$left:1)
+    }
+    if (s$right > 0) {
+        R_cols <- paste0("R", 1:s$right)
+    }
+    
     if (! is.null(nodes)) {
         wanted <- obj$tokens[type %in% nodes, list(idx)]
     } else {
         wanted <- obj$tokens[, list(idx)]
     }
+    
     set(wanted, j = c("CL_L", "CL_R", L_cols, "N", R_cols, "CR_L", "CR_R"), value = lapply(c(-s$left - context, -s$left - 1, - (s$left):(s$right), s$right + 1, s$right + context), function(x) wanted$idx + x))
     wanted[wanted < 1 | wanted > n_tokens] <- NA
 
@@ -77,16 +86,16 @@ print.corp_concordance <- function(x, collocates = attr(x, "collocates"), colloc
         L_cols <- grep("^L\\d+$", colnames(x), value = TRUE)
 
         if(length(L_cols) > 0) {
-          L_cols <- c(rbind(L_cols, paste0("_", L_cols)))
+            L_cols <- c(rbind(L_cols, paste0("_", L_cols)))
         }
 
         R_cols <- grep("^R\\d+$", colnames(x), value = TRUE)
 
         if(length(R_cols) > 0) {
-          R_cols <- c("_N", rbind(R_cols, paste0("_", R_cols)))
-          spacing_string <- "--- "
+            R_cols <- c("_N", rbind(R_cols, paste0("_", R_cols)))
+            spacing_string <- "--- "
         } else {
-          spacing_string <- " --- "
+            spacing_string <- " --- "
         }
 
         L <- paste(x$CL, "--- ", apply(x[, L_cols, with = FALSE], 1, paste, collapse = ""), sep = "")
