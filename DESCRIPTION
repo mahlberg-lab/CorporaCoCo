@@ -36,5 +36,4 @@ VignetteBuilder:
     R.rsp,
     knitr
 BugReports: https://github.com/birmingham-ccr/CorporaCoCo/issues
-LazyData: yes
 Config/testthat/edition: 3
