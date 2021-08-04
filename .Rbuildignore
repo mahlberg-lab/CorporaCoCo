@@ -4,3 +4,4 @@
 ^\.zenodo.json
 ^\codecov.yml
 ^\.github$
+^\cran-comments.md
