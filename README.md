@@ -100,7 +100,8 @@ Unit tests are located in the /tests/testthat directory. We use the 'testthat' p
 
 To run the tests yourself, just do:
 
-> devtools::test()
+```
+devtools::test()
 ℹ Loading CorporaCoCo
 ℹ Testing CorporaCoCo
 ✔ |  OK F W S | Context
@@ -110,8 +111,10 @@ To run the tests yourself, just do:
 ✔ |  12       | corp_text
 ✔ |   2       | surface_coco [0.1 s]
 ✔ |  44       | surface [0.3 s]
+```
 
-══ Results ═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+══ Results ══════════════════════════════════
+
 Duration: 1.2 s
 
 [ FAIL 0 | WARN 0 | SKIP 0 | PASS 111 ]
