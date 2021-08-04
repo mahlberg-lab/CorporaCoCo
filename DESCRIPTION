@@ -13,7 +13,7 @@ Authors@R:
     person('Mike','Allaway',email='m.j.allaway@bham.ac.uk',role='aut'),
     person('Andrew','Edmondson',email='a.c.edmondson@bham.ac.uk',role='aut'))
 Description: A set of functions used to compare co-occurrence between two corpora.
-URL: https://github.com/birmingham-ccr/CorporaCoCo/
+URL: https://github.com/mahlberg-lab/CorporaCoCo/
 License: GPL (>= 3)
 Depends:
     R (>= 3.2.0),
@@ -35,5 +35,5 @@ Suggests:
 VignetteBuilder:
     R.rsp,
     knitr
-BugReports: https://github.com/birmingham-ccr/CorporaCoCo/issues
+BugReports: https://github.com/mahlberg-lab/CorporaCoCo/issues
 Config/testthat/edition: 3

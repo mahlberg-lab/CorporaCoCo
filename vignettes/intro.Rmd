@@ -24,7 +24,7 @@ options(width = 100)
 # Getting started
 
 Load the library.
-This is available from [CRAN](https://cran.r-project.org/package=CorporaCoCo) and the latest development versions can be found on [GitHub](https://github.com/birmingham-ccr/CorporaCoCo).
+This is available from [CRAN](https://cran.r-project.org/package=CorporaCoCo) and the latest development versions can be found on [GitHub](https://github.com/mahlberg-lab/CorporaCoCo).
 ```{r}
 library(CorporaCoCo)
 ```

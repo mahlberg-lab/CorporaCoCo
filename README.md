@@ -1,6 +1,6 @@
-[![R-CMD-check](https://github.com/birmingham-ccr/CorporaCoCo/workflows/R-CMD-check/badge.svg)](https://github.com/birmingham-ccr/CorporaCoCo/actions)
+[![R-CMD-check](https://github.com/mahlberg-lab/CorporaCoCo/workflows/R-CMD-check/badge.svg)](https://github.com/mahlberg-lab/CorporaCoCo/actions)
 [![CRAN version badge](https://img.shields.io/cran/v/CorporaCoCo.svg)](https://cran.r-project.org/package=CorporaCoCo)
-[![codecov](https://codecov.io/gh/birmingham-ccr/CorporaCoCo/branch/master/graph/badge.svg)](https://codecov.io/gh/birmingham-ccr/CorporaCoCo)
+[![codecov](https://codecov.io/gh/mahlberg-lab/CorporaCoCo/branch/master/graph/badge.svg)](https://codecov.io/gh/mahlberg-lab/CorporaCoCo)
 [![CRAN RStudio mirror total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/CorporaCoCo?color=001577)](https://cran.r-project.org/package=CorporaCoCo)
 [![CRAN RStudio mirror monthly downloads badge](https://cranlogs.r-pkg.org/badges/CorporaCoCo?color=001577)](https://cran.r-project.org/package=CorporaCoCo)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1174881.svg)](https://doi.org/10.5281/zenodo.1174881)
@@ -69,7 +69,7 @@ Linux
 In an R session type:
 
     pkg_file <- tempfile()
-    download.file(url = 'https://github.com/birmingham-ccr/CorporaCoCo/archive/master.tar.gz', mode = 'wb', method = 'wget', destfile = pkg_file)
+    download.file(url = 'https://github.com/mahlberg-lab/CorporaCoCo/archive/master.tar.gz', mode = 'wb', method = 'wget', destfile = pkg_file)
     install.packages(pkg_file, repos = NULL, type = 'source')
 
 Mac OSX / Windows
@@ -81,7 +81,7 @@ to fetch the archive instead:
 
     # install.packages("downloader")
     pkg_file <- tempfile()
-    downloader::download(url = 'https://github.com/birmingham-ccr/CorporaCoCo/archive/master.tar.gz', mode = 'wb', destfile = pkg_file)
+    downloader::download(url = 'https://github.com/mahlberg-lab/CorporaCoCo/archive/master.tar.gz', mode = 'wb', destfile = pkg_file)
     install.packages(pkg_file, repos = NULL, type = 'source')
 
 Alternatively use the `devtools` CRAN package
@@ -91,7 +91,7 @@ If you have the CRAN package [devtools](https://CRAN.R-project.org/package=devto
 you can use this to install directly from github:
 
     # install.packages("devtools")
-    devtools::install_github("birmingham-ccr/CorporaCoCo")
+    devtools::install_github("mahlberg-lab/CorporaCoCo")
 
 Testing
 =======
