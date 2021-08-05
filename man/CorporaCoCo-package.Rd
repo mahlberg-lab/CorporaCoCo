@@ -5,7 +5,7 @@
 
 \title{Comparing Co-occurrence between corpora.}
 \description{
-  Implements the method described in Hennessey and Wiegand et al. (2017).
+  The package implements the method introduced in Wiegand, Hennessey et al. (2017a). It identifies significant difference in co-occurrence counts for a given node or set of nodes across two corpora, using a Fisher’s Exact test.
 }
 \details{
   A good place to start is the
