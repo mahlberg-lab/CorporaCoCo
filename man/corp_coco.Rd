@@ -73,7 +73,7 @@
 }
 
 \details{
-  This function implements the method described in
+  The corp_coco function implements the method described in
   Hennessey and Wiegand (2018).
 
   \var{fdr} indicates the level at which the False Discovery Rate will be
