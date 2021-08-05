@@ -14,6 +14,8 @@
   \code{vignette("intro", package = "CorporaCoCo")}.
 
   For a list of all documentation use \code{library(help="CorporaCoCo")}.
+  For updates on development versions of the package and documentation, 
+  please see the [GitHub page](https://github.com/mahlberg-lab/CorporaCoCo).
 }
 
 \author{
