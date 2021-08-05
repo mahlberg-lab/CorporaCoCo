@@ -68,7 +68,7 @@
   \subsection{corp_surface}{
     Returns a \code{corp_surface} object.
     
-    The \code{corp_surface} object can be interogated using the
+    The \code{corp_surface} object can be interrogated using the
     \code{corp_get_*} accessor functions.
 
     The \code{corp_surface} objects are used as arguments to the
