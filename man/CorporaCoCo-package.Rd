@@ -17,7 +17,7 @@
 }
 
 \author{
-  Maintainer: Anthony Hennessey <anthony.hennessey@nottingham.ac.uk>.
+  Maintainer:  <mahlberg.lab@gmail.com>.
 }
 
 \references{
