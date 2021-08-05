@@ -56,7 +56,6 @@
     This is achieved using the \pkg{stringi}
     CRAN package and will work for any UTF-8 encoded text
     (in any language).
-    For details of constructing your own \var{tokens} see details.
   }
   \item{obj}{
     A \code{corp_text} object as is returned by the
