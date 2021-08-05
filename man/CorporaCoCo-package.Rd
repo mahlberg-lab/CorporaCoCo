@@ -9,12 +9,9 @@
 }
 \details{
   A good place to start is the
-  \sQuote{\href{../doc/proof_of_concept.pdf}{Proof of Concept}} vignette.
-  There is also a \sQuote{\href{../doc/faq.pdf}{FAQ}} vignette.
-  You can see a list of package vignettes with
-  \code{vignette(package = "CorporaCoCo")} and you can see a particular
-  vignette with something like
-  \code{vignette("faq", package = "CorporaCoCo")}.
+  \sQuote{\href{../doc/intro.html}{Introduction to CorporaCoCo}} vignette.
+  You can open the vignette with
+  \code{vignette("intro", package = "CorporaCoCo")}.
 
   For a list of all documentation use \code{library(help="CorporaCoCo")}.
 }

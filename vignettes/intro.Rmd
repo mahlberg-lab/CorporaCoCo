@@ -1,14 +1,11 @@
 ---
 title: "Introduction to CorporaCoCo"
 date: "`r Sys.Date()`"
-output:
-  html_document:
-    toc: true
-    css: styles.css
+output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Introduction to CorporaCoCo}
   %\VignetteEngine{knitr::rmarkdown}
-  \usepackage[utf8]{inputenc}
+  %\VignetteEncoding{UTF-8}
 ---
 
 
