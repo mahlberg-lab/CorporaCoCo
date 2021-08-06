@@ -8,19 +8,26 @@
 CorporaCoCo
 ===========
 
-A set of functions used to compare co-occurrence between two corpora.
+The package implements the method introduced in Wiegand and Hennessey et al. (2017a). It identifies significant difference in co-occurrence counts for a given node or set of nodes across two corpora, using a Fisher’s Exact test.
 
-The package is the result of work by the [Centre for Corpus Research](http://www.birmingham.ac.uk/research/activity/corpus/) at the University of Birmingham.  There is a paper in preparation but for now a good place to get an idea of what is going on is the 'Proof of Concept' document.
+A good place to start is the ‘Introduction to CorporaCoCo’ vignette. You can open the vignette with `vignette("intro", package = "CorporaCoCo")`. For a list of all documentation use `library(help="CorporaCoCo")`. For updates on development versions of the package and documentation, please watch this GitHub page.
+
+References
+----------
+* Wiegand, V., Hennessey, A., Tench, C. R., & Mahlberg, M. (2017a, May 24). Comparing co-occurrences between corpora. 38th ICAME conference, Charles University, Prague.
+
+*	Wiegand, V., Hennessey, A., Tench, C. R., & Mahlberg, M. (2017b, July 24). A cookbook of co-occurrence comparison techniques and how they relate to the subtleties in your research question. 9th International Corpus Linguistics Conference, University of Birmingham, Birmingham.
+
 
 A very simple example of usage
 ------------------------------
 
-This example takes the two Dickens novels 'Great Expectations' and 'A Tale of Two Cities' and compares the co-occurrences of a set of body part nouns. The idea is that since body part nouns are common in speech suspensions the statistically significant co-occurrence differences should include personal pronouns reflecting the differing narrative voices of the texts.
+This example takes the two Dickens novels 'Great Expectations' and 'A Tale of Two Cities' and compares the co-occurrences of a set of body part nouns. The idea is that since body part nouns are common in speech suspensions the statistically significant co-occurrence differences should include personal pronouns reflecting the differing narrative voices of the texts. We use the texts here only as sample data; we retrieve them from the [CLiC API](https://clic.readthedocs.io/en/latest/advanced/api_usage.html) using the clicclient package (the other functions of that package are still under development; please see the [clicclient GitHub page for details](https://github.com/mahlberg-lab/clicclient)). 
 
     #devtools::install_github("mahlberg-lab/clicclient")
     library(clicclient)
     
-    # retrieve texts for 'Tale of two Cities' (TTC) and 'Great Expectations' from the CLiC corpora using the 'clicclient' package
+    # retrieve texts for 'A Tale of two Cities' (TTC) and 'Great Expectations' from the CLiC corpora using the 'clicclient' package
     TTC <- clic_texts("TTC")
     GE <- clic_texts("GE")
 
@@ -57,6 +64,12 @@ This example takes the two Dickens novels 'Great Expectations' and 'A Tale of Tw
     plot(results)
 
 ![Plot of example results.](tools/readme_image_01.png)
+
+Further examples of how the method has been used can be found in:
+
+* Mahlberg, M., Wiegand, V., & Hennessey, A. (2020). Eye language – body part collocations and textual contexts in the nineteenth-century novel. In L. Fesenmeier & I. Novakova (Eds.), Phraseology and Stylistics of Literary Language/Phraséologie et Stylistique de la Langue Littéraire (pp. 143–176). Peter Lang. https://www.academia.edu/45152494/Eye_language_body_part_collocations_and_textual_contexts_in_the_nineteenth_century_novel
+
+* Wiegand, V. (2019). A Corpus Linguistic Approach to Meaning-Making Patterns in Surveillance Discourse [PhD, University of Birmingham]. https://etheses.bham.ac.uk//id/eprint/9778/
 
 Installing from CRAN
 ====================
