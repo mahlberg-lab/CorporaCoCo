@@ -17,38 +17,43 @@ A very simple example of usage
 
 This example takes the two Dickens novels 'Great Expectations' and 'A Tale of Two Cities' and compares the co-occurrences of a set of body part nouns. The idea is that since body part nouns are common in speech suspensions the statistically significant co-occurrence differences should include personal pronouns reflecting the differing narrative voices of the texts.
 
-    library(CorporaCoCo)
-    library(jsonlite)
+    #devtools::install_github("mahlberg-lab/clicclient")
+    library(clicclient)
+    
+    # retrieve texts for 'Tale of two Cities' (TTC) and 'Great Expectations' from the CLiC corpora using the 'clicclient' package
+    TTC <- clic_texts("TTC")
+    GE <- clic_texts("GE")
 
-    get_book_tokens <- function(shortname) {
-        base_uri <- 'http://clic.bham.ac.uk/api'
-        json <- fromJSON(paste0(base_uri, "/subset?corpora=", shortname))
-        tokens <- tolower( unlist( sapply(json$data, function(x) {
-            head(x[[1]], -1)[as.integer(tail(x[[1]], 1)[[1]])+1]
-        }) ) )
-    }
+    # tokenize / create corp_text objects
+    TTC_text <- corp_text(TTC)
+    GE_text <- corp_text(GE)
 
-    GE <- get_book_tokens('GE')
-    TTC <- get_book_tokens('TTC')
+    # count co-occurrences / create corp_surface objects
+    TTC_cooccurs <- corp_surface(TTC_text, span = "5LR")
+    GE_cooccurs <- corp_surface(GE_text, span = "5LR")
 
+     # set the body part nodes
     nodes <- c('back', 'eye', 'eyes', 'forehead', 'hand', 'hands', 'head', 'shoulder')
-
-    results <- surface_coco(TTC, GE, span = '5LR', nodes = nodes, fdr = 0.01)
+  
+    # run co-occurrence comparison with corp_coco
+    results <- corp_coco(TTC_cooccurs, GE_cooccurs, nodes = nodes, fdr = 0.01)
+    
     results
 
     ##          x   y H_A  M_A H_B  M_B effect_size  CI_lower   CI_upper      p_value   p_adjusted
-    ##   1:  back  me   3 1337  49 2341    3.221181  1.584866  5.5489805 5.440975e-07 5.283187e-04
-    ##   2:  eyes   i  10 1640  53 1737    2.322489  1.326370  3.4680980 1.290817e-07 5.963576e-05
-    ##   3:  eyes joe   0 1650  16 1774         Inf  1.839353        Inf 3.552572e-05 6.691836e-03
-    ##   4:  eyes  me   3 1647  25 1765    2.958423  1.241832  5.3326117 3.621123e-05 6.691836e-03
-    ##   5:  eyes  my   5 1645  57 1733    3.434699  2.123620  5.1159658 9.752564e-12 9.011369e-09
-    ##   6:  eyes the 123 1527  62 1728   -1.166398 -1.642460 -0.7024399 2.098712e-07 6.464034e-05
-    ##   7:  hand his 176 2294 114 2536   -0.771065 -1.133959 -0.4126876 1.250677e-05 4.744234e-03
-    ##   8:  hand   i  19 2451  75 2575    1.909259  1.162857  2.7232409 1.629910e-08 9.274188e-06
-    ##   9:  hand  my  13 2457  85 2565    2.646457  1.791317  3.6168202 1.860637e-13 2.117405e-10
-    ##  10: hands  my   5 1125  45 1775    2.511311  1.177037  4.2063750 1.127123e-05 9.321308e-03
-    ##  11:  head  my  10 1710  61 2169    2.265311  1.284027  3.3998354 1.607393e-07 1.689370e-04
-
+    ##   1:  back  me   3 1347  49 2391   3.2014513  1.565327  5.5296252 5.771195e-07 5.638457e-04
+    ##   2:  back  my   1 1349  31 2409   4.1171190  1.528647  9.4632893 1.931898e-05 9.437321e-03
+    ##   3:  eyes   i  10 1640  53 1747   2.3142117  1.318110  3.4597915 1.320717e-07 6.114918e-05
+    ##   4:  eyes joe   0 1650  16 1784         Inf  1.831254        Inf 3.641000e-05 7.000398e-03
+    ##   5:  eyes  me   3 1647  25 1775   2.9502767  1.233703  5.3219224 3.779912e-05 7.000398e-03
+    ##   6:  eyes  my   5 1645  58 1742   3.4522796  2.142760  5.1326458 1.058629e-11 9.802907e-09
+    ##   7:  eyes the 122 1528  62 1738  -1.1620034 -1.638598 -0.6973805 2.839285e-07 8.763925e-05
+    ##   8:  hand his 175 2315 114 2586  -0.7778652 -1.140960 -0.4192322 1.183505e-05 4.540716e-03
+    ##   9:  hand   i  19 2471  75 2625   1.8932508  1.146902  2.7069140 2.704759e-08 1.556589e-05
+    ##  10:  hand  my  12 2478  86 2614   2.7637906  1.880930  3.7755453 5.884107e-14 6.772608e-11
+    ##  11: hands  my   5 1125  45 1775   2.5113109  1.177037  4.2063750 1.127123e-05 9.321308e-03
+    ##  12:  head  my  10 1760  62 2258   2.2723508  1.292764  3.4061853 1.024855e-07 1.111968e-04
+    
     plot(results)
 
 ![Plot of example results.](tools/readme_image_01.png)
