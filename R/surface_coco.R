@@ -6,6 +6,6 @@
 }
 
 surface_coco <- function(a, b, span, nodes, fdr = 0.01, collocates = NULL) {
-    warning("The 'surface_coco' function is deprecated. Please consider using 'corp_surface_coco'.", call. = FALSE, immediate. = TRUE)
+    warning("The 'surface_coco' function is deprecated. Please consider first running 'corp_surface', then 'corp_coco'.", call. = FALSE, immediate. = TRUE)
     .surface_coco(a = a, b = b, span = span, nodes = nodes, fdr = fdr, collocates = collocates)
 }
