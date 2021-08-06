@@ -14,9 +14,9 @@ A good place to start is the ‘Introduction to CorporaCoCo’ vignette. You can
 
 References
 ----------
-* Wiegand, V., Hennessey, A., Tench, C. R., & Mahlberg, M. (2017a, May 24). Comparing co-occurrences between corpora. 38th ICAME conference, Charles University, Prague.
+* Wiegand, V., Hennessey, A., Tench, C. R., & Mahlberg, M. (2017a, May 24). *Comparing co-occurrences between corpora*. 38th ICAME conference, Charles University, Prague.
 
-*	Wiegand, V., Hennessey, A., Tench, C. R., & Mahlberg, M. (2017b, July 24). A cookbook of co-occurrence comparison techniques and how they relate to the subtleties in your research question. 9th International Corpus Linguistics Conference, University of Birmingham, Birmingham.
+*	Wiegand, V., Hennessey, A., Tench, C. R., & Mahlberg, M. (2017b, July 24). *A cookbook of co-occurrence comparison techniques and how they relate to the subtleties in your research question*. 9th International Corpus Linguistics Conference, University of Birmingham, Birmingham.
 
 
 A very simple example of usage
@@ -67,9 +67,9 @@ This example takes the two Dickens novels 'Great Expectations' and 'A Tale of Tw
 
 Further examples of how the method has been used can be found in:
 
-* Mahlberg, M., Wiegand, V., & Hennessey, A. (2020). Eye language – body part collocations and textual contexts in the nineteenth-century novel. In L. Fesenmeier & I. Novakova (Eds.), Phraseology and Stylistics of Literary Language/Phraséologie et Stylistique de la Langue Littéraire (pp. 143–176). Peter Lang. https://www.academia.edu/45152494/Eye_language_body_part_collocations_and_textual_contexts_in_the_nineteenth_century_novel
+* Mahlberg, M., Wiegand, V., & Hennessey, A. (2020). Eye language – body part collocations and textual contexts in the nineteenth-century novel. In L. Fesenmeier & I. Novakova (Eds.), *Phraseology and Stylistics of Literary Language/Phraséologie et Stylistique de la Langue Littéraire* (pp. 143–176). Peter Lang. https://www.academia.edu/45152494/Eye_language_body_part_collocations_and_textual_contexts_in_the_nineteenth_century_novel
 
-* Wiegand, V. (2019). A Corpus Linguistic Approach to Meaning-Making Patterns in Surveillance Discourse [PhD, University of Birmingham]. https://etheses.bham.ac.uk//id/eprint/9778/
+* Wiegand, V. (2019). *A Corpus Linguistic Approach to Meaning-Making Patterns in Surveillance Discourse* [PhD, University of Birmingham]. https://etheses.bham.ac.uk//id/eprint/9778/
 
 Installing from CRAN
 ====================
