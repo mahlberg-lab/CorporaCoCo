@@ -17,7 +17,7 @@
 
   For a list of all documentation use \code{library(help="CorporaCoCo")}.
   For updates on development versions of the package and documentation, 
-  please see the \href{https://github.com/mahlberg-lab/CorporaCoCo}{the GitHub page}.
+  please see the \href{https://github.com/mahlberg-lab/CorporaCoCo}{GitHub page}.
 }
 
 \author{
