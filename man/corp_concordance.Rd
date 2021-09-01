@@ -52,7 +52,7 @@
     function.
   }
   \item{context}{
-    The number of contect tokens to be displayed.
+    The number of context tokens to be displayed.
     Default is 3.
   }
   \item{x}{

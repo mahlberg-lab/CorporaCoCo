@@ -43,9 +43,5 @@
 
 \details{
   See \code{\link{surface}} and \code{\link{coco}}.
-
-  For an example of usage see the
-  \sQuote{\href{../doc/proof_of_concept.pdf}{Proof of Concept}}
-  vignette.
 }
 

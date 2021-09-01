@@ -56,7 +56,6 @@
     This is achieved using the \pkg{stringi}
     CRAN package and will work for any UTF-8 encoded text
     (in any language).
-    For details of constructing your own \var{tokens} see details.
   }
   \item{obj}{
     A \code{corp_text} object as is returned by the
@@ -71,14 +70,14 @@
   \subsection{corp_text}{
     Returns a \code{corp_text} object.
     
-    The \code{corp_text} object can be interogated using the
+    The \code{corp_text} object can be interrogated using the
     \code{corp_get_*} accessor functions.
 
     A concordance can be generated from the \code{corp_text} object
-    using the \code{\link{corp_concordance}}) function.
+    using the \code{\link{corp_concordance}} function.
 
     The \code{corp_text} objects are used as arguments to the
-    \code{\link{corp_cooccurrence}}) function. 
+    \code{\link{corp_cooccurrence}} function. 
   }
   \subsection{corp_type_lookup}{
     Returns a \pkg{data.table} that can be used to lookup the tokens
@@ -96,8 +95,8 @@
 }
 
 \seealso{
-    \code{\link{corp_cooccurrence}}) and
-    \code{\link{corp_concordance}}).
+    \code{\link{corp_cooccurrence}} and
+    \code{\link{corp_concordance}}.
 }
 
 \examples{
