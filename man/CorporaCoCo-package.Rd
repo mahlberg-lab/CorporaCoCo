@@ -21,11 +21,7 @@
 }
 
 \author{
-<<<<<<< HEAD
-  Maintainer: Michaela Mahlberg <m.j.allaway@bham.ac.uk>.
-=======
-  Maintainer:  <mahlberg.lab@gmail.com>.
->>>>>>> d27b8554fd7f3c3e25b7ccbfeafa384860906128
+  Maintainer: Michaela Mahlberg <mahlberg.lab@gmail.com>.
 }
 
 \references{

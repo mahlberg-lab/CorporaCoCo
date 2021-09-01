@@ -13,7 +13,8 @@
 \usage{
   corp_concordance(obj, span, nodes, collocates, context)
 
-  \method{print}{corp_concordance}(x, collocates = attr(x, "collocates"), collocate_marker = "*", as_data_table = FALSE, \dots)
+  \method{print}{corp_concordance}(x, collocates = attr(x, "collocates"),
+                  collocate_marker = "*", as_data_table = FALSE, \dots)
 }
 
 \arguments{

@@ -155,7 +155,8 @@
     ##  5:  plan  canal 1 1
 
     # filter on nodes and collocates
-    y <- corp_surface(x, span = '2R', nodes = c("canal", "man", "plan"), collocates = c("panama", "a"))
+    y <- corp_surface(x, span = '2R', nodes = c("canal", "man", "plan"),
+                      collocates = c("panama", "a"))
     corp_get_counts(y)
 
     ##         x      y H M
