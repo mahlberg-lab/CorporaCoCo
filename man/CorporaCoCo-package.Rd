@@ -20,7 +20,7 @@
 }
 
 \author{
-  Maintainer: Anthony Hennessey <anthony.hennessey@nottingham.ac.uk>.
+  Maintainer: Michaela Mahlberg <m.j.allaway@bham.ac.uk>.
 }
 
 \references{
