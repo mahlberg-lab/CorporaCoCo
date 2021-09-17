@@ -21,7 +21,7 @@
 }
 
 \author{
-  Maintainer: Michaela Mahlberg <mahlberg.lab@gmail.com>.
+  Maintainer: Mahlberg - Lab  <mahlberg.lab@gmail.com>.
 }
 
 \references{
