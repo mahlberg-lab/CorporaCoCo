@@ -11,6 +11,7 @@ Authors@R:
     person('Jamie','Lentin',email='jamie.lentin@shuttlethread.com',role='aut'),
     person('Mike','Allaway',email='m.j.allaway@bham.ac.uk',role='ctb'),
     person('Andrew','Edmondson',email='a.c.edmondson@bham.ac.uk',role='ctb'),
+    person('Matthew','Henderson',email='matthew.james.henderson@gmail.com',role='ctb'),    
     person('Michaela','Mahlberg',email='mahlberg.lab@gmail.com',role=c('aut','cre')))
 Description: A set of functions used to compare co-occurrence between two corpora.
 URL: https://github.com/mahlberg-lab/CorporaCoCo/
