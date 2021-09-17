@@ -30,6 +30,7 @@ Suggests:
     R.rsp,
     knitr,
     rmarkdown,
+    pandoc,
     lintr,
     testthat (>= 3.0.0),
     markdown
