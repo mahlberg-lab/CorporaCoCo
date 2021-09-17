@@ -24,8 +24,7 @@ Imports:
     data.table (>= 1.11.2),
     stringi,
     RColorBrewer,
-    rlist,
-    pandoc
+    rlist
 Suggests:
     unittest,
     R.rsp,
