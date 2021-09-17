@@ -28,7 +28,7 @@
   }
   \item{span}{
     A character string defining the co-occurrence span.
-    See details.
+    See Details.
   }
   \item{nodes}{
     A \code{character vector} of node types or \code{character string}
