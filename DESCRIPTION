@@ -34,7 +34,6 @@ Suggests:
     testthat (>= 3.0.0),
     markdown
 VignetteBuilder:
-    R.rsp,
     knitr
 BugReports: https://github.com/mahlberg-lab/CorporaCoCo/issues
 Config/testthat/edition: 3
