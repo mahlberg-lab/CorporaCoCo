@@ -28,7 +28,7 @@ Imports:
 Suggests:
     unittest,
     R.rsp,
-    knitr,
+    knitr (<= 1.33),
     rmarkdown,
     lintr,
     testthat (>= 3.0.0),
