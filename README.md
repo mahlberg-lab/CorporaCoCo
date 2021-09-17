@@ -22,7 +22,7 @@ References
 A very simple example of usage
 ------------------------------
 
-This example takes the two Dickens novels 'Great Expectations' and 'A Tale of Two Cities' and compares the co-occurrences of a set of body part nouns. The idea is that since body part nouns are common in speech suspensions the statistically significant co-occurrence differences should include personal pronouns reflecting the differing narrative voices of the texts. We use the texts here only as sample data; we retrieve them from the [CLiC API](https://clic.readthedocs.io/en/latest/advanced/api_usage.html) using the clicclient package (the other functions of that package are still under development; please see the [clicclient GitHub page for details](https://github.com/mahlberg-lab/clicclient)). 
+This example takes the two Dickens novels 'Great Expectations' and 'A Tale of Two Cities' and compares the co-occurrences of a set of body part nouns. The idea is that since body part nouns are common in suspensions the statistically significant co-occurrence differences should include personal pronouns reflecting the differing narrative voices of the texts. We use the texts here only as sample data; we retrieve them from the [CLiC API](https://clic.readthedocs.io/en/latest/advanced/api_usage.html) using the clicclient package (the other functions of that package are still under development; please see the [clicclient GitHub page for details](https://github.com/mahlberg-lab/clicclient)). 
 
     #devtools::install_github("mahlberg-lab/clicclient")
     library(clicclient)
