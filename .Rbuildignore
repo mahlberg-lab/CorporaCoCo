@@ -5,3 +5,5 @@
 ^.github$
 ^cran-comments.md$
 ^revdep$
+^doc$
+^Meta$
