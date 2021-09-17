@@ -24,13 +24,13 @@ Imports:
     data.table (>= 1.11.2),
     stringi,
     RColorBrewer,
-    rlist
+    rlist,
+    pandoc
 Suggests:
     unittest,
     R.rsp,
     knitr,
     rmarkdown,
-    pandoc,
     lintr,
     testthat (>= 3.0.0),
     markdown
