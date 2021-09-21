@@ -28,7 +28,7 @@
   }
   \item{span}{
     A character string defining the co-occurrence span.
-    See details.
+    See Details.
   }
   \item{nodes}{
     A \code{character vector} of node types or \code{character string}
@@ -68,7 +68,7 @@
   \subsection{corp_surface}{
     Returns a \code{corp_surface} object.
     
-    The \code{corp_surface} object can be interogated using the
+    The \code{corp_surface} object can be interrogated using the
     \code{corp_get_*} accessor functions.
 
     The \code{corp_surface} objects are used as arguments to the
@@ -155,7 +155,8 @@
     ##  5:  plan  canal 1 1
 
     # filter on nodes and collocates
-    y <- corp_surface(x, span = '2R', nodes = c("canal", "man", "plan"), collocates = c("panama", "a"))
+    y <- corp_surface(x, span = '2R', nodes = c("canal", "man", "plan"),
+                      collocates = c("panama", "a"))
     corp_get_counts(y)
 
     ##         x      y H M

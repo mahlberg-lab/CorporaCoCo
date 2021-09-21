@@ -13,7 +13,8 @@
 \usage{
   corp_concordance(obj, span, nodes, collocates, context)
 
-  \method{print}{corp_concordance}(x, collocates = attr(x, "collocates"), collocate_marker = "*", as_data_table = FALSE, \dots)
+  \method{print}{corp_concordance}(x, collocates = attr(x, "collocates"),
+                  collocate_marker = "*", as_data_table = FALSE, \dots)
 }
 
 \arguments{
@@ -40,19 +41,20 @@
   \item{collocates}{
     A \code{character vector} of collocate types or \code{character string}
     representing a single collocate type.
-    If supplied, only concordances for the specified collocate types will
-    be selected.
+    If supplied, only concordance lines for the specified collocate types will
+    be selected (i.e. act as a filter for \code{corp_concordance}).
 
     For \code{corp_cooccurrence} objects this defaults to the \var{collocates}
     used to create the object.
 
     For \code{print} \var{collocates} is used to determine which collocate
-    types to highlight; and does not act as a filter.
+    types to highlight; and does not act as a filter. See the "intro" vignette for
+    an example: \code{vignette("intro", package = "CorporaCoCo")}.
     Defaults to the collocates passed to the \code{corp_concordance}
     function.
   }
   \item{context}{
-    The number of contect tokens to be displayed.
+    The number of context tokens to be displayed.
     Default is 3.
   }
   \item{x}{

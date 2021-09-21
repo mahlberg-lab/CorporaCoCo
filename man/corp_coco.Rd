@@ -73,14 +73,14 @@
 }
 
 \details{
-  This function implements the method described in
-  Hennessey and Wiegand (2018).
+  The corp_coco function implements the method introduced in
+  Wiegand and Hennessey et al. (2017a) (described in more detail from a 
+  linguistic perspective in Wiegand, 2019).
 
   \var{fdr} indicates the level at which the False Discovery Rate will be
-  controlled. For a description of the form of FDR used see
-  Benjamini and Hochberg (1995). For a description of the use of FDR in
-  this context see Hennessey and Wiegand (2018). For description of the
-  \var{p_adjusted} column in the returned structure see
+  controlled because the method carries out a large number of tests. 
+  For a description of the form of FDR used see Benjamini and Hochberg (1995).
+  For description of the \var{p_adjusted} column in the returned structure see
   \code{\link{p.adjust}}.
 
   The returned data structure is a \code{\link[data.table]{data.table}}.
@@ -95,7 +95,6 @@
   \var{effect_size}, \var{CI_lower} and \var{CI_upper} columns.
   The \var{p_value} column contains the non-adjusted p-value from the
   Fisher's Exact Test.
-  For more details see Hennessey and Wiegand (2018).
 }
 
 \references{
@@ -104,7 +103,11 @@
   Journal of the Royal Statistical Society. Series B (Methodological)
   \bold{57 (1)289–300}.
 
-  A. Hennessey and V. Wiegand and C. R. Tench and M. Mahlberg (2018)
-  \emph{Comparing co-occurrences between corpora.} In preparation.
+  * Wiegand, V., Hennessey, A., Tench, C. R., & Mahlberg, M. (2017a, May 24). 
+    \emph{Comparing co-occurrences between corpora}. 38th ICAME conference, 
+    Charles University, Prague.
+  * Wiegand, V. (2019). \emph{A Corpus Linguistic Approach to Meaning-Making
+    Patterns in Surveillance Discourse} [PhD, University of Birmingham].
+    https://etheses.bham.ac.uk//id/eprint/9778/
 }
 

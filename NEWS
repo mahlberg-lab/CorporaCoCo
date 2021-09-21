@@ -7,4 +7,3 @@ CHANGES IN VERSION 2.0:
     * Introduced "corp_coco", and deprecated "coco"
     * Introduced "corp_surface", and deprecated "surface"
     * Introduced "corp_text", "corp_concordance" and "corp_cooccurrence"
-

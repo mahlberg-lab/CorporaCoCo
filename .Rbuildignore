@@ -1,6 +1,9 @@
-^\.git
-^\.travis.yml
-^\.lintr
-^\.zenodo.json
-^\codecov.yml
-^\.github$
+^.git$
+^.lintr$
+^.zenodo.json$
+^codecov.yml$
+^.github$
+^cran-comments.md$
+^revdep$
+^doc$
+^Meta$
