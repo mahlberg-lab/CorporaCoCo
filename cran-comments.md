@@ -10,12 +10,14 @@ There was 1 NOTE:
 * checking CRAN incoming feasibility ... NOTE
   Maintainer: ‘Michaela Mahlberg <mahlberg.lab@gmail.com>’
   
-  New maintainer:
-    Michaela Mahlberg <mahlberg.lab@gmail.com>
-  Old maintainer(s):
-    Anthony Hennessey <anthony.hennessey@nottingham.ac.uk>
-
-(We are updating the maintainer to Michaela, so this is expected)
+  New submission
+  
+  Package was archived on CRAN
+  
+  License components with restrictions and base license permitting such:
+    GPL (>= 3) + file LICENSE
+  File 'LICENSE':
+  [LICENSE file content omitted for brevity]
 
 
 ## Downstream dependencies
