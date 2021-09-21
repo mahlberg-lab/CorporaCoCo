@@ -17,7 +17,7 @@ There was 1 NOTE:
   License components with restrictions and base license permitting such:
     GPL (>= 3) + file LICENSE
   File 'LICENSE':
-  [LICENSE file content omitted for brevity]
+  [I've not pasted the LICENSE file content here]
 
 
 ## Downstream dependencies
