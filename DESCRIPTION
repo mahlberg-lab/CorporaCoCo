@@ -15,7 +15,7 @@ Authors@R:
     person('Michaela','Mahlberg',email='mahlberg.lab@gmail.com',role=c('aut','cre')))
 Description: A set of functions used to compare co-occurrence between two corpora.
 URL: https://github.com/mahlberg-lab/CorporaCoCo/
-License: GPL (>= 3)
+License: GPL (>= 3) + file LICENSE
 Depends:
     R (>= 3.2.0),
 Imports:
