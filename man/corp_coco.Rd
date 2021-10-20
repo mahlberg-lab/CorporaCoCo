@@ -108,6 +108,6 @@
     Charles University, Prague.
   * Wiegand, V. (2019). \emph{A Corpus Linguistic Approach to Meaning-Making
     Patterns in Surveillance Discourse} [PhD, University of Birmingham].
-    https://etheses.bham.ac.uk//id/eprint/9778/
+    https://etheses.bham.ac.uk/id/eprint/9778/
 }
 
