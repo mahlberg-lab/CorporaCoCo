@@ -69,7 +69,7 @@ Further examples of how the method has been used can be found in:
 
 * Mahlberg, M., Wiegand, V., & Hennessey, A. (2020). Eye language – body part collocations and textual contexts in the nineteenth-century novel. In L. Fesenmeier & I. Novakova (Eds.), *Phraseology and Stylistics of Literary Language/Phraséologie et Stylistique de la Langue Littéraire* (pp. 143–176). Peter Lang. https://www.academia.edu/45152494/Eye_language_body_part_collocations_and_textual_contexts_in_the_nineteenth_century_novel
 
-* Wiegand, V. (2019). *A Corpus Linguistic Approach to Meaning-Making Patterns in Surveillance Discourse* [PhD, University of Birmingham]. https://etheses.bham.ac.uk//id/eprint/9778/
+* Wiegand, V. (2019). *A Corpus Linguistic Approach to Meaning-Making Patterns in Surveillance Discourse* [PhD, University of Birmingham]. https://etheses.bham.ac.uk/id/eprint/9778/
 
 Installing from CRAN
 ====================

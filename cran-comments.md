@@ -15,9 +15,7 @@ There was 1 NOTE:
   Package was archived on CRAN
   
   License components with restrictions and base license permitting such:
-    GPL (>= 3) + file LICENSE
-  File 'LICENSE':
-  [I've not pasted the LICENSE file content here]
+    GPL (>= 3)
 
 
 ## Downstream dependencies

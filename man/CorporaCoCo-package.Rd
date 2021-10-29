@@ -45,5 +45,5 @@
 
   * Wiegand, V. (2019). \emph{A Corpus Linguistic Approach to Meaning-Making
     Patterns in Surveillance Discourse} [PhD, University of Birmingham]. 
-    \url{https://etheses.bham.ac.uk//id/eprint/9778/}
+    \url{https://etheses.bham.ac.uk/id/eprint/9778/}
 }
