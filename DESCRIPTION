@@ -3,7 +3,7 @@ Package: CorporaCoCo
 Type: Package
 Title: Corpora Co-Occurrence Comparison
 Version: 2.0
-Date: 2021-09-21
+Date: 2022-06-28
 Authors@R:
     c(person('Anthony','Hennessey',role='aut'),
     person('Viola','Wiegand',email='v.wiegand@bham.ac.uk',role='aut'),
