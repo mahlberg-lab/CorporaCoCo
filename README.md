@@ -138,5 +138,5 @@ Duration: 1.2 s
 [ FAIL 0 | WARN 0 | SKIP 0 | PASS 111 ]
 
 
-Continuous integration testing is set up using GitHub Actions - see [the workflows](/.github/workflows/).
+Continuous integration testing is set up using GitHub Actions - see the .github directory in the root of this project for more information.
 
