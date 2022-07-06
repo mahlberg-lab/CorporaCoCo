@@ -52,6 +52,8 @@
   }
 }
 
+\value{No return value, called to plot a \code{corp_coco} object}
+
 \details{
   An object of class \code{corp_coco} is returned by
   \code{\link{corp_coco}()}.

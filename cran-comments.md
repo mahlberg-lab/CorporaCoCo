@@ -18,6 +18,9 @@ There was 1 NOTE:
     GPL (>= 3)
 
 
+This package was archived because the previous maintainer email is no longer accessible, due to it being linked to a former employment. We've now updated the email address to mahlberg.lab@gmail.com, which is the email address for the research group and not tied to an institution.
+
+
 ## Downstream dependencies
 
 There are none. revdep_check output:
