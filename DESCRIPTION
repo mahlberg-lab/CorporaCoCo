@@ -13,7 +13,7 @@ Authors@R:
     person('Andrew','Edmondson',email='a.c.edmondson@bham.ac.uk',role='ctb'),
     person('Matthew','Henderson',email='matthew.james.henderson@gmail.com',role='ctb'),    
     person('Michaela','Mahlberg',email='mahlberg.lab@gmail.com',role=c('aut','cre')))
-Description: The package implements the method introduced in Wiegand, V., Hennessey, A., Tench, C. R., & Mahlberg, M. (2017), "Comparing co-occurrences between corpora". 38th ICAME conference, Charles University, Prague. It identifies significant difference in co-occurrence counts for a given node or set of nodes across two corpora, using a Fisher’s Exact test.
+Description: Implements the method introduced in Wiegand, V., Hennessey, A., Tench, C. R., & Mahlberg, M. (2017), "Comparing co-occurrences between corpora". 38th ICAME conference, Charles University, Prague. It identifies significant difference in co-occurrence counts for a given node or set of nodes across two corpora, using a Fisher’s Exact test.
 URL: https://github.com/mahlberg-lab/CorporaCoCo/
 License: GPL (>= 3)
 Depends:
