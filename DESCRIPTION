@@ -11,8 +11,17 @@ Authors@R:
     person('Jamie','Lentin',email='jamie.lentin@shuttlethread.com',role='aut'),
     person('Mike','Allaway',email='m.j.allaway@bham.ac.uk',role='ctb'),
     person('Andrew','Edmondson',email='a.c.edmondson@bham.ac.uk',role='ctb'),
-    person('Matthew','Henderson',email='matthew.james.henderson@gmail.com',role='ctb'),    
+    person('Matthew','Henderson',email='matthew.james.henderson@gmail.com',role='ctb'),
     person('Michaela','Mahlberg',email='mahlberg.lab@gmail.com',role=c('aut','cre')))
+Author: Anthony Hennessey [aut],
+    Viola Wiegand [aut],
+    Christopher R. Tench [aut],
+    Jamie Lentin [aut],
+    Mike Allaway [ctb],
+    Andrew Edmondson [ctb],
+    Matthew Henderson [ctb],
+    Michaela Mahlberg [aut, cre]
+Maintainer: Michaela Mahlberg <mahlberg.lab@gmail.com>
 Description: Identifies significant difference in co-occurrence counts for a given node or set of nodes across two corpora, using a Fisher’s Exact test.
 URL: https://github.com/mahlberg-lab/CorporaCoCo/
 License: GPL (>= 3)
