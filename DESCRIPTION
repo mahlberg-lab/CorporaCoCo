@@ -3,7 +3,7 @@ Package: CorporaCoCo
 Type: Package
 Title: Corpora Co-Occurrence Comparison
 Version: 2.0
-Date: 2022-06-28
+Date: 2022-08-05
 Authors@R:
     c(person('Anthony','Hennessey',role='aut'),
     person('Viola','Wiegand',email='v.wiegand@bham.ac.uk',role='aut'),
@@ -11,9 +11,18 @@ Authors@R:
     person('Jamie','Lentin',email='jamie.lentin@shuttlethread.com',role='aut'),
     person('Mike','Allaway',email='m.j.allaway@bham.ac.uk',role='ctb'),
     person('Andrew','Edmondson',email='a.c.edmondson@bham.ac.uk',role='ctb'),
-    person('Matthew','Henderson',email='matthew.james.henderson@gmail.com',role='ctb'),    
+    person('Matthew','Henderson',email='matthew.james.henderson@gmail.com',role='ctb'),
     person('Michaela','Mahlberg',email='mahlberg.lab@gmail.com',role=c('aut','cre')))
-Description: Implements the method introduced in Wiegand, V., Hennessey, A., Tench, C. R., & Mahlberg, M. (2017), "Comparing co-occurrences between corpora". 38th ICAME conference, Charles University, Prague. It identifies significant difference in co-occurrence counts for a given node or set of nodes across two corpora, using a Fisher’s Exact test.
+Author: Anthony Hennessey [aut],
+    Viola Wiegand [aut],
+    Christopher R. Tench [aut],
+    Jamie Lentin [aut],
+    Mike Allaway [ctb],
+    Andrew Edmondson [ctb],
+    Matthew Henderson [ctb],
+    Michaela Mahlberg [aut, cre]
+Maintainer: Michaela Mahlberg <mahlberg.lab@gmail.com>
+Description: Identifies significant difference in co-occurrence counts for a given node or set of nodes across two corpora, using a Fisher’s Exact test.
 URL: https://github.com/mahlberg-lab/CorporaCoCo/
 License: GPL (>= 3)
 Depends:
